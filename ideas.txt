@@ -1,4 +1,4 @@
-light/dark toggle, change the theme of the website 
+light/dark toggle, change the color mode of the website 
 users poll/voting
 league table with the live data
 social comment section 

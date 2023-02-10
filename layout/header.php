@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <link rel="icon" type="image/x-icon" href="media/favicon.ico">
+    <link rel="icon" type="/team10/image/x-icon" href="media/favicon.ico">
 
     <link href="https://fonts.cdnfonts.com/css/roboto-condensed" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -17,9 +17,17 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 
-    <title>LFC Fan Club</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="stylulate.css">
+    <title>
+        <?php
+        if(isset($title)){
+            echo "$title";
+        }else {
+            echo "LFC Fan Club";
+        }
+        ?>
+    </title>
+    <link rel="stylesheet" href="/team10/assets/css/styles.css">
+    <link rel="stylesheet" href="/team10/assets/css/stylulate.css">
 
     <style>
 

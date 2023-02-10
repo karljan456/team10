@@ -1,0 +1,22 @@
+light/dark toggle, change the theme of the website 
+users poll/voting
+league table with the live data
+social comment section 
+facebook like posts page
+admin control panel ///users page (add, edit, delete)
+membership, gives better user experience like voting and commenting
+timestamp for comments
+product merch sale
+
+
+
+
+/////////////////////////////////////////////////////////////////
+
+
+
+DATABASE STRUCTURE
+USER TABLE 
+COMMENT TABLE
+POSTS TABLE 
+PRODUCT TABLE 

@@ -26,18 +26,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+
 
     <title>
-        <?php
-        if (isset($title)) {
-            echo "$title";
-        } else {
-            echo "LFC Fan Club";
-        }
-        ?>
     </title>
     <link rel="stylesheet" href="/team10/assets/css/styles.css">
     <link rel="stylesheet" href="/team10/assets/css/stylulate.css">
+    <link rel="stylesheet" href="/team10/assets/css/darkmode.css">
     <div class="container ">
 
         <!--####################### HEADER Begins ##################-->
@@ -119,7 +117,7 @@
         </nav>
 </head><!--#################### HEADER ENDS #########################-->
 
-<body style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
+<body class="darkmode">
     <!--################SLIDER ###############-->
     <div class="page-heading">
         <div class=" container heading-h1 ">

@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/stylulate.css">
     <link rel="stylesheet" href="../assets/css/darkmode.css"><!--darkmode toggle switch-->
-    
+
     <title>
         <?php
         if (isset($title)) {
@@ -28,20 +28,19 @@
         ?>
     </title>
 
-    <div class="container"  style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
+    <div class="container" style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
         <div class="row topbar">
         </div>
-        
+
         <div class="row header ">
-<!--darkmode toggle switch-->
-        <label class="switch">
-					<input type="checkbox" id="toggleTheme"
-                    <?php if(isset($_COOKIE["theme"]) == "dark") { 
-                        echo "checked"; 
-                    }
-                        ?>>
-					<span class="slider round"></span>
-				</label>
+            <!--darkmode toggle switch-->
+            <label class="switch">
+                <input type="checkbox" id="toggleTheme" <?php if (isset($_COOKIE["theme"]) == "dark") {
+                                                            echo "checked";
+                                                        }
+                                                        ?>>
+                <span class="slider round"></span>
+            </label>
         </div>
 
         <nav class="navbar navbar-expand-xl  navbar-dark ms-auto pr-3   ">
@@ -90,44 +89,34 @@
 
                 <!--user login links-->
                 <div class="nav-item user-box ">
-
                     <a class="nav-link user-link " href="#">
                         <img src="../assets/images/user.svg" width="18" alt="Signup" class="nav-icon"> Join</a>
-
-
                     <a class="nav-link user-link" href="#">Login</a>
-
-
                 </div>
-
-
-                <!--user-box login links end-->
+                <!--sponser-->
                 <div class="nav-item justify-content-end sponser">
                     <a href="https://www.sc.com/en/"><img src="../assets/images/sponser.svg" width="120" alt="sponser"></a>
                 </div>
-
-
             </div>
         </nav>
         <?php
-if(isset($_COOKIE["theme"]) == "dark") {
-    $background = "#1b1d1e";
-    $color = "#fff";
-} else {
-    $background = "#f1f1f1 ";
-    $color = "#1b1d1e";
-}
-?>
+        if (isset($_COOKIE["theme"]) == "dark") {
+            $background = "#1b1d1e";
+            $color = "#fff";
+        } else {
+            $background = "#f1f1f1 ";
+            $color = "#1b1d1e";
+        }
+        ?>
 </head><!--#################### HEADER ENDS #########################-->
 
-<body style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
+<body style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
     <!--################SLIDER ###############-->
     <div class="page-heading slider-carousel">
-        <div class=" container heading-h1  dark-change" >
+        <div class=" container heading-h1  dark-change">
             <h1> <small>EXCLUSIVE NEWS!</small> SALAH SCORED THE WINNER AGAINST MANU</h1>
         </div>
     </div>
     <!--################SLIDER ENDS ###############-->
-    <div class="container post-container content-wrapper wd-75" 
-    style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
-    <!--################CONTENT STARTS###############-->
+    <div class="container post-container content-wrapper wd-75" style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
+        <!--################CONTENT STARTS###############-->

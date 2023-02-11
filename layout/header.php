@@ -2,16 +2,6 @@
 <html lang="en">
 
 <head>
-    <?php
-    //light/dark toggle
-    if ($_COOKIE["theme"] == "dark") {
-        $background = "#1b1d1e";
-        $color = "#ffffff";
-    } else {
-        $background = "#f1f1f1";
-        $color = "#1b1d1e";
-    }
-    ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -29,6 +19,11 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         </script>
+
+
+    <title>
+    <?php if (isset($title)){echo $title;} else {echo "LFC Fan Club";} ?>
+    </title>
     <link rel="stylesheet" href="/team10/assets/css/styles.css">
     <link rel="stylesheet" href="/team10/assets/css/stylulate.css">
     <link rel="stylesheet" href="/team10/assets/css/darkmode.css">

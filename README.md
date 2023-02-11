@@ -4,11 +4,11 @@
  instructions for the team:
  1- project mapping to folders/directories:
 
-    -images and icons => assets/images/
-    -PHP files => scripts
-    -JavaScript files => assets/js/
+    -images and icons => ../assets/images/
+    -PHP files => ../scripts/
+    -JavaScript files => ../assets/js/
     -Layout / template files => layout DUH!
-    -Internal/external connection e.g. db connection file => assets/plugins/  
+    -Internal/external connection e.g. db connection file => ../assets/plugins/  
 
 
 

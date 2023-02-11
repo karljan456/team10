@@ -1,4 +1,3 @@
-
 /* Heading */
 .article-container a h4{
    color:#424242;
@@ -50,6 +49,7 @@
    font-family:'Roboto', sans-serif;
    margin:0px;
    height:100vh;
+   
   }
   /* User link */
   #navbarSupportedContent .nav-item .user-link{
@@ -118,6 +118,7 @@
   /* Container */
   .container{
    margin-bottom:0px;
+   
   }
    /* Article content */
 .post-container .article-content{

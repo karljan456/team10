@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">
     </script>
     <!--darkmode toggle switch-->
     <link rel="stylesheet" href="../assets/css/styles.css">
@@ -112,7 +112,7 @@
             $background = "#222";
             $color = "#fff";
         } else {
-            $background = "#f1f1f1 ";
+            $background = "#f9f9f9 ";
             $color = "#1b1d1e";
         }
         ?>
@@ -128,5 +128,6 @@
         </div>
     </div>
     <!--################SLIDER ENDS ###############-->
-    <div class="container post-container content-wrapper wd-75" style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
+    <div class="container post-container content-wrapper wd-75" 
+    style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
         <!--################CONTENT STARTS###############-->

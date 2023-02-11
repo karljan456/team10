@@ -11,7 +11,7 @@
  
  
  
-/**********************site added css ends*****************************************/
+/**********************site css ends*****************************************/
 .switch {
   position: relative;
   display: inline-block;
@@ -39,7 +39,7 @@
   transition: .4s;
 }
 
-.toggler:before {
+.toggler::before {
   position: absolute;
   content: "";
   height: 26px;

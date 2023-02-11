@@ -1,32 +1,3 @@
-
-
-/* Container */
-.container .slider-carousel .container {
-    background-color: #474747 !important;
-}
-
-/* Division */
-.container>div {
-    background-color: #fafafa;
-    max-width: none;
-}
-
-/* Row */
-.footer-wrapper footer .footer-row-3 {
-    background-color: #b71515;
-}
-
-/* Row */
-.container .header {
-    background-color: #b71515;
-}
-
-/* Row */
-.footer-wrapper footer .footer-row-2 {
-    background-color: #d00a27;
-}
-
-
 /* Container */
 .container {
     width: 80% !important;
@@ -75,11 +46,7 @@
 /* Container */
 .container {
     width: 80% !important;
-    ,
     background-color: rgba(249, 249, 249, 0) !important;
-}
-
-
 }
 
 /* Footer */

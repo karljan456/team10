@@ -22,7 +22,7 @@
 
 
     <title>
-        
+    <?php if (isset($title)){echo $title;} else {echo "LFC Fan Club";} ?>
     </title>
     <link rel="stylesheet" href="/team10/assets/css/styles.css">
     <link rel="stylesheet" href="/team10/assets/css/stylulate.css">

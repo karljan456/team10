@@ -17,8 +17,7 @@
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/stylulate.css">
     <link rel="stylesheet" href="../assets/css/darkmode.css"><!--darkmode toggle switch-->
- 
-
+    
     <title>
         <?php
         if (isset($title)) {
@@ -34,7 +33,7 @@
         </div>
         
         <div class="row header ">
-
+<!--darkmode toggle switch-->
         <label class="switch">
 					<input type="checkbox" id="toggleTheme"
                     <?php if(isset($_COOKIE["theme"]) == "dark") { 
@@ -48,7 +47,6 @@
         <nav class="navbar navbar-expand-xl  navbar-dark ms-auto pr-3   ">
 
             <a class="navbar-brand justify-content-start" href="index.php">
-                <!-- Liverpool logo in the navbar-->
                 <img class="navbar_logo" src="../assets/images/lfc_logo.png" alt="Liverpool FC logo">
             </a>
 
@@ -124,11 +122,12 @@ if(isset($_COOKIE["theme"]) == "dark") {
 
 <body style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
     <!--################SLIDER ###############-->
-    <div class="page-heading">
+    <div class="page-heading slider-carousel">
         <div class=" container heading-h1  dark-change" >
             <h1> <small>EXCLUSIVE NEWS!</small> SALAH SCORED THE WINNER AGAINST MANU</h1>
         </div>
     </div>
     <!--################SLIDER ENDS ###############-->
-    <div class="container post-container content-wrapper wd-75" style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
+    <div class="container post-container content-wrapper wd-75" 
+    style="background-color: <?php echo $background;?>; color: <?php echo $color;?>">
     <!--################CONTENT STARTS###############-->

@@ -20,14 +20,9 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         </script>
 
-
-    <title>
-    <?php if (isset($title)){echo $title;} else {echo "LFC Fan Club";} ?>
-    </title>
     <link rel="stylesheet" href="/team10/assets/css/styles.css">
     <link rel="stylesheet" href="/team10/assets/css/stylulate.css">
     <link rel="stylesheet" href="/team10/assets/css/darkmode.css">
-
     <title>
     <?php
         if (isset($title)) {

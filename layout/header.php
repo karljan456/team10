@@ -2,16 +2,6 @@
 <html lang="en">
 
 <head>
-    <?php
-    //light/dark toggle
-    if ($_COOKIE["theme"] == "dark") {
-        $background = "#1b1d1e";
-        $color = "#ffffff";
-    } else {
-        $background = "#f1f1f1";
-        $color = "#1b1d1e";
-    }
-    ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -32,6 +22,7 @@
 
 
     <title>
+        
     </title>
     <link rel="stylesheet" href="/team10/assets/css/styles.css">
     <link rel="stylesheet" href="/team10/assets/css/stylulate.css">

@@ -31,14 +31,14 @@
         }
         ?>
     </title>
-    <div class="container" style="
+    <div class="container wd-100" style="
     background-color: <?php  echo $background; ?>; 
     color: <?php echo $color; ?>;
     ">
         <div class="row topbar">
         </div>
 
-        <div class="row header ">
+        <div class="row header ">        
             <!--darkmode toggle switch-->
             <label class="switch">
                 <input type="checkbox" id="toggleTheme" 
@@ -117,10 +117,10 @@
         }
         ?>
 </head>
-
 <!--#################### HEADER ENDS #########################-->
 <div class="almighty-wrapper"style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
-<body>
+<body style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
+
     <!--################SLIDER ###############-->
     <div class="page-heading slider-carousel">
         <div class=" container heading-h1  background-dark dark-change">
@@ -128,6 +128,6 @@
         </div>
     </div>
     <!--################SLIDER ENDS ###############-->
-    <div class="container post-container content-wrapper wd-75" 
+    <div class="container post-container content-wrapper " 
     style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
         <!--################CONTENT STARTS###############-->

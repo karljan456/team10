@@ -1,17 +1,30 @@
-/* Container */
-.container {
-    width: 80% !important;
+element, input, button, label,nav,footer, .footer-row-2  {
+    border-radius:2px;
 }
-
-
+/* Container */
+.container{
+    padding-left:0px !important;
+    padding-right:0px !important;
+    max-width:100vw;
+    max-width:100vw !important;
+    padding-left:0px !important;
+    padding-right:0px !important;
+   }
+   
+   
+   .container nav{
+    padding-left:30px;
+   }
+   
+   
 /* Post container */
 .container .post-container {
     width: 1300px !important;
     background-color: #eeeeee;
     padding-left: 30px;
     padding-right: 30px;
-    padding-top: 70px;
-    padding-bottom: 70px;
+    padding-top: 40px;
+    padding-bottom: 40px;
     border-radius: 3px;
     font-size: 22px;
 }
@@ -40,13 +53,6 @@
 /* Container */
 .container .footer-wrapper footer .container {
     width: 100% !important;
-}
-
-
-/* Container */
-.container {
-    width: 80% !important;
-    background-color: rgba(249, 249, 249, 0) !important;
 }
 
 /* Footer */
@@ -114,20 +120,25 @@ td {
     }
 
 }
-
+/* Navbar toggler */
+.container .navbar .navbar-toggler{
+    margin-bottom:25px;
+   }
+   
 #navbarSupportedContent {
     max-width: 90%;
     justify-content: flex-end;
     margin-left: 0px;
     margin-top: 0px;
+    font-size:18px;
 }
-
+#navbarSupportedContent .user-link img{
+    width:18px;
+   }
 html,
 body {
-    width: 100vw;
     overflow-x: hidden;
     font-family: Roboto, sans-serif;
-    ;
 }
 
 /* Heading */
@@ -208,11 +219,6 @@ h4 {
         margin-right: 20px;
     }
 
-}
-
-/* Container */
-.container {
-    max-width: 80vw !important;
 }
 
 
@@ -338,8 +344,8 @@ h4 {
 /**************************************************content styles end***************/
 /* Content wrapper */
 .container .content-wrapper {
-    margin-top: 120px;
-    margin-bottom: 120px;
+    margin-top: 60px;
+    margin-bottom: 60px;
     color: black;
 }
 
@@ -356,7 +362,7 @@ h4 {
 /* Social icon */
 .social-icon {
     filter: invert(1);
-    font-size: 24px;
+    font-size: 28px;
 }
 
 .user-box a {
@@ -540,6 +546,13 @@ h4 {
     z-index: 40;
 
 }
+/* Row */
+.container .header{
+    border-bottom-left-radius:3px;
+    border-bottom-right-radius:3px;
+   }
+   
+   
 
 .navbar {
     background: #D00A27;
@@ -870,6 +883,7 @@ body.wrapper {
         padding-bottom: 90px;
         border-radius: 3px;
         box-shadow: 5px 3px 10px 0px rgba(255, 255, 255, 0.3);
+        padding-right:20px;
 
     }
 

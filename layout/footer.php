@@ -11,22 +11,22 @@
                 <div class="col col-md-12">
                     <span class="social-icon">
                         <a href="https://www.facebook.com/LiverpoolFC/">
-                            <img src="../assets/images/facebook.svg" width="20" alt="facebook"></a>
+                            <img src="../assets/images/facebook.svg" width="24" alt="facebook"></a>
 
                     </span>
                     <span class="social-icon">
-                        <a href="https://www.instagram.com/liverpoolfc/?hl=en"><img src="../assets/images/instagram.svg" width="20"
+                        <a href="https://www.instagram.com/liverpoolfc/?hl=en"><img src="../assets/images/instagram.svg" width="24"
                                 alt="instagram"></a>
 
                     </span>
                     <span class="social-icon">
                         <a href="https://twitter.com/LFC?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><img
-                                src="../assets/images/twitter.svg" width="20" alt="twitter"></a>
+                                src="../assets/images/twitter.svg" width="24" alt="twitter"></a>
 
                     </span>
                     <span class="social-icon">
                         <a href="https://uk.linkedin.com/company/liverpool-football-club"><img src="../assets/images/linkedin.svg"
-                                width="20" alt="linkedin"></a>
+                                width="24" alt="linkedin"></a>
 
                     </span>
                 </div>
@@ -43,10 +43,6 @@
                     Sitemap - Privacy Policy - Terms & Conditions - About
                 </div>
                 <div class="col-12 order-3 mt-3">
-                    <?php
-                    $filename = basename($_SERVER['PHP_SELF']);
-                    echo "The file $filename was last modified: " . date("F d Y H:i:s.", filemtime($filename));
-                    ?>
                 </div>
             </div>
         </div>

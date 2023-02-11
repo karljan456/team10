@@ -4,8 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
     <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
 
     <link href="https://fonts.cdnfonts.com/css/roboto-condensed" rel="stylesheet">
@@ -16,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" deffer>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer>
     </script>
     <!--darkmode toggle switch-->
     <link rel="stylesheet" href="../assets/css/styles.css">
@@ -34,7 +32,7 @@
         ?>
     </title>
     <div class="container" style="
-    background-color: <?php  echo $background.$css_important; ?>; 
+    background-color: <?php  echo $background; ?>; 
     color: <?php echo $color; ?>;
     ">
         <div class="row topbar">
@@ -119,10 +117,10 @@
         }
         ?>
 </head>
-<div style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
-<!--#################### HEADER ENDS #########################-->
 
-<body style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
+<!--#################### HEADER ENDS #########################-->
+<div class="almighty-wrapper"style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
+<body>
     <!--################SLIDER ###############-->
     <div class="page-heading slider-carousel">
         <div class=" container heading-h1  background-dark dark-change">

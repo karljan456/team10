@@ -1,8 +1,17 @@
 /* Container */
-.container{
-  background-color:rgba(249,249,249,0) !important;
+.container {
+  background-color: rgba(249, 249, 249, 0) !important;
+}
+/* Division */
+
+/* Container */
+.container .slider-carousel .container{
+  background-color:#444444 !important;
  }
  
+ 
+ 
+/**********************site added css ends*****************************************/
 .switch {
   position: relative;
   display: inline-block;

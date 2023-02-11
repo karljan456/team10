@@ -1,3 +1,36 @@
+/* Container */
+.container .slider-carousel .container{
+    background-color:#474747 !important;
+   }
+   
+   /* Division */
+   .container > div{
+    background-color:#ffffff;
+    max-width:none;
+   }
+   
+   /* Row */
+   .footer-wrapper footer .footer-row-3{
+    background-color:#b71515;
+   }
+   
+   /* Row */
+   .container .header{
+    background-color:#b71515;
+   }
+   
+   /* Row */
+   .footer-wrapper footer .footer-row-2{
+    background-color:#d00a27;
+   }
+   
+   
+/* Container */
+.container{
+    width:80% !important;
+   }
+   
+   
 /* Post container */
 .container .post-container {
     width: 1300px !important;
@@ -32,11 +65,6 @@
 }
 
 /* Container */
-.container {
-    transform: translatex(0px) translatey(0px);
-}
-
-/* Container */
 .container .footer-wrapper footer .container {
     width: 100% !important;
 }
@@ -44,7 +72,11 @@
 
 /* Container */
 .container {
-    width: 96% !important;
+    width: 80% !important;,
+    background-color:rgba(249,249,249,0) !important;
+   }
+   
+   
 }
 
 /* Footer */
@@ -210,7 +242,7 @@ h4 {
 
 /* Container */
 .container {
-    max-width: 1600px !important;
+  max-width:80vw !important;
 }
 
 

@@ -1,3 +1,8 @@
+/* Container */
+.container{
+  background-color:rgba(249,249,249,0) !important;
+ }
+ 
 .switch {
   position: relative;
   display: inline-block;

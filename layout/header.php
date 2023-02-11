@@ -33,7 +33,7 @@
         }
         ?>
     </title>
-    <div class="container w-75" style="
+    <div class="container" style="
     background-color: <?php  echo $background.$css_important; ?>; 
     color: <?php echo $color; ?>;
     ">
@@ -125,7 +125,7 @@
 <body style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
     <!--################SLIDER ###############-->
     <div class="page-heading slider-carousel">
-        <div class=" container heading-h1  dark-change">
+        <div class=" container heading-h1  background-dark dark-change">
             <h1> <small>EXCLUSIVE NEWS!</small> SALAH SCORED THE WINNER AGAINST MANU</h1>
         </div>
     </div>

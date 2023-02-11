@@ -29,13 +29,20 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         </script>
-
-
-    <title>
-    </title>
     <link rel="stylesheet" href="/team10/assets/css/styles.css">
     <link rel="stylesheet" href="/team10/assets/css/stylulate.css">
     <link rel="stylesheet" href="/team10/assets/css/darkmode.css">
+
+    <title>
+    <?php
+        if (isset($title)) {
+            echo "$title";
+        } else {
+            echo "LFC Fan Club";
+        }
+        ?>
+    </title>
+
     <div class="container ">
 
         <!--####################### HEADER Begins ##################-->

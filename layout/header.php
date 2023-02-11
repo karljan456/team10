@@ -21,7 +21,7 @@
     <title>
         <?php
         if (isset($title)) {
-            echo "$title";
+            echo $title;
         } else {
             echo "LFC Fan Club";
         }

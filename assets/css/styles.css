@@ -1,85 +1,177 @@
-table, th, td {
+/* Post container */
+.container .post-container {
+    width: 1300px !important;
+    background-color: #eeeeee;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    border-radius: 3px;
+    font-size: 22px;
+}
+
+/* Container */
+.container .page-heading .container {
+    margin-left: 0px;
+    margin-right: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+/* Container */
+.container .page-heading .container {
+    width: 100% !important;
+}
+
+/* Container */
+.footer-wrapper footer .container {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+/* Container */
+.container {
+    transform: translatex(0px) translatey(0px);
+}
+
+/* Container */
+.container .footer-wrapper footer .container {
+    width: 100% !important;
+}
+
+
+/* Container */
+.container {
+    width: 96% !important;
+}
+
+/* Footer */
+.container .footer-wrapper footer {}
+
+/* Column 11/12 */
+.post-container .article-content {
+    max-width: 1300px;
+}
+
+/* Table */
+.container .content-wrapper .post-container .article-container .article-content table {
+    width: 40% !important;
+}
+
+/* Table Data */
+.article-content tr td {
+    border-style: solid;
+    border-width: 1px;
+}
+
+/* Heading */
+.post-container h1 {
+    font-size: 28px;
+    color: #444;
+    line-height: 1.3em;
+    margin-top: 40px;
+}
+
+
+
+table,
+th,
+td {
     border: 1px solid black;
     border-collapse: collapse;
-  }
-  th, td {
+}
+
+th,
+td {
     padding-top: 10px;
     padding-bottom: 20px;
     padding-left: 30px;
     padding-right: 40px;
-  }
+}
+
 /* Heading */
-.article-container a h4{
-    color:#424242;
-    font-family:'Roboto Condensed', sans-serif;
-    padding-left:3px;
-    padding-right:3px;
-    padding-top:15px;
-    padding-bottom:5px;
-   }
-   
-   @media (max-width:1092px){
-   
+.article-container a h4 {
+    color: #424242;
+    font-family: 'Roboto Condensed', sans-serif;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+@media (max-width:1092px) {
+
     /* Heading */
-    .article-container a h4{
-     font-size:18px;
-     padding-left:2px;
-     padding-right:2px;
-     padding-top:15px;
+    .article-container a h4 {
+        font-size: 18px;
+        padding-left: 2px;
+        padding-right: 2px;
+        padding-top: 15px;
     }
-    
-   }
-    #navbarSupportedContent {
-    max-width:90%;
-    justify-content:flex-end;
+
+}
+
+#navbarSupportedContent {
+    max-width: 90%;
+    justify-content: flex-end;
     margin-left: 0px;
     margin-top: 0px;
-    }
+}
+
 html,
 body {
     width: 100vw;
     overflow-x: hidden;
-    font-family: Roboto, sans-serif;;
+    font-family: Roboto, sans-serif;
+    ;
 }
+
 /* Heading */
-.nav-item{
-    font-family:Roboto Condensed, sans-serif;
+.nav-item {
+    font-family: Roboto Condensed, sans-serif;
     font-weight: 600;
- 
-   }
-   .nav-link{
-    font-family:Roboto Condensed, sans-serif;
+
+}
+
+.nav-link {
+    font-family: Roboto Condensed, sans-serif;
     font-weight: 600;
- 
-   }
-.post-container h1{
-    font-family:Roboto Condensed, sans-serif;
+
+}
+
+.post-container h1 {
+    font-family: Roboto Condensed, sans-serif;
     font-weight: 600;
-    margin-bottom:30px;
- 
-   }
-   
-   /* Heading */
-   .post-container h2{
-    font-family:Roboto Condensed, sans-serif;
+    margin-bottom: 30px;
+
+}
+
+/* Heading */
+.post-container h2 {
+    font-family: Roboto Condensed, sans-serif;
     font-weight: 600;
-    margin-bottom:30px;
-   }
-   /* Heading */
-   .post-container h3{
-    font-family:Roboto Condensed, sans-serif;
-    margin-bottom:30px;
-   }
-   /* Heading */
-   .post-container h4{
-    font-family:Roboto Condensed, sans-serif;
-   }
-   /* Container */
-   .body{
-    font-family:'Roboto', sans-serif;
-    margin:0px;
-    height:100vh;
-   }
+    margin-bottom: 30px;
+}
+
+/* Heading */
+.post-container h3 {
+    font-family: Roboto Condensed, sans-serif;
+    margin-bottom: 30px;
+}
+
+/* Heading */
+.post-container h4 {
+    font-family: Roboto Condensed, sans-serif;
+}
+
+/* Container */
+.body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0px;
+    height: 100vh;
+}
 
 h4 {
     font-size: 20px;
@@ -89,7 +181,7 @@ h4 {
 #navbarSupportedContent .nav-item .user-link {
     padding-left: 5px;
     padding-right: 5px;
-    color:#ffffff;
+    color: #ffffff;
 }
 
 .neverforget {
@@ -107,12 +199,12 @@ h4 {
         display: inline !important;
     }
 
-     /* Navbar supported content */
- #navbarSupportedContent{
-    max-width:100%;
-    margin-left:20px;
-    margin-right:20px;
-   }
+    /* Navbar supported content */
+    #navbarSupportedContent {
+        max-width: 100%;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
 
 }
 
@@ -314,21 +406,22 @@ h4 {
     transform: scale(1.1);
     transition: 300ms ease-in-out;
 }
-/* Column 1/12 */
-#trophies .trophy-box{
-    max-width:14%;
-    min-width: 13.4%;
-    align-self:center;
-    margin-left:0px;
-   }
-   
-   /* Column 1/12 */
-   .container .slider-wrapper .footer-wrapper footer .container #trophies .footer-row-1 .trophy-box{
-    width:13.3% !important;
-   }
-   
 
-   
+/* Column 1/12 */
+#trophies .trophy-box {
+    max-width: 14%;
+    min-width: 13.4%;
+    align-self: center;
+    margin-left: 0px;
+}
+
+/* Column 1/12 */
+.container .slider-wrapper .footer-wrapper footer .container #trophies .footer-row-1 .trophy-box {
+    width: 13.3% !important;
+}
+
+
+
 /* Img fluid */
 .footer-wrapper .img-fluid {
     padding-bottom: 5px;
@@ -427,7 +520,7 @@ h4 {
     background-color: #B71515;
     margin-bottom: -50px;
     z-index: 20;
-    background-image:url("https://images.unsplash.com/photo-1643796903573-68834ffadcb6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTc5fDB8MXxzZWFyY2h8Nnx8YW5maWVsZHxlbnwwfHx8fDE2NzUyODI4Nzg&ixlib=rb-4.0.3&q=80&w=2560");
+    background-image: url("https://images.unsplash.com/photo-1643796903573-68834ffadcb6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTc5fDB8MXxzZWFyY2h8Nnx8YW5maWVsZHxlbnwwfHx8fDE2NzUyODI4Nzg&ixlib=rb-4.0.3&q=80&w=2560");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -435,7 +528,7 @@ h4 {
 
 }
 
-   
+
 
 .header {
     padding: 30px 50px 30px 50px;
@@ -520,10 +613,12 @@ body.wrapper {
     transform: scale(1.05);
     transition: 300ms ease-in-out;
 }
+
 .latest-box:hover {
     transform: scale(1.1);
     transition: 300ms ease-in-out;
 }
+
 .social-icon span:hover {
     transform: scale(1.5);
     transition: 300ms ease-in-out;
@@ -559,19 +654,20 @@ body.wrapper {
 /************************************************************************/
 @media (max-width:1000px) {
 
-/* Column 1/12 */
-#trophies .trophy-box{
-    margin:10px;
-    max-width:100%;
-    min-width: 25vw ;
+    /* Column 1/12 */
+    #trophies .trophy-box {
+        margin: 10px;
+        max-width: 100%;
+        min-width: 25vw;
 
-   }
-   /* Column 1/12 */
-   .container .slider-wrapper .footer-wrapper footer .container #trophies .footer-row-1 .trophy-box{
-    width:100%;
-   }
-   
-   /***********************************************************/
+    }
+
+    /* Column 1/12 */
+    .container .slider-wrapper .footer-wrapper footer .container #trophies .footer-row-1 .trophy-box {
+        width: 100%;
+    }
+
+    /***********************************************************/
     .quotation .col-md-12 p {
         font-size: 1.2em;
 
@@ -602,9 +698,9 @@ body.wrapper {
     #navbarSupportedContent {
         background-color: #bcbcbc;
         text-align: center;
-            max-width:100%;
-            margin-left:20px;
-            margin-right:20px;
+        max-width: 100%;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 
     /* List */
@@ -795,15 +891,15 @@ body.wrapper {
     }
 
     /* footer row 2 to stacked in mobile*/
-    .footer-row-2{
+    .footer-row-2 {
         display: block;
-        padding-top:50px;
-        padding-bottom:50px;
-        font-size:18px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        font-size: 18px;
     }
 
     /* footer row 3 to stacked in mobile*/
-    .footer-row-3{
+    .footer-row-3 {
         display: block;
     }
 }
@@ -819,6 +915,8 @@ a:link {
     color: black;
     text-decoration: none;
 }
-.article-grid, h4{
+
+.article-grid,
+h4 {
     color: black;
 }

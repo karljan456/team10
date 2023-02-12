@@ -441,7 +441,13 @@ h4 {
     margin-left: -12px;
     margin-right: -12px;
 }
-
+/* Container */
+.almighty-wrapper .slider-carousel .container{
+    border-top-left-radius:0px;
+    border-top-right-radius:0px;
+   }
+   
+   
 .carousel {
     margin-top: -50px;
     margin-bottom: 20px;

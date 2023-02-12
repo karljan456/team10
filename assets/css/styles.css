@@ -6,6 +6,13 @@ element, input, button, label,nav,footer, .footer-row-2  {
     margin-left:20px !important;
     margin-right:20px;
    }
+   /* Container */
+.almighty-wrapper .slider-carousel .container{
+    margin-top:-20px;
+    border-top-left-radius:0px;
+    border-top-right-radius:0px;
+   }
+   
    
 /* Container */
 .container{

@@ -36,6 +36,12 @@ element, input, button, label,nav,footer, .footer-row-2  {
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
 }
+/* Container */
+.almighty-wrapper .slider-carousel .container{
+    padding-top:260px;
+    height:440px;
+   }
+   
 
 /* Container */
 .container .page-heading .container {

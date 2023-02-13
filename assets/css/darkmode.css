@@ -1,117 +1,132 @@
-@import url("https://fonts.googleapis.com/css?family=Assistant:400,700|Playfair+Display:900");
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+/* Container */
+.container {
+  background-color: rgba(249, 249, 249, 0) !important;
 }
 
-:root {
-  --clr-light: #fdffc4;
-  --clr-dark: #00332a;
-  --clr-primary: #dbffa2;
-  --clr-secondary: #c3fcf2;
-  --clr-accent: #ff7750;
+/* Division */
 
-  --foreground: var(--clr-dark);
-  --background: var(--clr-light);
+/* Container */
+.container .slider-carousel .container{
+  background-color:#444444 !important;
+ }
+ /* Post container */
+.container .almighty-wrapper .post-container{
+  background-color:rgba(176,144,144,0) !important;
+ }
+ 
+ .container .header{
+  justify-content:flex-end;
+  padding-bottom:50px;
+ }
+ .container .switch{
+  justify-content:flex-end;
+  padding-bottom:50px;
 
-  --ff-title: "Playfair Display", serif;
-  --ff-body: "Assistant", sans-serif;
-}
-
-.darkmode {
-  --clr-light: #fdffc4;
-  --clr-dark: #00332a;
-  --clr-primary: #202302;
-  --clr-secondary: #00100d;
-  --clr-accent: #ff7750;
-
-  --foreground: var(--clr-light);
-  --background: var(--clr-dark);
-}
-
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--ff-body);
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-h1 {
-  font-size: calc(3rem + 7vw);
-  font-family: var(--ff-title);
-  margin: 0 0 0.25em;
-  line-height: 1;
-}
-
-.subtitle {
-  max-width: 600px;
-}
-
-.btn-group {
-  margin: 2em 0;
-  display: relative;
-}
-
-.btn {
-  padding: 1em 2em;
-  text-decoration: none;
-  text-transform: uppercase;
-  border-radius: 5px;
+ }
+ 
+ 
+/**********************site css ends*****************************************/
+.switch {
   position: relative;
   display: inline-block;
-  line-height: 1;
+  width: 60px;
+  height: 34px;
+  border: 2px solid #fff;
+  border-radius: 25px;
 }
 
-.btn + .btn {
-  margin-left: 1em;
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
-.btn-secondary {
-  background: var(--foreground);
-  color: var(--background);
-  // border: currentColor solid 2px;
-}
-
-.btn-accent {
-  background: var(--clr-accent);
-  color: var(--foreground);
-}
-
-.btn::after {
-  content: "";
+.toggler {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  border: var(--foreground) 2px solid;
-  left: -4px;
-  top: 4px;
-  border-radius: inherit;
-  z-index: -1;
-}
-
-.dark-mode-toggle {
-  position: absolute;
-  z-index: 100;
-  top: 1em;
-  right: 1em;
-  color: var(--foreground);
-  border: 2px solid currentColor;
-  padding: 4px;
-  background: transparent;
   cursor: pointer;
-  border-radius: 5px;
-  width: 30px;
-  height: 30px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
-.click-here {
-  // SVG icon from Font Awesome
-  width: 100px;
-  right: 1.5em;
+.toggler::before {
   position: absolute;
-  top: 3em;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #fff;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
+
+input:checked + .toggler {
+  background-color: #333333;
+  font-family: "Font Awesome 5 Free"; font-weight: 900;
+  color: white;
+  fill:"\f185";
+  
+}
+input:focus + .toggler {
+  box-shadow: 0 0 1px #333333;
+}
+
+input:checked + .toggler:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+
+}
+
+.toggler.round {
+  border-radius: 16px;
+}
+
+.toggler.round:before {
+  border-radius: 50%;
+}
+
+
+
+ .container .header label{
+  padding-top:5px;
+  padding-bottom:5px;
+  margin-top:0px;
+  margin-bottom:15px;
+  background-color:#b71515;
+  border-width:0px;
+ }
+ 
+
+ .header .switch .toggler{
+  background-color:#222;
+  border-style:none;
+  margin-bottom:0px;
+  width:60px;
+ }
+ /*********************************************************************//* Sun */
+ .header .switch .sun{
+  background-color:rgba(34,34,34,0) !important;
+ }
+ .header .switch .moon{
+  background-color:rgba(34,34,34,0) !important;
+  transform='scale(2,2) scale(-1,1)';
+  padding-left:50px;
+ }
+.sun {
+  filter: invert(1);
+  transition: 1s;
+ }
+.container .header .header-darkmode-toggle{
+  text-align:right;
+ }
+.header-darkmode-toggle svg{
+  text-align:left;
+ }
+
+ /*********************************************************/

@@ -11,7 +11,7 @@ I will try to use PHP crud to create the following features to our website:
     d) 
 
 3) Other features:
-    a) Website Light/Dark mode (using PHP cookie session and a simple js function).
+    a) Website Light/Dark mode (using PHP cookie session and a simple js function). DONE
     b) PHP mail (to users and admins)
     c) file manager (server explorer)
     d) reCaptcha validator

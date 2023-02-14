@@ -1,6 +1,6 @@
 <?php
 
-$hostname = "localhost";
+$hostname = "db";
 $db_name = "team10_lfc";
 $db_user= "team10_lfc";
 $db_password = "wCZF*Pw[=gML";

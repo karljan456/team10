@@ -1,9 +1,10 @@
 <?php
 
-$servername = "";
-$db_user="";
-$db_password = "";
-$db_name = "";
+$servername = "95.216.139.131";
+$db_name = "team10_lfc";
+$db_user="team10_lfc";
+$db_password = "wCZF*Pw[=gML";
+
 
 $con = new mysqli($servername, $db_user, $db_password, $db_name);
 

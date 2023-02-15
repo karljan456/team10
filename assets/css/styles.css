@@ -211,8 +211,8 @@ h4 {
 
 /* User link */
 #navbarSupportedContent .nav-item .user-link {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
     color: #ffffff;
 }
 

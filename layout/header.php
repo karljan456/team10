@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en">team10
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/team10/assets/images/favicon.ico">
 
     <link href="https://fonts.cdnfonts.com/css/roboto-condensed" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -13,9 +13,9 @@
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">
     </script> <!--darkmode toggle switch needed jquery-->
-    <link rel="stylesheet" href="./assets/css/darkmode.css"><!--darkmode toggle switch styles-->
-    <link rel="stylesheet" href="./assets/css/styles.css">
-    <link rel="stylesheet" href="./assets/css/stylulate.css">
+    <link rel="stylesheet" href="/team10/assets/css/darkmode.css"><!--darkmode toggle switch styles-->
+    <link rel="stylesheet" href="/team10/assets/css/styles.css">
+    <link rel="stylesheet" href="/team10/css/stylulate.css">
     
     
     <title>
@@ -61,7 +61,7 @@
         <nav class="navbar navbar-expand-xl  navbar-dark ms-auto pr-3   ">
 
             <a class="navbar-brand justify-content-start" href="index.php">
-                <img class="navbar_logo" src="./assets/images/lfc_logo.png" alt="Liverpool FC logo">
+                <img class="navbar_logo" src="/team10/assets/images/lfc_logo.png" alt="Liverpool FC logo">
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,12 +105,12 @@
                 <!--user login links-->
                 <div class="nav-item user-box ">
                     <a class="nav-link user-link " href="#">
-                        <img src="./assets/images/user.svg" width="18" alt="Signup" class="nav-icon"> Join</a>
+                        <img src="/team10/assets/images/user.svg" width="18" alt="Signup" class="nav-icon"> Join</a>
                     <a class="nav-link user-link" href="#">Login</a>
                 </div>
                 <!--sponser-->
                 <div class="nav-item justify-content-end sponser">
-                    <a href="https://www.sc.com/en/"><img src="./assets/images/sponser.svg" width="120" alt="sponser"></a>
+                    <a href="https://www.sc.com/en/"><img src="/team10/assets/images/sponser.svg" width="120" alt="sponser"></a>
                 </div>
             </div>
         </nav>

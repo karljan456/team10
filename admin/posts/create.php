@@ -1,10 +1,8 @@
 <?php
-require_once "../assets/plugins/connect.php";
+require_once "connect.php";
 
 // Define variables and initialize with empty values
 $title = $slug = $content = $author = "";
-$title_err = $slug_err = $content_err = "";
-
 
 if (isset($_POST['publish'])) {
 
@@ -20,15 +18,14 @@ if (isset($_POST['publish'])) {
   if ($query_run)
   {
     $_SESSION['message'] = "Post Published Successfully";   
-    header('location: ../admin/dashboard/articles.php');
+    header('location: post.php');
   } 
   else 
   {
     $_SESSION['message'] = "Error encountered while creating the post. Please try again.";
-    header("Location: ../admin/posts/post.php");
+    header("Location: post.php");
     exit(0);
   }
-
 
 }
 

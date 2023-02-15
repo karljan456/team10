@@ -5,9 +5,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>
-        Bootstrap WYSIWYG editor | Text Editor Live Preview | Bootstrap Editor Examples | Responsive Text Editor
-    </title>
+    <title>Add new Post</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <style type="text/css">
@@ -39,7 +37,7 @@
 <body>
 
 
-    <?php include('../admin/messages.php'); ?>
+    
 
     <div class="container mt-4 mb-4">
         <div class="row justify-content-md-center">
@@ -47,7 +45,7 @@
                 <h1 class="h2 mb-4">Add Post</h1>
 
 
-                <form action="../admin/posts/create.php" method="POST">
+                <form action="create.php" method="POST">
                     <div class="form-group">
                         <input type="text" id="title" name="title" placeholder="Post title" required></textarea>
                     </div>
@@ -64,11 +62,14 @@
                         <input type="text" id="author" name="author" placeholder="Author"></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-success" name="publish">publish</button>
+                    <button type="submit" class="btn btn-success" name="publish">Publish</button>
             </div>
         </div>
     </div>
   </form>
+
+
+
 
 
 

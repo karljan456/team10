@@ -1,5 +1,6 @@
 <?php
 include "layout/header.php";
+
 ?>
 <div style=" width: 70%; margin: auto;">
     <h2>2022/23 EPL Season Table</h2>

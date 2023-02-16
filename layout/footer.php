@@ -4,48 +4,6 @@
     <!-- FOOTER BEGINS HERE-->
     <footer>
         <div class="container text-center mw-100 dark-change">
-
-
-            <!-- 
-                Footer TROPHIES TO BE LATER MODIFIED WITH PHP TO APPEAR ONLY IN THE HOMEPAGE FOOTER BUT NOT THE OTHER PAGES
-
-
-                <div id="trophies">
-                            <div class="row footer-row-1">
-                                <div class="col-md-2 col-sm-4 col-xs-4 trophy-box  ">
-                                    <img class="img-fluid" src="images/league_title.svg" alt="league_title">
-                                    <div class="titles">19</div>
-                                </div>
-                                <div class=" col-md-2 col-sm-4 col-xs-4 trophy-box">
-                                    <img class="img-fluid " src="images/european_cup.svg" alt="european_cup">
-                                    <div class="titles">6</div>
-                                </div>
-                                <div class=" col-md-2 col-sm-4 col-xs-4 trophy-box">
-                                    <img class="img-fluid" src="images/fa_cup.svg" alt="fa_cup">
-                                    <div class="titles">8</div>
-                                </div>
-                                <div class=" col-md-2 col-sm-4 col-xs-4 trophy-box">
-                                    <img class="img-fluid" src="images/uefa_cup.svg" alt="uefa_cup">
-                                    <div class="titles">3</div>
-                                </div>
-                                <div class="col-md-2 col-sm-4 col-xs-4 trophy-box">
-                                    <img class="img-fluid" src="images/league_cup.svg" alt="league_cup">
-                                    <div class="titles">9</div>
-                                </div>
-                                <div class="col-md-1 col-sm-4 col-xs-4 trophy-box">
-                                    <img class="img-fluid" src="images/uefa_super_cup.svg" alt="uefa_super_cup">
-                                    <div class="titles">4</div>
-                                </div>
-                                <div class="col-md-1 col-sm-4 col-xs-4 trophy-box">
-                                    <img class="img-fluid" src="images/fifa_club_world_cup.svg"
-                                        alt="fifa_club_world_cup">
-                                    <div class="titles">1</div>
-                                </div>
-                            </div>
-                        </div>
-            -->
-
-
             <div class="row footer-row-2 ">
                 <div class="col col-md-12">
                     <span class="social-icon">
@@ -72,9 +30,18 @@
 
                 <div class="col col-md-12">
                     This is the awesome fan blog of the Liverpool FC
-                </div>
+                </div>                
             </div>
             <div class="row footer-row-3">
+                <!--FOOTER TIMESTAMP BEGINS HERE-->
+                <div class="col col-md-12">
+                            <?php
+                            $filename = $_SERVER['PHP_SELF'];
+                            $bname = basename($filename);
+                            echo "<br> Last modified on " . date("l, F d Y H:i:s.", filemtime($bname));
+                            ?>
+                </div>
+                <!--FOOTER TIMESTAMP BEGINS HERE-->
                 <div class=" col-md-6 order-2 order-md-1 float-left" id="last-modified">
                     &copy; Copyright 2023 - Liverpool Fan Club - All Rights Reserved.
                 </div>
@@ -84,6 +51,7 @@
                 <div class="col-12 order-3 mt-3">
                 </div>
             </div>
+            
         </div>
 
 

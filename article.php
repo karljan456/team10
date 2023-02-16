@@ -1,4 +1,6 @@
-<?php include "layout/header.php" ?>
+<?php 
+$title = "Article";
+include "layout/header.php" ?>
 
 <div class="content-wrapper wd-75"><!--################CONTENT STARTS###############-->
             <div class="container post-container ">

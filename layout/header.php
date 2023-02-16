@@ -15,7 +15,7 @@
     </script> <!--darkmode toggle switch needed jquery-->
     <link rel="stylesheet" href="/team10/assets/css/darkmode.css"><!--darkmode toggle switch styles-->
     <link rel="stylesheet" href="/team10/assets/css/styles.css">
-    <link rel="stylesheet" href="/team10/css/stylulate.css">
+    <link rel="stylesheet" href="/team10/<css/stylulate.css">
     
     
     <title>

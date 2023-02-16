@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">team10
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +15,7 @@
     </script> <!--darkmode toggle switch needed jquery-->
     <link rel="stylesheet" href="/team10/assets/css/darkmode.css"><!--darkmode toggle switch styles-->
     <link rel="stylesheet" href="/team10/assets/css/styles.css">
-    <link rel="stylesheet" href="/team10/<css/stylulate.css">
+    <link rel="stylesheet" href="/team10/assets/css/stylulate.css">
     
     
     <title>

@@ -5,7 +5,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Add new Post</title>
+    <title>Create a new Post</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <style type="text/css">
@@ -42,7 +42,7 @@
     <div class="container mt-4 mb-4">
         <div class="row justify-content-md-center">
             <div class="col-md-12 col-lg-8">
-                <h1 class="h2 mb-4">Add Post</h1>
+                <h1 class="h2 mb-4">Create a new Article</h1>
 
 
                 <form action="create.php" method="POST">
@@ -59,6 +59,17 @@
 
 
                     <div class="form-group">
+                    <?php 
+                            include_once "connect.php";
+                            $query =" SELECT * FROM `users` WHERE role = 'Administrator'";
+                        
+                        ?>
+                    <select name="course">
+                        <option value="0">Author</option>
+                        <option value="PHP" <?php if($options=="PHP") echo 'selected="selected"'; ?> >PHP</option>
+                        <option value="ASP" <?php if($options=="ASP") echo 'selected="selected"'; ?> >ASP</option>
+                    </select>
+                    
                         <input type="text" id="author" name="author" placeholder="Author"></textarea>
                     </div>
 

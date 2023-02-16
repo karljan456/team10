@@ -18,7 +18,7 @@ if (isset($_POST['publish'])) {
   if ($query_run)
   {
     $_SESSION['message'] = "Post Published Successfully";   
-    header('location: post.php');
+    header('location: ./post.php');
   } 
   else 
   {

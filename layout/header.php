@@ -16,7 +16,14 @@
     <link rel="stylesheet" href="/team10/assets/css/darkmode.css"><!--darkmode toggle switch styles-->
     <link rel="stylesheet" href="/team10/assets/css/styles.css">
     <link rel="stylesheet" href="/team10/assets/css/stylulate.css">
-    
+    <link rel="stylesheet" href="/team10/assets/css/signup.css" type="text/css"/>
+    <?php
+  $page_name =  $_SERVER['PHP_SELF'];
+  if($page_name =='/team10/layout/signup.php' || $page_name =='signin.php'){
+    echo '<link rel="stylesheet" href="/team10/assets/css/signup.css" type="text/css"/>';
+  }
+
+?>
     
     <title>
         <?php
@@ -29,8 +36,7 @@
     </title>
     <div class="container wd-100" style="
     background-color: <?php echo $background; ?>; 
-    color: <?php echo $color; ?>;
-    ">
+    color: <?php echo $color; ?>;">
         <div class="row topbar">
         </div>
 <!--header second row-->

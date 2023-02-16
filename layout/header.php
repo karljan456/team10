@@ -86,18 +86,18 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            IN CLASS EXERCISE
+                            MORE
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="ex1.php">EXERCISE 1</a>
+                            <a class="dropdown-item" href="#">Poll Site</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="ex2.php">EXERCISE 2</a>
+                            <a class="dropdown-item" href="#">League Table</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="ex3.php">EXERCISE 3</a>
+                            <a class="dropdown-item" href="#">Comment Forum</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="controlflow.php">EXERCISE 4 (ControlFlow)</a>
+                            <a class="dropdown-item" href="#">Extra 1</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="array.php">EXERCISE 5 (Array)</a>
+                            <a class="dropdown-item" href="#">Extra 2</a>
                         </div>
                     </li>
                 </ul>

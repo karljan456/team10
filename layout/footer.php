@@ -4,8 +4,6 @@
     <!-- FOOTER BEGINS HERE-->
     <footer>
         <div class="container text-center mw-100 dark-change">
-
-
             <div class="row footer-row-2 ">
                 <div class="col col-md-12">
                     <span class="social-icon">
@@ -32,9 +30,18 @@
 
                 <div class="col col-md-12">
                     This is the awesome fan blog of the Liverpool FC
-                </div>
+                </div>                
             </div>
             <div class="row footer-row-3">
+                <!--FOOTER TIMESTAMP BEGINS HERE-->
+                <div class="col col-md-12">
+                            <?php
+                            $filename = $_SERVER['PHP_SELF'];
+                            $bname = basename($filename);
+                            echo "<br> Last modified on " . date("l, F d Y H:i:s.", filemtime($bname));
+                            ?>
+                </div>
+                <!--FOOTER TIMESTAMP BEGINS HERE-->
                 <div class=" col-md-6 order-2 order-md-1 float-left" id="last-modified">
                     &copy; Copyright 2023 - Liverpool Fan Club - All Rights Reserved.
                 </div>
@@ -44,6 +51,7 @@
                 <div class="col-12 order-3 mt-3">
                 </div>
             </div>
+            
         </div>
 
 

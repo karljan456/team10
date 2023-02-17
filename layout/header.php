@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
 
     <link href="https://fonts.cdnfonts.com/css/roboto-condensed" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -13,9 +13,9 @@
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">
     </script> <!--darkmode toggle switch needed jquery-->
-    <link rel="stylesheet" href="../assets/css/darkmode.css"><!--darkmode toggle switch styles-->
-    <link rel="stylesheet" href="../assets/css/styles.css">
-    <link rel="stylesheet" href="../assets/css/stylulate.css">
+    <link rel="stylesheet" href="./assets/css/darkmode.css"><!--darkmode toggle switch styles-->
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/stylulate.css">
     
     
     <title>
@@ -61,7 +61,7 @@
         <nav class="navbar navbar-expand-xl  navbar-dark ms-auto pr-3   ">
 
             <a class="navbar-brand justify-content-start" href="index.php">
-                <img class="navbar_logo" src="../assets/images/lfc_logo.png" alt="Liverpool FC logo">
+                <img class="navbar_logo" src="./assets/images/lfc_logo.png" alt="Liverpool FC logo">
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,18 +86,18 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            IN CLASS EXERCISE
+                            MORE
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="ex1.php">EXERCISE 1</a>
+                            <a class="dropdown-item" href="#">Poll Site</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="ex2.php">EXERCISE 2</a>
+                            <a class="dropdown-item" href="#">League Table</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="ex3.php">EXERCISE 3</a>
+                            <a class="dropdown-item" href="#">Comment Forum</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="controlflow.php">EXERCISE 4 (ControlFlow)</a>
+                            <a class="dropdown-item" href="#">Extra 1</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="array.php">EXERCISE 5 (Array)</a>
+                            <a class="dropdown-item" href="#">Extra 2</a>
                         </div>
                     </li>
                 </ul>
@@ -105,12 +105,12 @@
                 <!--user login links-->
                 <div class="nav-item user-box ">
                     <a class="nav-link user-link " href="#">
-                        <img src="../assets/images/user.svg" width="18" alt="Signup" class="nav-icon"> Join</a>
+                        <img src="./assets/images/user.svg" width="18" alt="Signup" class="nav-icon"> Join</a>
                     <a class="nav-link user-link" href="#">Login</a>
                 </div>
                 <!--sponser-->
                 <div class="nav-item justify-content-end sponser">
-                    <a href="https://www.sc.com/en/"><img src="../assets/images/sponser.svg" width="120" alt="sponser"></a>
+                    <a href="https://www.sc.com/en/"><img src="./assets/images/sponser.svg" width="120" alt="sponser"></a>
                 </div>
             </div>
         </nav>

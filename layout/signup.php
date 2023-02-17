@@ -1,57 +1,40 @@
 <?php include "header.php";?>
 
-<div class="wrapper">
-        <div class="form-left">
-            <h2 class="text-uppercase">information</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et molestie ac feugiat sed. Diam volutpat commodo.
-            </p>
-            <p class="text">
-                <span>Sub Head:</span>
-                Vitae auctor eu augudsf ut. Malesuada nunc vel risus commodo viverra. Praesent elementum facilisis leo vel.
-            </p>
-            <div class="form-field">
-                <input type="submit" class="account" value="Have an Account?">
-            </div>
-        </div>
-        <form class="form-right">
-            <h2 class="text-uppercase">Registration form</h2>
-            <div class="row">
-                <div class="col-sm-6 mb-3">
-                    <label>First Name</label>
-                    <input type="text" name="first_name" id="first_name" class="input-field">
-                </div>
-                <div class="col-sm-6 mb-3">
-                    <label>Last Name</label>
-                    <input type="text" name="last_name" id="last_name" class="input-field">
-                </div>
-            </div>
-            <div class="mb-3">
-                <label>Your Email</label>
-                <input type="email" class="input-field" name="email" required>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 mb-3">
-                    <label>Password</label>
-                    <input type="password" name="pwd" id="pwd" class="input-field">
-                </div>
-                <div class="col-sm-6 mb-3">
-                    <label>Current Password</label>
-                    <input type="password" name="cpwd" id="cpwd" class="input-field">
-                </div>
-            </div>
-            <div class="mb-3">
-                <label class="option">I agree to the <a href="#">Terms and Conditions</a>
-                    <input type="checkbox" checked>
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-            <div class="form-field">
-                <input type="submit" value="Register" class="register" name="register">
-            </div>
-        </form>
-    </div>
+<div class="signup-form">
+<form action="scripts/signup.serv.php" method="post">
+<div class="mb-3">
+    <label for="firstname" class="form-label" >First name</label>
+    <input type="text" class="form-control" id="firstname" name="firstname">
+  </div>
+  <div class="mb-3">
+    <label for="lastname" class="form-label" >Last name</label>
+    <input type="text" class="form-control" id="lastname" name="lastname">
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label" >Email address</label>
+    <input type="email" class="form-control" id="email" name="email">
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password" name="password">
+  </div>
+
+  <div class="mb-3">
+    <label for="repassword" class="form-label">Retype password <small>for verification</small></label>
+    <input type="password" class="form-control" id="repassword" name="repassword">
+  </div>
+
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
 
 
 
-    <?php include "footer.php";?>
+
+<?php include "footer.php";?>

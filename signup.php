@@ -1,4 +1,4 @@
-<?php include "header.php";?>
+<?php include "layout/header.php";?>
 
 <div class="signup-form">
 <form action="scripts/signup.serv.php" method="post">
@@ -27,14 +27,14 @@
 
   <div class="mb-3 form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    <label class="form-check-label" for="exampleCheck1">I hearby accept LFC Fan Club <a href="tos.php" target="_blank">Terms & Conditions </a>.</label>
   </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Signup</button>
 </form>
 </div>
 
 
 
 
-<?php include "footer.php";?>
+<?php include "layout/footer.php";?>

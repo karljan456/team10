@@ -108,9 +108,9 @@
 
                 <!--user login links-->
                 <div class="nav-item user-box ">
-                    <a class="nav-link user-link " href="#">
+                    <a class="nav-link user-link " href="signup.php">
                         <img src="/team10/assets/images/user.svg" width="18" alt="Signup" class="nav-icon"> Join</a>
-                    <a class="nav-link user-link" href="#">Login</a>
+                    <a class="nav-link user-link" href="login.php">Login</a>
                 </div>
                 <!--sponser-->
                 <div class="nav-item justify-content-end sponser">

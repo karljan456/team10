@@ -49,9 +49,9 @@ function emptyLoginInput($username, $password)
 
 
 
-//user exists
+//////////////////////////////////user exists
 function usernameExists($con, $username, $email){
-$query = " SELECT * FROM users WHERE user_id = ? OR email = ?;"; //query db
+$query = " SELECT * FROM users WHERE username = ? OR email = ?;"; //query db and wait for values after validation to avoid injections per my understanding.
 
 //initialize or prepare a statement 
 //to check without executing the input before validation
@@ -87,7 +87,7 @@ mysqli_stmt_close($stmt);
 
 
 
-// user login
+////////////////////////////////////////////////// user login
 function userLogin($con, $username, $password){
     $userExists = usernameExists($con, $username, $username);
 

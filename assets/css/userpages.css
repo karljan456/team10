@@ -14,4 +14,7 @@
    .almighty-wrapper .signup-form{
     box-shadow:0px 0px 10px 0px rgba(0,0,0,0.3);
    }
-   
+   /* Link */
+.form-check .form-check-label a{
+    color:#03a9f4;
+   }   

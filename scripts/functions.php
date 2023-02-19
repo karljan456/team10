@@ -195,12 +195,12 @@ function userLogin($con, $username, $password){
         session_start(); 
         $_SESSION['username'] = $userExists['username']; 
         $_SESSION['loggedin'] = true; 
-        $_SESSION['message'] = "Welcome ;  
+        $_SESSION['message'] = "Welcome ". $_SESSION['username'];  
 
-        header("Location: ../index.php");
+        header('Location: ../index.php');
         exit();
-        
+    }  
 
-    }
+
 
 }

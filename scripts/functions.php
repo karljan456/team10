@@ -31,15 +31,14 @@ function loggedIn()
         echo '<font style=" color:green;">Welcome, ' . $_SESSION['username'];
     }
 }
-
-
-
-// empty input validator
-function emptyLoginInput($username, $password)
+///////////////////////////////////////////////////////////////////////
+/////////////// empty signup form input validator/////////////////
+//if any field is empty then it is true.
+function emptySignupInput($firstname, $lastname, $email, $password, $passwordrepeat, $tos)
 {
-    $result;
+    $result="";
 
-    if (empty($username) || empty($password)) {
+    if (empty($firstname) || empty($lastname)|| empty($email)|| empty($password) || empty($passwordrepeat)|| empty($tos)) {
         $result = true;
     } else {
         $result = false;
@@ -47,6 +46,38 @@ function emptyLoginInput($username, $password)
     return $result;
 }
 
+// check if username is valid 
+function invalidUsername($username){
+    $result="";
+    if (preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+        $result = true;
+    }else {
+        $result = false;
+    }
+    return $result;
+}
+
+// check if email is valid 
+function invalidEmail($email){
+    $result="";
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $result = true;
+    }else {
+        $result = false;
+    }
+    return $result;
+}
+
+// check if passwords are matching password and passwordrepeat 
+function passwordMatch($password, $passwordrepeat){
+    $result="";
+    if ($password !==  $passwordrepeat) {
+        $result = true;
+    }else {
+        $result = false;
+    }
+    return $result;
+}
 
 
 //////////////////////////////////user exists
@@ -69,8 +100,7 @@ mysqli_stmt_execute($stmt);
 
 $stmtResult = mysqli_stmt_get_result($stmt);
 
-//check if there is result and assign it to a vriable as an array
-
+//check if there is result and assign it to a variable as an array
 if ($row= mysqli_fetch_assoc($stmtResult)){
     return $row;
 }else {
@@ -78,16 +108,60 @@ if ($row= mysqli_fetch_assoc($stmtResult)){
     return $result;
 
 }
-
 //close the prepared statement
 mysqli_stmt_close($stmt);
 
 }
 
 
+//////////////////////////////////user creation
+function createUser($con, $firstname, $lastname, $username, $email, $password){
 
+    //query db and wait for values after validation to avoid injections per my understanding.
+    $query = " INSERT INTO users (fname, lname, username, email, password) 
+    VALUES (?, ?, ?, ?, ?)"; 
+    //initialize or prepare a statement 
+    //to check without executing the input before validation
+    $stmt = mysqli_stmt_init($con); 
+    
+    // check if the query fails and throw an error in the url
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+    header("Location: ../signup.php?error=queryfail");
+    exit();
+    }
+    //let's encrypt the password before inserting the data
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    //does not fail then we continue to bind the parameters
+    //add data after validation success and add the hashed version of the pwd
+    mysqli_stmt_bind_param($stmt, "sssss", $firstname, $lastname, $username, $email, $hashedPassword);
+    mysqli_stmt_execute($stmt);
+
+    //close the prepared statement and direct to login page
+    mysqli_stmt_close($stmt);
+    header('Location: ../login.php?error=none');
+    exit();
+    
+    }
+
+
+//////////////////////login functions
+
+// empty login form input validator
+function emptyLoginInput($username, $password)
+{
+    $result="";
+
+    if (empty($username) || empty($password)) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+}
 
 ////////////////////////////////////////////////// user login
+
 function userLogin($con, $username, $password){
     $userExists = usernameExists($con, $username, $username);
 

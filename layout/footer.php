@@ -33,15 +33,7 @@
                 </div>                
             </div>
             <div class="row footer-row-3">
-                <!--FOOTER TIMESTAMP BEGINS HERE-->
-                <div class="col col-md-12">
-                            <?php
-                            $filename = $_SERVER['PHP_SELF'];
-                            $bname = basename($filename);
-                            echo "<br> Last modified on " . date("l, F d Y H:i:s.", filemtime($bname));
-                            ?>
-                </div>
-                <!--FOOTER TIMESTAMP BEGINS HERE-->
+
                 <div class=" col-md-6 order-2 order-md-1 float-left" id="last-modified">
                     &copy; Copyright 2023 - Liverpool Fan Club - All Rights Reserved.
                 </div>

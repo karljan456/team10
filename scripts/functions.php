@@ -49,7 +49,7 @@ function emptySignupInput($firstname, $lastname, $email, $password, $passwordrep
 // check if username is valid 
 function invalidUsername($username){
     $result="";
-    if (preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+    if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
         $result = true;
     }else {
         $result = false;

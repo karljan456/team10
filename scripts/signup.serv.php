@@ -1,6 +1,7 @@
 <?php
 // intitalize variables
 $firstname =  $lastname =  $email =  $username =  $password =  $passwordrepeat =  $tos = "";
+
 if (isset($_POST['submit'])) {
 
     //assign the variables on submission

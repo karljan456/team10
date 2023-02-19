@@ -2,28 +2,26 @@
 
 function loggedIn()
 {
-    //Session logged is set if the user is logged in 
-    //set it to 1 if the user has successfully logged in 
-    //if it wasn't set create a login form 
+    //Session logged is set if the user is logged in ''''''''''''''''''WORKING ON IT''''''''''''''''''
+    //set it to 1 if the user has successfully logged in ''''''''''''''''''WORKING ON IT''''''''''''''''''
+    //if it wasn't set create a login form ''''''''''''''''''WORKING ON IT''''''''''''''''''
     if (!$_SESSION['loggd']) {
 
         echo '
-        <form>
+        <form action="scripts/login.serv.php" method="POST">
 
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Username or Email</label>
-          <input type="email" class="form-control" id="email" name="userid">
+          <label for="userid" class="form-label">Username</label>
+          <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username or email account">
         </div>
+        
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>
           <input type="password" class="form-control" id="password" name="password">
         </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+        
+        <button type="submit" class="btn btn-primary" name="submit">Login</button>
+        </form>
         ';
         //if session is equal to 1, display  
         //Welcome, and whaterver their user name is 
@@ -32,6 +30,11 @@ function loggedIn()
     }
 }
 ///////////////////////////////////////////////////////////////////////
+
+//error messages and success messages to display anywhere
+
+
+
 /////////////// empty signup form input validator/////////////////
 //if any field is empty then it is true.
 function emptySignupInput($firstname, $lastname, $email, $password, $passwordrepeat, $tos)
@@ -182,7 +185,6 @@ function userLogin($con, $username, $password){
         //if all is good start a logged in session
     } else if ($passwordCheck === true){
         session_start(); 
-        $_SESSION['id'] = $userExists['id']; 
         $_SESSION['username'] = $userExists['username']; 
 
         header("Location: ../index.php");

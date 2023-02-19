@@ -4,6 +4,9 @@ session_start();
 include "layout/header.php";
 ?>
 
+<div>
+<?php include "scripts/messages.php";?>
+
 <form action="scripts/login.serv.php" method="POST">
 
 <div class="mb-3">
@@ -20,14 +23,19 @@ include "layout/header.php";
 </form>
 
 
+</div>
 
 
 
 
 <?php
 
+
+
+
+    //work in progress
     //Call the functions file 
-    include_once "scripts/functions.php"; 
+    //include_once "scripts/functions.php"; 
     //Display either the user's name, or the login form 
     //This can be placed on many pages without having 
     //to re-write the form everytime, just use this function 

@@ -61,7 +61,7 @@
                     <div class="form-group">
                     <?php 
                             include_once "connect.php";
-                            $query =" SELECT * FROM `users` WHERE role = 'Administrator'";
+                            $query =' SELECT * FROM users WHERE role = "Administrator"';
                         
                         ?>
                     <select name="course">
@@ -78,9 +78,6 @@
         </div>
     </div>
   </form>
-
-
-
 
 
 

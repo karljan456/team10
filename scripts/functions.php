@@ -1,11 +1,12 @@
 <?php
 
-function loggedIn()
+function login()
 {
     //Session logged is set if the user is logged in ''''''''''''''''''WORKING ON IT''''''''''''''''''
     //set it to 1 if the user has successfully logged in ''''''''''''''''''WORKING ON IT''''''''''''''''''
     //if it wasn't set create a login form ''''''''''''''''''WORKING ON IT''''''''''''''''''
-    if (!$_SESSION['loggd']) {
+  
+    if (empty($_SESSION['loggedin'])) {
 
         echo '
         <form action="scripts/login.serv.php" method="POST">
@@ -26,14 +27,10 @@ function loggedIn()
         //if session is equal to 1, display  
         //Welcome, and whaterver their user name is 
     } else {
-        echo '<font style=" color:green;">Welcome, ' . $_SESSION['username'];
+        echo '<font style=" color:green;">Welcome, ' . $_SESSION['username'] . '</font>';
     }
 }
 ///////////////////////////////////////////////////////////////////////
-
-//error messages and success messages to display anywhere
-
-
 
 /////////////// empty signup form input validator/////////////////
 //if any field is empty then it is true.
@@ -142,6 +139,11 @@ function createUser($con, $firstname, $lastname, $username, $email, $password){
 
     //close the prepared statement and direct to login page
     mysqli_stmt_close($stmt);
+
+   // start a session to carry the error/success message to the header location
+    session_start();
+    $_SESSION['message'] = "Thank you and welcome to LFC Fan Club <br> Please login!";
+
     header('Location: ../login.php?error=none');
     exit();
     
@@ -169,6 +171,9 @@ function userLogin($con, $username, $password){
     $userExists = usernameExists($con, $username, $username);
 
     if ($userExists === false){
+        session_start(); 
+        $_SESSION['message'] = "No such user exists"; 
+
         header("Location: ../login.php?error=invalidlogin");
         exit();
 
@@ -179,6 +184,9 @@ function userLogin($con, $username, $password){
     $passwordCheck = password_verify($password, $hashedPassword);
 
     if ($passwordCheck === false){
+        session_start(); 
+        $_SESSION['message'] = "Invalid username or password"; 
+        
         header("Location: ../login.php?error=wronglogininfo");
         exit();
 
@@ -186,6 +194,8 @@ function userLogin($con, $username, $password){
     } else if ($passwordCheck === true){
         session_start(); 
         $_SESSION['username'] = $userExists['username']; 
+        $_SESSION['loggedin'] = true; 
+        $_SESSION['message'] = "Welcome ;  
 
         header("Location: ../index.php");
         exit();

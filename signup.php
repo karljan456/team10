@@ -1,7 +1,8 @@
 <?php include "layout/header.php";?>
 
 <div class="signup-form">
-<form action="../scripts/signup.serv.php" method="POST">
+<?php include "scripts/messages.php";?>
+<form action="scripts/signup.serv.php" method="POST">
 <div class="mb-3">
     <label for="firstname" class="form-label" >First name</label>
     <input type="text" class="form-control" id="firstname" name="firstname" required>

@@ -10,7 +10,7 @@ $title = "Poll Site";
 
 <div class="voting Table" style="background-color: blanchedalmond">
     <h2>VOTING TABLE</h2>
-
+    
     <table class="table">
         <tr><th>No.</th><th>Match</th><th>Stadium</th><th>Vote</th></tr>
         <tr><td>1</td><td>Liverpool vs Real Madrid</td><td>Anfield</td><td>

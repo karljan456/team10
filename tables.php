@@ -3,44 +3,43 @@ include "layout/header.php";
 
 ?>
 <div style=" width: 70%; margin: auto;">
-<h2></h2>
+    <h2></h2>
 
-<form method="post">
-    <select name="competitions">
-        <option value="all">All Competitions</option>
-        <option value="epl">English Premier League</option>
-        <option value="ucl">UEFA Champions League</option>
-    </select>
-    <select name="season">
-        <option value="s23">2022-23</option>
-        <option value="s22">2021-22</option>
-    </select>
-    <input type="submit" value="Submit" name="submit"> 
-</form>
+    <form method="post">
+        <select name="competitions">
+            <option value="all">All Competitions</option>
+            <option value="epl">English Premier League</option>
+            <option value="ucl">UEFA Champions League</option>
+        </select>
+        <select name="season">
+            <option value="s23">2022-23</option>
+            <option value="s22">2021-22</option>
+        </select>
+        <input type="submit" value="Submit" name="submit">
+    </form>
 
 
     <?php
-    $epl22_23 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSIve_Qno7ZVKDfN9MLeujECH0lgDlKlc0dQsJYfn2d-wCO-IBgsfO6ptorU-tXZ7iaPJkQIEnpYVii/pub?gid=0&single=true&output=csv";
-    $ucl22_23 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSIve_Qno7ZVKDfN9MLeujECH0lgDlKlc0dQsJYfn2d-wCO-IBgsfO6ptorU-tXZ7iaPJkQIEnpYVii/pub?gid=1848028628&single=true&output=csv";
+    $epl22_23 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSUQRlKDVZfBpigOrtJaCX1K05ySMjJe16LGGlmdyG5BhBa2d5mY1J9KByl10utiJFszJILYyBEDgLt/pub?gid=0&single=true&output=csv";
+    $ucl22_23 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSUQRlKDVZfBpigOrtJaCX1K05ySMjJe16LGGlmdyG5BhBa2d5mY1J9KByl10utiJFszJILYyBEDgLt/pub?gid=232218589&single=true&output=csv";
 
-    if(isset($_POST['submit'])){
+    if (isset($_POST['submit'])) {
         $competition = $_POST['competitions'];
         $season = $_POST['season'];
 
-        if (strcmp($competition, "epl") === 0 and strcmp($season, "s23") === 0){
+        if (strcmp($competition, "epl") === 0 and strcmp($season, "s23") === 0) {
 
             echo "<h1>English Premier League Season 2022/23</h1>";
 
             printTable($epl22_23);
 
-        }else if(strcmp($competition, "ucl") === 0 and strcmp($season, "s23") === 0){
+        } else if (strcmp($competition, "ucl") === 0 and strcmp($season, "s23") === 0) {
 
             echo "<h1>UEFA Champions League Season 2022/23</h1>";
             printTable($ucl22_23);
 
-        }
-        else if(strcmp($competition, "all") === 0 and strcmp($season, "s23") === 0){
-            
+        } else if (strcmp($competition, "all") === 0 and strcmp($season, "s23") === 0) {
+
             echo "<h1>English Premier League Season 2022/23</h1>";
 
             printTable($epl22_23);
@@ -49,8 +48,8 @@ include "layout/header.php";
 
             printTable($ucl22_23);
 
-        }else{
-            echo 'Will be soon added...';
+        } else {
+            echo 'Will be added soon...';
         }
 
     }

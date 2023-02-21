@@ -1,5 +1,6 @@
 <?php
 
+//This function sets the comment to the database
 function setComment($con){
     if (isset($_POST['comment'])){
         $user = $_POST['user_id'];
@@ -11,4 +12,13 @@ function setComment($con){
 
         $result = $con->query($sql);
     }
+}
+
+//This function gets the comments from the database
+function getComment($con){
+    $sql = "SELECT * FROM comment";
+    $result = $con->query($sql);
+    
+    $row = $result->fetch_assoc();
+    echo $row['comment_text'];
 }

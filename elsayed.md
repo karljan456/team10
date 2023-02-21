@@ -1,7 +1,7 @@
 I will try to use PHP crud to create the following features to our website:
 1) user pages:
-    a) user login page
-    b) user signup page with solid validation
+    a) user login page DONE
+    b) user signup page with solid validation DONE
     c) user profile page
 
 2) Admin pages:

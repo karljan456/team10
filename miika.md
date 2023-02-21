@@ -6,5 +6,3 @@ Trying to do it so that only registered and logged in members can comment. Also 
 
 Also include timestamp for comments.
 
-
-asdsadasdsadsa 

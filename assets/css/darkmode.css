@@ -1,3 +1,9 @@
+a:link {
+  color: #39a3f0 !important;;
+}
+a:link:hover {
+  color:#0e5182;
+}
 /* Container */
 .container {
   background-color: rgba(249, 249, 249, 0) !important;

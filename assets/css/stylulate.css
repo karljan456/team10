@@ -82,7 +82,7 @@
   /* page heading */
   .container .page-heading .container{
    background-color:rgba(0,0,0,0.5);
-   background-image:url("elsama_tasks/media/article-banner.jpg");
+   background-image:url("../images/article-banner.jpg");
    background-size:cover;
    background-blend-mode:overlay;
    background-position-y:50%;

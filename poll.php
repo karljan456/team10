@@ -13,13 +13,14 @@ $title = "Poll Site";
         <table class="table">
             <tr><th>No.</th><th>Match</th><th>Stadium</th><th>Vote</th></tr>
             <tr><td>1</td><td>Liverpool vs Real Madrid</td><td>Anfield</td><td>
-                <form action="" method="post">
-                    <select name="vote" id="">
+                <form action="" name="vote" method="post">
+                    <select  id="">
                         <option value="win">Win</option>
                         <option value="draw">Draw</option>
                         <option value="lose">Lose</option>
                         <option value="null" selected>VOTE</option>
                     </select>
+                    <input type="submit" value="Submit Your Votes" name="submit" id="">
                 </form>
             </td></tr>
             <tr><td>2</td><td>Liverpool vs Chelsea</td><td>Anfield</td><td>
@@ -78,20 +79,18 @@ $title = "Poll Site";
 </div>
 
 <?php
-    if(isset($_POST["submit"])){
-        $vote = $_POST['vote'];
-        $user = "12345";
-        $match = 1;
-        include 'assets/plugins/connect.php';
-        $sql = "INSERT INTO Vote(vote) VALUES('$vote')";
-        
-    }
+if(isset($_POST["submit"])){
+    $vote = $_POST['vote'];
+    include 'database.php';
+    $sql = "insert into vote (vote)
+    values('$vote')" ;
 
-    if($con->query($sql) === TRUE){
-        echo "Your vote has been added successfully";
+    if($conn->query($sql) === TRUE){
+        echo "Your information has been added successfully";
     } else {
         echo "Error: " . $conn->error;
     }
+}
 ?>
 
 

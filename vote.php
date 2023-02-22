@@ -84,6 +84,22 @@ $title = "Poll Site";
     </table>
 </div>
 
+<?php
+    if(isset($_POST["submit"])){
+        $vote = $_POST['vote'];
+        $user = "12345";
+        $match = 1;
+        include 'assets/plugins/connect.php';
+        $sql = "INSERT INTO Vote(vote) VALUES('$vote')";
+        
+    }
+
+    if($con->query($sql) === TRUE){
+        echo "Your vote has been added successfully";
+    } else {
+        echo "Error: " . $conn->error;
+    }
+?>
 
 
 <?php include $_SERVER["DOCUMENT_ROOT"]."/team10/layout/footer.php" ?>

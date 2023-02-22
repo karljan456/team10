@@ -11,6 +11,8 @@ $con = new mysqli($hostname, $db_user, $db_password, $db_name);
 if ($con->connect_error)
 {
      die("error error: ". $con->connect_error) ;
+}else {
+     echo "it works";
 }
 
 

@@ -1,10 +1,20 @@
 <?php
 $title = "Poll Site";
  include $_SERVER["DOCUMENT_ROOT"]."/team10/layout/header.php" ;
+$match1 = 1;
+$match2 = 2;
+$match3 = 3;
+$match4 = 4;
+$match5 = 5;
+$a = $_GET['poll_id'];
+include 'db.php';
+$result = mysqli_query($con, "Select * from poll where id='$a' "  );
+$row = mysqli_fetch_array($result);
+
  ?>
 
 
-<!--New attempt at placing tables in the php tags -->
+<!--Tables in php -->
 
 <?php
 $username = "Edem";
@@ -18,6 +28,8 @@ $match5 = "Liverpool vs Ghana";
     <h2>Welcome $username <br>
     Let us know what you think about these upcoming matches</h2>
     
+    <hr>
+
     <div class='table-responsive'>
         <form name='vote' method='post'>
             <table class='table caption-top table-info'>
@@ -72,68 +84,88 @@ $match5 = "Liverpool vs Ghana";
     ";
 ?>
 
+
+<!-- Submitting to the database -->
+<?php
+if(isset($_POST["submit"])){
+    $voter = '1234';
+    $match1Vote = $_POST['match1'];
+    $match2Vote = $_POST['match2'];
+    $match3Vote = $_POST['match3'];
+    $match4Vote = $_POST['match4'];
+    $match5Vote = $_POST['match5'];
+    include 'assets/plugins/connect.php';
+    $sql = "insert into poll(user_id, match1, match2, match3, match4, match5)
+    values('$voter', '$match1Vote', '$match2Vote', '$match3Vote', '$match4Vote', '$match5Vote')" ;
+
+    if($con->query($sql) === TRUE){
+        echo "Your information has been added successfully";
+    }else{
+        echo "Error: " . $con->error;
+    }
+}
+
+?>
+<!-- Editing the votes -->
+<?php
+    if(isset($_POST['edit'])){
+        $voter = '1234';
+        $match1Vote = $_POST['match1'];
+        $match2Vote = $_POST['match2'];
+        $match3Vote = $_POST['match3'];
+        $match4Vote = $_POST['match4'];
+        $match5Vote = $_POST['match5'];
+        include 'assets/plugins/connect.php';
+
+        $query = mysqli_query($con, "UPDATE poll set match1='$match1Vote',
+        match2='$match2Vote', match3='$match3Vote', match4='$match4Vote', match5='$match5Vote' WHERE id ='$a' ");
+
+        if($query){
+            echo "<h2>Your information has been updated successfully</h2>";
+        } else {
+            echo"Record Not Modified";
+        }
+
+
+    }
+?>
+
 <br>
 <hr>
-<div>
-    <h2>Welcome USERNAME. <br>
-    Let us know what you think about these up and coming matches</h2>
-</div>
 
-<div class="voting Table" style="background-color: blanchedalmond">
-    <h2>VOTING TABLE</h2>
-        <table class="table">
-            <tr><th>No.</th><th>Match</th><th>Stadium</th><th>Vote</th></tr>
-            <tr><td>1</td><td>Liverpool vs Real Madrid</td><td>Anfield</td><td>
-                <form action="" name="vote" method="post">
-                    <select  id="">
-                        <option value="win">Win</option>
-                        <option value="draw">Draw</option>
-                        <option value="lose">Lose</option>
-                        <option value="null" selected>VOTE</option>
-                    </select>
-                    <input type="submit" value="Submit Your Votes" name="submit" id="">
-                </form>
-            </td></tr>
-            <tr><td>2</td><td>Liverpool vs Chelsea</td><td>Anfield</td><td>
-                <select name="vote2" id="">
-                    <option value="win">Win</option>
-                    <option value="draw">Draw</option>
-                    <option value="lose">Lose</option>
-                    <option value="null" selected>VOTE</option>
-                </select>
-            </td></tr>
-            <tr><td>3</td><td>Liverpool vs Manchester Utd</td><td>Anfield</td><td>
-                <select name="vote3" id="">
-                    <option value="win">Win</option>
-                    <option value="draw">Draw</option>
-                    <option value="lose">Lose</option>
-                    <option value="null" selected>VOTE</option>
-                </select>
-            </td></tr>
-            <tr><td>4</td><td>Liverpool vs Everton</td><td>Anfield</td><td>
-                <select name="vote4" id="">
-                    <option value="win">Win</option>
-                    <option value="draw">Draw</option>
-                    <option value="lose">Lose</option>
-                    <option value="null" selected>VOTE</option>
-                </select>
-            </td></tr>
-            <tr><td>5</td><td>Liverpool vs Ghana</td><td>Anfield</td><td>
-                
-                <select name="vote5" id="">
-                    <option value="win">Win</option>
-                    <option value="draw">Draw</option>
-                    <option value="lose">Lose</option>                    
-                    <option value="null" selected>VOTE</option>
-                </select>
-            </td></tr>
+
+<?php
+    echo "
+    <br>
+    <br>
+    <div class='table-responsive'>
+        <h2>VOTING TABLE (shows the votes that have been made)</h2>
+        <table class='table caption-top table-danger'>
+        <caption>Total Vote Results</caption>
+            <tr><th>No.</th><th>Match</th><th>Stadium</th><th>Win %</th><th>Draw %</th><th>Lose %</th><th>Total</th></tr>
+            <tr><td>1</td><td>Liverpool vs Real Madrid</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>Total</td></tr>
+            <tr><td>2</td><td>Liverpool vs Chelsea</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>Total</td></tr>
+            <tr><td>3</td><td>Liverpool vs Manchester Utd</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>Total</td></tr>
+            <tr><td>4</td><td>Liverpool vs Everton</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>Total</td></tr>
+            <tr><td>5</td><td>Liverpool vs Ghana</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>Total</td></tr>
         </table>
+    </div>
+    ";
+?>
 
-    <form name="submit" method="post" action="">
-        <input type="submit" value="Submit Your Votes" name="submit" id="">
-        <input type="submit" value="Edit Your Votes" name="edit" id="">
-    </form>
-</div>
+
+<?php 
+    include 'assets/plugins/connect.php';
+    $sql = "select * from studentinfo"; //add where id equals to 1234 - that is if you want to use the login info. 
+    $result = $con->query($sql);
+    echo "<br>";
+    
+?>
+
+
+<br>
+<hr>
+
 
 <br>
 <br>
@@ -148,21 +180,6 @@ $match5 = "Liverpool vs Ghana";
         <tr><td>5</td><td>Liverpool vs Real Madrid</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td></tr>
     </table>
 </div>
-
-<?php
-if(isset($_POST["submit"])){
-    $vote = $_POST['vote'];
-    include 'database.php';
-    $sql = "insert into vote (vote)
-    values('$vote')" ;
-
-    if($conn->query($sql) === TRUE){
-        echo "Your information has been added successfully";
-    } else {
-        echo "Error: " . $conn->error;
-    }
-}
-?>
 
 
 <?php include $_SERVER["DOCUMENT_ROOT"]."/team10/layout/footer.php" ?>

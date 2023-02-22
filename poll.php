@@ -3,6 +3,77 @@ $title = "Poll Site";
  include $_SERVER["DOCUMENT_ROOT"]."/team10/layout/header.php" ;
  ?>
 
+
+<!--New attempt at placing tables in the php tags -->
+
+<?php
+$username = "Edem";
+$match1 = "Liverpool vs Real Madrid";
+$match2 = "Liverpool vs Chelsea";
+$match3 = "Liverpool vs Manchester Utd";
+$match4 = "Liverpool vs Everton";
+$match5 = "Liverpool vs Ghana";
+
+    echo "
+    <h2>Welcome $username <br>
+    Let us know what you think about these upcoming matches</h2>
+    
+    <div class='table-responsive'>
+        <form name='vote' method='post'>
+            <table class='table caption-top table-info'>
+                <caption>List of Upcoming Matches</caption>
+                <tr><th>No.</th><th>Match</th><th>Stadium</th><th>Vote</th></tr>
+                <tr><td>1</td><td>$match1</td><td>Anfield</td><td>
+                <select name='match1'>
+                    <option value='null'selected>Choose</option>
+                    <option value='win'>Win</option>
+                    <option value='draw'>Draw</option>
+                    <option value='lose'>Lose</option>
+                </select>
+                </td></tr>
+                <tr><td>2</td><td>$match2</td><td>Hämeenlinna</td><td>
+                    <select name='match2'>
+                        <option value='null'selected>Choose</option>
+                        <option value='win'>Win</option>
+                        <option value='draw'>Draw</option>
+                        <option value='lose'>Lose</option>
+                    </select>
+                </td></tr>
+                <tr><td>3</td><td>$match3</td><td>Tampere</td><td>
+                <select name='match3'>
+                    <option value='null'selected>Choose</option>
+                    <option value='win'>Win</option>
+                    <option value='draw'>Draw</option>
+                    <option value='lose'>Lose</option>
+                </select>
+                </td></tr>
+                <tr><td>4</td><td>$match4</td><td>Oulu</td><td>
+                <select name='match4'>
+                    <option value='null'selected>Choose</option>
+                    <option value='win'>Win</option>
+                    <option value='draw'>Draw</option>
+                    <option value='lose'>Lose</option>
+                </select>
+                </td></tr>
+                <tr><td>5</td><td>$match5</td><td>Helsinki</td><td>
+                <select name='match5'>
+                    <option value='null'selected>Choose</option>
+                    <option value='win'>Win</option>
+                    <option value='draw'>Draw</option>
+                    <option value='lose'>Lose</option>
+                </select>
+                </td></tr>
+            </table>
+            <input type='submit' value='Submit Your Votes' name='submit'>
+            <input type='submit' value='Edit Your Votes' name='edit'>
+        </form>
+    </div>
+
+    ";
+?>
+
+<br>
+<hr>
 <div>
     <h2>Welcome USERNAME. <br>
     Let us know what you think about these up and coming matches</h2>

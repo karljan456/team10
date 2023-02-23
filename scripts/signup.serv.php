@@ -63,7 +63,7 @@ if (isset($_POST['submit'])) {
 
 ////////if all validation pass then inject the data and signup////
 //use the createuser() function
-createUser($con, $firstname, $lastname, $email, $username, $password);
+createUser($con, $firstname, $lastname, $username, $email, $password);
 
 
 

@@ -118,15 +118,16 @@ if(isset($_POST["submit"])){
         include 'assets/plugins/connect.php';
 
         $query = mysqli_query($con, "UPDATE poll set match1='$match1Vote',
-        match2='$match2Vote', match3='$match3Vote', match4='$match4Vote', match5='$match5Vote' WHERE id ='$a' ");
+        match2='$match2Vote', match3='$match3Vote', match4='$match4Vote', match5='$match5Vote' 
+
+        /* CHANGE THE USER_ID TO THE VARIABLE */
+        WHERE user_id ='1234' "); 
 
         if($query){
             echo "<h2>Your information has been updated successfully</h2>";
         } else {
             echo"Record Not Modified";
         }
-
-
     }
 ?>
 
@@ -134,6 +135,45 @@ if(isset($_POST["submit"])){
 <hr>
 
 
+<?php
+
+/* RETRIEVING THE DATA FROM THE DATABASE*/
+/*TOTAL */
+    // $query ="SELECT SUM(poll_id) FROM poll" ; //Add where id equals to USERID for distinct value. 
+    $result = mysqli_query($con, "SELECT COUNT(*) AS 'total' FROM poll") ;
+    $row = mysqli_fetch_assoc($result);
+    $Total = $row["total"];
+    $match2Total = mysqli_query($con, "SELECT COUNT(*) AS 'total' FROM poll") ;
+    
+
+    echo $Total;
+    echo "<br> Final";
+    echo $row['totals'];
+    echo substr(implode($row), 0,2);
+    echo "<br> substr($Total)";
+
+    echo "
+    <br>
+    <br>
+    <div class='table-responsive'>
+        <h2>VOTING TABLE (shows the votes that have been made)</h2>
+        <table class='table caption-top table-danger'>
+        <caption>Total Vote Results</caption>
+            <tr><th>No.</th><th>Match</th><th>Stadium</th><th>Win %</th><th>Draw %</th><th>Lose %</th><th>Total</th></tr>
+            <tr><td>1</td><td>Liverpool vs Real Madrid</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>$Total</td></tr>
+            <tr><td>2</td><td>Liverpool vs Chelsea</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>Total</td></tr>
+            <tr><td>3</td><td>Liverpool vs Manchester Utd</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>Total</td></tr>
+            <tr><td>4</td><td>Liverpool vs Everton</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>Total</td></tr>
+            <tr><td>5</td><td>Liverpool vs Ghana</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>Total</td></tr>
+        </table>
+    </div>
+    ";
+
+
+?>
+
+<br>
+<hr>
 <?php
     echo "
     <br>

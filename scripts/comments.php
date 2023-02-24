@@ -19,6 +19,32 @@ function getComment($con){
     $sql = "SELECT * FROM comment";
     $result = $con->query($sql);
     
-    $row = $result->fetch_assoc();
-    echo $row['comment_text'];
+    while($row = $result->fetch_assoc()){
+        echo $row['user_id']."<br>";
+        echo $row['comment_time']."<br>";
+        echo nl2br($row['comment_text'])."<br><br>";
+
+        echo 
+            "<form method='POST' action='editcomment.php'>
+                <input type='hidden' name='id' value='".$row['id']."'>
+                <input type='hidden' name='user_id' value='".$row['user_id']."'>
+                <input type='hidden' name='comment_time' value='".$row['comment_time']."'>
+                <input type='hidden' name='comment_text' value='".$row['comment_text']."'>
+                <button>Edit</button>
+            </form>";
+    }
+}
+
+function editComment($con){
+    if (isset($_POST['editSubmit'])){
+        $id = $_POST['id'];
+        $user = $_POST['user_id'];
+        $date = $_POST['comment_time'];
+        $comment = $_POST['comment_text'];
+
+        $sql = "UPDATE comment SET comment_text='$comment' WHERE id='$id'";
+
+        $result = $con->query($sql);
+        exit(header("location: index.php"));
+    }
 }

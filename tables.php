@@ -1,10 +1,63 @@
 <?php
 include "layout/header.php";
+
 ?>
 <div style=" width: 70%; margin: auto;">
-    <h2>2022/23 EPL Season Table</h2>
+    <h2></h2>
+
+    <form method="post">
+        <select name="competitions">
+            <option value="all">All Competitions</option>
+            <option value="epl">English Premier League</option>
+            <option value="ucl">UEFA Champions League</option>
+        </select>
+        <select name="season">
+            <option value="s23">2022-23</option>
+            <option value="s22">2021-22</option>
+        </select>
+        <input type="submit" value="Submit" name="submit">
+    </form>
+
+
     <?php
-    echo "<table class=\"table\">
+    $epl22_23 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSUQRlKDVZfBpigOrtJaCX1K05ySMjJe16LGGlmdyG5BhBa2d5mY1J9KByl10utiJFszJILYyBEDgLt/pub?gid=0&single=true&output=csv";
+    $ucl22_23 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSUQRlKDVZfBpigOrtJaCX1K05ySMjJe16LGGlmdyG5BhBa2d5mY1J9KByl10utiJFszJILYyBEDgLt/pub?gid=232218589&single=true&output=csv";
+
+    if (isset($_POST['submit'])) {
+        $competition = $_POST['competitions'];
+        $season = $_POST['season'];
+
+        if (strcmp($competition, "epl") === 0 and strcmp($season, "s23") === 0) {
+
+            echo "<h1>English Premier League Season 2022/23</h1>";
+
+            printTable($epl22_23);
+
+        } else if (strcmp($competition, "ucl") === 0 and strcmp($season, "s23") === 0) {
+
+            echo "<h1>UEFA Champions League Season 2022/23</h1>";
+            printTable($ucl22_23);
+
+        } else if (strcmp($competition, "all") === 0 and strcmp($season, "s23") === 0) {
+
+            echo "<h1>English Premier League Season 2022/23</h1>";
+
+            printTable($epl22_23);
+
+            echo "<h1>UEFA Champions League Season 2022/23</h1>";
+
+            printTable($ucl22_23);
+
+        } else {
+            echo 'Will be added soon...';
+        }
+
+    }
+
+
+    function printTable($url)
+    {
+        echo "<table class=\"table\">
         <tr>
        <th>POSTION</th>
        <th>TEAM</th>
@@ -17,23 +70,14 @@ include "layout/header.php";
        <th>GD</th>
        <th>Pts</th>
       </tr>";
-    $data = file("assets/data/epl_table.csv");
-    $i = 0;
-    foreach ($data as $line) {
+        $data = getData($url);
+        $i = 0;
+        for ($i = 1; $i < count($data); $i++) {
 
-        $lineArray = explode(",", $line);
+            list($Pos, $Team, $Pld, $W, $D, $L, $GF, $GA, $GD, $Pts) = $data[$i];
 
-        if($i == 0){
-
-            $i ++;
-            continue;
-
-        }
-
-        list($Pos, $Team, $Pld, $W, $D, $L, $GF, $GA, $GD, $Pts) = $lineArray;
-
-        if (strcmp($Team, "Liverpool") === 0) {
-            echo "<tr>
+            if (strcmp($Team, "Liverpool") === 0) {
+                echo "<tr>
             <td><b>$Pos</b></td>
             <td><b>$Team</b></td>
             <td><b>$Pld</b></td>
@@ -45,8 +89,8 @@ include "layout/header.php";
             <td><b>$GD</b></td>
             <td><b>$Pts</b></td>
            </tr>";
-        } else {
-            echo "<tr>
+            } else {
+                echo "<tr>
             <td>$Pos</td>
             <td>$Team</td>
             <td>$Pld</td>
@@ -58,10 +102,26 @@ include "layout/header.php";
             <td>$GD</td>
             <td>$Pts</td>
            </tr>";
-        }
+            }
 
+        }
+        echo "</table>";
     }
-    echo "</table>";
+
+    function getData($url)
+    {
+        $array = [];
+        if (($handle = fopen($url, "r")) !== false) {
+            while (($data = fgetcsv($handle, 92, ",")) !== false) {
+
+                $array[] = $data;
+
+            }
+            fclose($handle);
+            return $array;
+        } else
+            die("Problem reading csv");
+    }
 
     ?>
 </div>

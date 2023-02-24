@@ -10,7 +10,6 @@ $a = $_GET['poll_id'];
 include 'db.php';
 $result = mysqli_query($con, "Select * from poll where id='$a' "  );
 $row = mysqli_fetch_array($result);
-
  ?>
 
 

@@ -140,18 +140,74 @@ if(isset($_POST["submit"])){
 /* RETRIEVING THE DATA FROM THE DATABASE*/
 /*TOTAL */
     // $query ="SELECT SUM(poll_id) FROM poll" ; //Add where id equals to USERID for distinct value. 
+
+    //Calculating the Total votes of each match
     $result = mysqli_query($con, "SELECT COUNT(*) AS 'total' FROM poll") ;
     $row = mysqli_fetch_assoc($result);
     $Total = $row["total"];
-    $match2Total = mysqli_query($con, "SELECT COUNT(*) AS 'total' FROM poll") ;
+
+
+    function total($matchNumber){
+        global $con;
+        $result = mysqli_query($con, "SELECT COUNT(*) AS 'total' FROM poll WHERE $matchNumber != 'null'") ;
+        $row = mysqli_fetch_assoc($result);
+        $total = $row["total"];
+        return $total;
+    }
+
+    //Function to Calculate the percentage of VOTES. 
+    function totalPercentage($vote, $matchNumber){
+        //Using con as a global variable
+        global $con;
+        $result = mysqli_query($con, "SELECT COUNT(*) AS 'total' FROM poll WHERE $matchNumber != 'null' ") ;
+        $row = mysqli_fetch_assoc($result);
+        $total = $row["total"];
+        //Simillar code as above but on one line
+        $matchNumberTotal = mysqli_fetch_assoc(mysqli_query($con, "SELECT COUNT(*) AS 'total' FROM poll WHERE $matchNumber = '$vote'"))['total'] ;
+        
+        $totalPercent = round((($matchNumberTotal/$total)*100), 1);
+        return $totalPercent . "%";
+    }
+
+    function totalWinPercentage($vote, $matchNumber){
+        //Using con as a global variable
+        global $con;
+        $result = mysqli_query($con, "SELECT COUNT(*) AS 'total' FROM poll WHERE $matchNumber = $vote") ;
+        $row = mysqli_fetch_assoc($result);
+        $Total = $row["total"];
+        //Simillar code as above but on one line
+        $matchNumberTotal = mysqli_fetch_assoc(mysqli_query($con, "SELECT COUNT(*) AS 'total' FROM poll WHERE $matchNumber != 'null'"))['total'] ;
+
+        $totalPercent = round((($matchNumberTotal/$Total)*100), 1);
+        return $totalPercent . "%";
+    }
+
+    $win1 = totalPercentage('win', 'match1');
+    $win2 = totalPercentage('win', 'match2');
+    $win3 = totalPercentage('win', 'match3');
+    $win4 = totalPercentage('win', 'match4');
+    $win5 = totalPercentage('win', 'match5');
+    $draw1 = totalPercentage('draw', 'match1');
+    $draw2 = totalPercentage('draw', 'match2');
+    $draw3 = totalPercentage('draw', 'match3');
+    $draw4 = totalPercentage('draw', 'match4');
+    $draw5 = totalPercentage('draw', 'match5');
+    $lose1 = totalPercentage('lose', 'match1');
+    $lose2 = totalPercentage('lose', 'match2');
+    $lose3 = totalPercentage('lose', 'match3');
+    $lose4 = totalPercentage('lose', 'match4');
+    $lose5 = totalPercentage('lose', 'match5');
+
+    $draw = 'draw';
+    $lose = 'lose';
+
+    // Match Total seperate variables
+    $match1Total = total('match1');
+    $match2Total = total('match2');
+    $match3Total = total('match3');
+    $match4Total = total('match4');
+    $match5Total = total('match5');
     
-
-    echo $Total;
-    echo "<br> Final";
-    echo $row['totals'];
-    echo substr(implode($row), 0,2);
-    echo "<br> substr($Total)";
-
     echo "
     <br>
     <br>
@@ -160,11 +216,11 @@ if(isset($_POST["submit"])){
         <table class='table caption-top table-danger'>
         <caption>Total Vote Results</caption>
             <tr><th>No.</th><th>Match</th><th>Stadium</th><th>Win %</th><th>Draw %</th><th>Lose %</th><th>Total</th></tr>
-            <tr><td>1</td><td>Liverpool vs Real Madrid</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>$Total</td></tr>
-            <tr><td>2</td><td>Liverpool vs Chelsea</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>Total</td></tr>
-            <tr><td>3</td><td>Liverpool vs Manchester Utd</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>Total</td></tr>
-            <tr><td>4</td><td>Liverpool vs Everton</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>Total</td></tr>
-            <tr><td>5</td><td>Liverpool vs Ghana</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>Total</td></tr>
+            <tr><td>1</td><td>Liverpool vs Real Madrid</td><td>Anfield</td><td>$win1</td><td>$draw1 </td><td>$lose1</td><td>$match1Total</td></tr>
+            <tr><td>2</td><td>Liverpool vs Chelsea</td><td>Hämeenlinna</td><td>$win2</td><td>$draw2</td><td>$lose2</td><td>$match2Total</td></tr>
+            <tr><td>3</td><td>Liverpool vs Manchester Utd</td><td>Tampere</td><td>$win3</td><td>3$draw3</td><td>$lose3</td><td>$match3Total</td></tr>
+            <tr><td>4</td><td>Liverpool vs Everton</td><td>Oulu</td><td>$win4</td><td>$draw4</td><td>$lose4</td><td>$match4Total</td></tr>
+            <tr><td>5</td><td>Liverpool vs Ghana</td><td>Helsinki</td><td>$win5</td><td>$draw5</td><td>$lose5</td><td>$match5Total</td></tr>
         </table>
     </div>
     ";
@@ -174,24 +230,7 @@ if(isset($_POST["submit"])){
 
 <br>
 <hr>
-<?php
-    echo "
-    <br>
-    <br>
-    <div class='table-responsive'>
-        <h2>VOTING TABLE (shows the votes that have been made)</h2>
-        <table class='table caption-top table-danger'>
-        <caption>Total Vote Results</caption>
-            <tr><th>No.</th><th>Match</th><th>Stadium</th><th>Win %</th><th>Draw %</th><th>Lose %</th><th>Total</th></tr>
-            <tr><td>1</td><td>Liverpool vs Real Madrid</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>Total</td></tr>
-            <tr><td>2</td><td>Liverpool vs Chelsea</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>Total</td></tr>
-            <tr><td>3</td><td>Liverpool vs Manchester Utd</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>Total</td></tr>
-            <tr><td>4</td><td>Liverpool vs Everton</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>Total</td></tr>
-            <tr><td>5</td><td>Liverpool vs Ghana</td><td>Anfield</td><td>Win %</td><td>Draw %</td><td>Lose %</td><td>Total</td></tr>
-        </table>
-    </div>
-    ";
-?>
+
 
 
 <?php 

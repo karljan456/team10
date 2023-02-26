@@ -6,8 +6,8 @@ $match2 = 2;
 $match3 = 3;
 $match4 = 4;
 $match5 = 5;
-$a = $_GET['poll_id'];
-include 'db.php';
+//$a = $_GET['user_id'];
+include 'assets/plugins/connect.php';
 /*$result = mysqli_query($con, "Select * from poll where id='$a' "  );
 $row = mysqli_fetch_array($result); 
 */
@@ -17,7 +17,7 @@ $row = mysqli_fetch_array($result);
 <!--Tables in php -->
 
 <?php
-$username = "Edem";
+$username = "Edem"; //GET USERNAME HERE 
 $match1 = "Liverpool vs Real Madrid";
 $match2 = "Liverpool vs Chelsea";
 $match3 = "Liverpool vs Manchester Utd";
@@ -88,17 +88,17 @@ $match5 = "Liverpool vs Ghana";
 <!-- Submitting to the database -->
 <?php
 if(isset($_POST["submit"])){
-    $voter = '1234';
+    $voter = '1234'; // CHANGE THIS TO USER ID DATA FROM LOGIN PAGE
     $match1Vote = $_POST['match1'];
     $match2Vote = $_POST['match2'];
     $match3Vote = $_POST['match3'];
     $match4Vote = $_POST['match4'];
     $match5Vote = $_POST['match5'];
     include 'assets/plugins/connect.php';
-    $sql = "insert into poll(user_id, match1, match2, match3, match4, match5)
+    $insertSQL = "insert into poll(user_id, match1, match2, match3, match4, match5)
     values('$voter', '$match1Vote', '$match2Vote', '$match3Vote', '$match4Vote', '$match5Vote')" ;
 
-    if($con->query($sql) === TRUE){
+    if($con->query($insertSQL) === TRUE){
         echo "Your information has been added successfully";
     }else{
         echo "Error: " . $con->error;
@@ -109,7 +109,7 @@ if(isset($_POST["submit"])){
 <!-- Editing the votes -->
 <?php
     if(isset($_POST['edit'])){
-        $voter = '1234';
+        $voter = '1234'; // CHANGE THIS TO USER ID DATA FROM LOGIN PAGE
         $match1Vote = $_POST['match1'];
         $match2Vote = $_POST['match2'];
         $match3Vote = $_POST['match3'];
@@ -117,13 +117,13 @@ if(isset($_POST["submit"])){
         $match5Vote = $_POST['match5'];
         include 'assets/plugins/connect.php';
 
-        $query = mysqli_query($con, "UPDATE poll set match1='$match1Vote',
+        $alterQuery = mysqli_query($con, "UPDATE poll set match1='$match1Vote',
         match2='$match2Vote', match3='$match3Vote', match4='$match4Vote', match5='$match5Vote' 
 
         /* CHANGE THE USER_ID TO THE VARIABLE */
-        WHERE user_id ='1234' "); 
+        WHERE user_id = '$voter'"); 
 
-        if($query){
+        if($alterQuery){
             echo "<h2>Your information has been updated successfully</h2>";
         } else {
             echo"Record Not Modified";
@@ -211,7 +211,7 @@ if(isset($_POST["submit"])){
     echo "
     <br>
     <br>
-    <div class='table-responsive'>
+    <div id='results-table' class='table-responsive'>
         <h2>VOTING TABLE (shows the votes that have been made)</h2>
         <table class='table caption-top table-danger'>
         <caption>Total Vote Results</caption>

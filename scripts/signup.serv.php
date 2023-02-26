@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
     ////////////////validate all possible input///////////////////////
 
     //check if any field is empty using the pre definded function
-    if (emptySignupInput($firstname, $lastname, $email, $password, $passwordrepeat, $tos) !== false) {
+    if (emptySignupInput($firstname, $lastname, $username, $email, $password, $passwordrepeat, $tos) !== false) {
         header('Location: ../signup.php?error=emptyinputfield');
         exit();
     }
@@ -63,7 +63,7 @@ if (isset($_POST['submit'])) {
 
 ////////if all validation pass then inject the data and signup////
 //use the createuser() function
-createUser($con, $firstname, $lastname, $email, $username, $password);
+createUser($con, $firstname, $lastname, $username, $email, $password);
 
 
 

@@ -1,6 +1,5 @@
 <?php 
 //Start the session 
-session_start(); 
 include "layout/header.php";
 ?>
 

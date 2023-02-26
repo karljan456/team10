@@ -1,8 +1,8 @@
 <?php
 //page title and
 //Welcome message by username
-if (!empty($_SESSION['username'])) {
-    $title = 'Welcome, ' . $_SESSION['username'];
+if (!empty($_SESSION['message'])) {
+    $title = $_SESSION['message'];
 } else {
     $title = 'Welcome Back';
 }
@@ -10,50 +10,39 @@ if (!empty($_SESSION['username'])) {
 include "layout/header.php";
 include "scripts/messages.php";
 include_once "scripts/functions.php";
+?>
 
-
-
-//display content if logged in
-if (!empty($_SESSION['loggedin']) && !empty($_SESSION['admin'])) {
-    echo '
+<?php
     
-<div class="container">
-  <div class="col-md-4">
+   //display content if logged in
+if (!empty($_SESSION['loggedin'])):
+?>
 
-  <ul id="nav">
-  <li><a href="">Create Post</a></li>
-  <li><a href="#">Main Item 2</a>
-      <ul>
-          <li><a href="#">Sub Item</a></li>
-          <li><a href="#">Sub Item</a></li>
-          <li><a href="#">SUB SUB LIST »</a>
+<div class="col-md-4">
 
-              </li>
-      </ul>
-      </li>
-      <li><a href="#">Main Item 3</a></li>
+<ul id="side-nav">
+<li><a href="">Create Post</a></li>
+<li><a href="#">Main Item 2</a></li>
+<li><a href="#">Main Item 3</a></li>
+<li><a href="#">Main Item 4</a></li>
+    </ul>
+
 </ul>
+</div> 
 
 
+<div class="col-md-8 justify-content-end">
+<?php include "scripts/profile.serv.php"; ?>
+</div> 
 
-  <div class="col-md-4">
-  </div>
-
-  <div class="col-md-4">
-  </div>
-  
-  
-  
-  
-</div>
-
-
-
-
-';
-} else {
+<?php 
+else :
     $_SESSION['message'] = "Please Login to view your profile";
     login();
-}
+    endif;
+?>
 
-include "layout/footer.php";
+
+
+<?php include "layout/footer.php"; ?>
+

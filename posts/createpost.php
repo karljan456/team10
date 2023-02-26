@@ -14,7 +14,7 @@ include "layout/header.php";
                 <h1 class="h2 mb-4">Create a new Article</h1>
 
 
-                <form action="scripts/post.serv.php" method="POST">
+                <form action="scripts/createpost.serv.php" method="POST">
                     <div class="form-group">
                         <input type="text" id="title" name="title" placeholder="Post title" required>
                     </div>
@@ -33,34 +33,7 @@ include "layout/header.php";
   </form>
 
 
-  if (isset($_POST['submit'])) {
-
-$username = $_POST['username'];
-$password = $_POST['password'];
-
-//connect to db
-require_once "../assets/plugins/connect.php";
-
-//load the functions file to validate etc..
-include_once "../scripts/functions.php";
-
-// check if any input field is empty
-if (emptyLoginInput($username, $password) !== false){
-
-    header ("Location: ../login.php?error=emptyinputfield");
-    exit();
-}
-
-//use the login function
-userLogin($con, $username, $password);
-
-} 
-else {
-header ("Location: ../login.php");
-    exit();
-}
-  createPost($title, $title, $title);
-
+ 
 
 
 

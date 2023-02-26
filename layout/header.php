@@ -93,7 +93,7 @@
                         <a class="nav-link" href="#">Schedule</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../tables.php">Tables</a>
+                        <a class="nav-link" href="tables.php">Tables</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -115,14 +115,17 @@
 
                 <!--user login links-->
                 <div class="nav-item user-box ">
-                    <a class="nav-link user-link " href="signup.php">
-                        <img src="/team10/assets/images/user.svg" width="18" alt="Signup" class="nav-icon"> Join</a>
+                   
 
                     <?php 
                     if (!empty($_SESSION['loggedin'])) {
+                        echo '<a class="nav-link user-link" href="userprofile.php"><img src="/team10/assets/images/user.svg" width="18" alt="logout" class="nav-icon"> Profile</a>';
                         echo '<a class="nav-link user-link" href="scripts/logout.serv.php">Logout</a>';
                     } else {
+                        echo '<a class="nav-link user-link " href="signup.php">
+                        <img src="/team10/assets/images/user.svg" width="18" alt="Signup" class="nav-icon"> Join</a>';
                         echo '<a class="nav-link user-link" href="login.php">Login</a>';
+
                     }
                     ?>
                 </div>
@@ -152,7 +155,14 @@
         <!--################SLIDER ###############-->
         <div class="page-heading slider-carousel">
             <div class=" container heading-h1  background-dark dark-change">
-                <h1> <small>EXCLUSIVE NEWS!</small> SALAH SCORED THE WINNER AGAINST MANU</h1>
+                <?php
+        if (isset($title)) {
+             echo '<h1>'.htmlspecialchars($title).'</h1>';
+           
+        } else {
+            echo '<h1> <small>LFC FAN EXCLUSIVE</small> SALAH SCORED THE WINNER AGAINST MANU </h1>';
+        }
+        ?>
             </div>
         </div>
         <!--################SLIDER ENDS ###############-->

@@ -1,3 +1,9 @@
+/* User link */
+#navbarSupportedContent .nav-item .user-link{
+    color:#ffffff !important;
+   }
+   
+   
 element, input, button, label,nav,footer, .footer-row-2  {
     border-radius:2px;
 }

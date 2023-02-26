@@ -1,3 +1,5 @@
+<?php error_reporting( E_ALL ); ?>
+
 <?php
 // intitalize variables
 $firstname =  $lastname =  $email =  $username =  $password =  $passwordrepeat =  $tos = "";

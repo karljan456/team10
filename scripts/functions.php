@@ -198,7 +198,7 @@ function userLogin($con, $username, $password){
         $_SESSION['loggedin'] = true; 
         $_SESSION['message'] = "Welcome ". $_SESSION['username'];  
 
-        header('Location: ../index.php');
+        header('Location: ../userprofile.php');
         exit();
     }  
 

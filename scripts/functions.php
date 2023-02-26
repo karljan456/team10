@@ -205,3 +205,37 @@ function userLogin($con, $username, $password){
 
 
 }
+
+
+//////////////////////////////////user creation
+function createPost($con, $title, $slug, $content, $author){
+
+    //query db and wait for values after validation to avoid injections per my understanding.
+    $query = " INSERT INTO posts (title, slug, content, author) VALUES (?, ?, ?, ?, ?)"; 
+    //intialize con 
+    $stmt = mysqli_stmt_init($con); 
+    
+    // check if the query fails and throw an error in the url
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+    header("Location: ../signup.php?error=queryfail");
+    exit();
+    }
+    //let's encrypt the password before inserting the data
+    $author = $_SESSION(['role']);
+
+    //if it does not fail then we continue to bind the parameters
+    //add data after validation success and add the hashed version of the pwd
+    mysqli_stmt_bind_param($stmt, "sssss", $firstname, $lastname, $username, $email, $hashedPassword);
+    mysqli_stmt_execute($stmt);
+
+    //close the prepared statement and direct to login page
+    mysqli_stmt_close($stmt);
+
+   // start a session to carry the error/success message to the header location
+    session_start();
+    $_SESSION['message'] = "Thank you and welcome to LFC Fan Club <br> Please login!";
+
+    header('Location: ../login.php?error=none');
+    exit();
+    
+    }

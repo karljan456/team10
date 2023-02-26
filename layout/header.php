@@ -119,7 +119,9 @@
 
                     <?php 
                     if (!empty($_SESSION['loggedin'])) {
-                        echo '<a class="nav-link user-link" href="userprofile.php"><img src="/team10/assets/images/user.svg" width="18" alt="logout" class="nav-icon"> Profile</a>';
+                        echo '<a class="nav-link user-link" href="userprofile.php">
+                        <img src="/team10/assets/images/user.svg" width="18" alt="logout" class="nav-icon"> Profile</a>';
+                        
                         echo '<a class="nav-link user-link" href="scripts/logout.serv.php">Logout</a>';
                     } else {
                         echo '<a class="nav-link user-link " href="signup.php">

@@ -1,4 +1,28 @@
-/* User link */
+/*Post creation page styles*/
+.tox-statusbar__branding {
+    display: none;
+}
+
+.tox-notification__body {
+    display: none;
+}
+
+.tox-notifications-container {
+    display: none;
+}
+
+/* Button */
+.btn-primary {
+    background-color: #009688;
+    border-style: none;
+}
+
+.btn-primary {
+    background-color: #009688;
+    border-style: none;
+}
+
+/* header User link */
 #navbarSupportedContent .nav-item .user-link{
     color:#ffffff !important;
    }

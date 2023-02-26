@@ -6,6 +6,7 @@ if (!empty($_SESSION['username'])) {
 } else {
     $title = 'Welcome Back';
 }
+
 include "layout/header.php";
 include "scripts/messages.php";
 include_once "scripts/functions.php";
@@ -13,21 +14,39 @@ include_once "scripts/functions.php";
 
 
 //display content if logged in
-if (!empty($_SESSION['loggedin'])) {
+if (!empty($_SESSION['loggedin']) && !empty($_SESSION['admin'])) {
     echo '
     
+<div class="container">
+  <div class="col-md-4">
 
-<div class="col w-75 py-5">
+  <ul id="nav">
+  <li><a href="">Create Post</a></li>
+  <li><a href="#">Main Item 2</a>
+      <ul>
+          <li><a href="#">Sub Item</a></li>
+          <li><a href="#">Sub Item</a></li>
+          <li><a href="#">SUB SUB LIST »</a>
 
-    <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu pellentesque orci. Curabitur vel luctus
-        dolor. Duis eu nisl sed mi pharetra iaculis. Maecenas nec lorem ac felis congue lobortis. Suspendisse
-        imperdiet non ligula in hendrerit. Fusce bibendum mollis leo ut laoreet. Proin iaculis dolor commodo mi
-        interdum auctor. Nam vehicula posuere elementum. Mauris ex lacus, sollicitudin et varius quis, dignissim ut
-        velit.
-        </p>
+              </li>
+      </ul>
+      </li>
+      <li><a href="#">Main Item 3</a></li>
+</ul>
 
+
+
+  <div class="col-md-4">
+  </div>
+
+  <div class="col-md-4">
+  </div>
+  
+  
+  
+  
 </div>
+
 
 
 

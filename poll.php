@@ -1,9 +1,10 @@
 <?php
     $title = "Poll Site";
     include $_SERVER["DOCUMENT_ROOT"]."/team10/layout/header.php" ;
-    require_once 'assets/plugins/connect.php';
+    //require_once 'assets/plugins/connect.php';
     include 'scripts/edem_functions.php';
-    ?>
+    include 'assets/plugins/connect.php';
+?>
 
 
 <!-- Setting up all the necessary variables -->
@@ -27,9 +28,6 @@
 ?>
 
 
-
-
-
 <h2><?php echo "User ". $username ." with the id number: ". $userID ?></h2>
 
 <h2>Welcome <?php echo $username; ?> <br>
@@ -38,7 +36,7 @@
     <hr>
 
 <div class='table-responsive'>
-    <form name='vote' method='post'>
+    <form name='vote' method='post' action="scripts/poll_action.php">
         <table class='table caption-top table-info'>
             <caption>List of Upcoming Matches</caption>
             <tr><th>No.</th><th>Match</th><th>Stadium</th><th>Your Votes</th><th>Vote</th></tr>
@@ -83,9 +81,9 @@
             </select>
             </td></tr>
         </table>
-        <input type='submit' value='Submit Your Votes' name='submitVote' href='#results-table'>
-        <input type='submit' value='Edit Your Votes' name='edit'>
-        <input type='submit' value='Delete Your Votes' name='delete'>
+        <input type='submit' value='Submit Your Votes' name="submitVote" onclick="voteSuccess()">
+        <input type='submit' value='Edit Your Votes' name='edit' onclick="editSuccess()">
+        <input type='submit' value='Delete Your Votes' name='delete' onclick="deleteSuccess()"">
     </form>
 </div>
 
@@ -94,17 +92,23 @@
 <br>
 <hr>
 <?php 
-    function showVotes1($matchNumber){
-        global  $con;
-        $result = mysqli_query($con, "SELECT * FROM poll WHERE user_id = 3 "); 
+    function confirmVotes1($matchNumber){
+        global  $con, $userID;
+        $result = mysqli_query($con, "SELECT * FROM poll WHERE user_id = $userID "); 
         $row = mysqli_fetch_assoc($result);
         
         if($row != false){
-            $votes = "null";
+            echo "Error: VALUE EXISTS ALREADY ";
         }else{
-            $votes = $row[$matchNumber];
+            $match1Vote = $_POST['match1'];
+            $match2Vote = $_POST['match2'];
+            $match3Vote = $_POST['match3'];
+            $match4Vote = $_POST['match4'];
+            $match5Vote = $_POST['match5'];
+            // include 'assets/plugins/connect.php';
+            $insertSQL = "insert into poll(user_id, match1, match2, match3, match4, match5)
+            values('$userID', '$match1Vote', '$match2Vote', '$match3Vote', '$match4Vote', '$match5Vote')" ;
         }
-        return $votes;
         
     }
 
@@ -180,66 +184,6 @@
 
 <br>
 <hr>
-<!-- Submitting to the database -->
-<?php
-    // if poll where user_ id = userID already exists, do nothing else Insert
-    if(isset($_POST["submitVote"])){
-        echo "<h1>YOU HAVE NOT YET VOTED SO YES!</h1>";
-        $match1Vote = $_POST['match1'];
-        $match2Vote = $_POST['match2'];
-        $match3Vote = $_POST['match3'];
-        $match4Vote = $_POST['match4'];
-        $match5Vote = $_POST['match5'];
-        include 'assets/plugins/connect.php';
-        $insertSQL = "insert into poll(user_id, match1, match2, match3, match4, match5)
-        values('$userID', '$match1Vote', '$match2Vote', '$match3Vote', '$match4Vote', '$match5Vote')" ;
 
-        if($con->query($insertSQL) === TRUE){
-            echo "Your information has been added successfully";
-        }else{
-            echo "Error: " . $con->error;
-        }
-    }
-
- //Editing the votes -->
-
-    if(isset($_POST['edit'])){
-        $match1Vote = $_POST['match1'];
-        $match2Vote = $_POST['match2'];
-        $match3Vote = $_POST['match3'];
-        $match4Vote = $_POST['match4'];
-        $match5Vote = $_POST['match5'];
-        include 'assets/plugins/connect.php';
-
-        $alterQuery = mysqli_query($con, "UPDATE poll set match1='$match1Vote',
-        match2='$match2Vote', match3='$match3Vote', match4='$match4Vote', match5='$match5Vote'
-        WHERE user_id = '$userID'"); 
-
-        if($alterQuery){
-            echo "<h2>Your information has been updated successfully</h2>";
-        } else {
-            echo"Record Not Modified";
-        }
-    }
-
-    //Deleting the votes -->
-
-    if(isset($_POST['delete'])){
-        $match1Vote = $_POST['match1'];
-        $match2Vote = $_POST['match2'];
-        $match3Vote = $_POST['match3'];
-        $match4Vote = $_POST['match4'];
-        $match5Vote = $_POST['match5'];
-        include 'assets/plugins/connect.php';
-
-        $alterQuery = mysqli_query($con, "DELETE FROM poll WHERE user_id = '$userID'"); 
-
-        if($alterQuery){
-            echo "<h2>Your information has been deleted successfully</h2>";
-        } else {
-            echo"Record Not Modified";
-        }
-    }
-?>
 
 <?php include $_SERVER["DOCUMENT_ROOT"]."/team10/layout/footer.php" ?>

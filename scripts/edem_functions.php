@@ -33,4 +33,34 @@
         }
         return $votes;
     }
+
+
+    function confirmVotes(){
+        global  $con, $userID;
+        $result = mysqli_query($con, "SELECT * FROM poll WHERE user_id = $userID "); 
+        $row = mysqli_fetch_assoc($result);
+        
+        if($row != false){
+            echo "Error: VALUE EXISTS ALREADY ";
+            exit();
+        }else{
+            $match1Vote = $_POST['match1'];
+            $match2Vote = $_POST['match2'];
+            $match3Vote = $_POST['match3'];
+            $match4Vote = $_POST['match4'];
+            $match5Vote = $_POST['match5'];
+            // include 'assets/plugins/connect.php';
+            $insertSQL = "insert into poll(user_id, match1, match2, match3, match4, match5)
+            values('$userID', '$match1Vote', '$match2Vote', '$match3Vote', '$match4Vote', '$match5Vote')" ;
+            if($con->query($insertSQL) === TRUE){
+                echo "<h1>Thank you for voting. <br>
+                Your vote has been added successfully</h1>";
+            }else{
+                echo "Error: " . $con->error;
+            }
+        }
+        
+    }
+
+
 ?>

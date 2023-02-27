@@ -1,7 +1,7 @@
 <?php 
     $title = "Poll Site";
     include $_SERVER["DOCUMENT_ROOT"]."/team10/layout/header.php";
-    include $_SERVER["DOCUMENT_ROOT"].'/team10/scripts/edem_functions.php';
+    include $_SERVER["DOCUMENT_ROOT"].'/team10/scripts/poll_functions.php';
     include $_SERVER["DOCUMENT_ROOT"].'/team10/assets/plugins/connect.php';
 ?>
 

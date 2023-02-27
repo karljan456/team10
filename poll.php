@@ -2,7 +2,7 @@
     $title = "Poll Site";
     include $_SERVER["DOCUMENT_ROOT"]."/team10/layout/header.php" ;
     //require_once 'assets/plugins/connect.php';
-    include 'scripts/edem_functions.php';
+    include 'scripts/poll_functions.php';
     include 'assets/plugins/connect.php';
     //CONNECT THIS ID TO THE MAIN SESSION FROM THE LOGIN PAGE!!
     //$userID = $_SESSION['user_id_number'];

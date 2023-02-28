@@ -6,9 +6,24 @@
     include 'assets/plugins/connect.php';
     //CONNECT THIS ID TO THE MAIN SESSION FROM THE LOGIN PAGE!!
     //$userID = $_SESSION['user_id_number'];
-    $id = 5;
-    $_SESSION['user_id_number'] = $id;
+    //$id = 6;
+    //$_SESSION['user_id_number'] = $id;
     ?>
+
+<form method="post" name="idCollection">
+    <input type="number" name="id"><br>
+    <input  type="submit" value="Give Your ID" name="submitTempID">
+</form>
+
+<?php
+    // Create something to temporarily select user ID
+    if(isset($_POST["submitTempID"])){
+        $id = $_POST['id'];
+        $_SESSION['user_id_number'] = $id;
+    }else{
+        echo "Input your ID Number";
+    }
+?>
 
 
 <!-- Setting up all the necessary variables -->

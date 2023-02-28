@@ -22,6 +22,7 @@ include "layout/header.php";
             <input type="submit" class="btn btn-outline-danger" value="SHOW" name="SHOW">
         </div>
     </form>
+    <div>
     <?php
     $epl22_23 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSUQRlKDVZfBpigOrtJaCX1K05ySMjJe16LGGlmdyG5BhBa2d5mY1J9KByl10utiJFszJILYyBEDgLt/pub?gid=0&single=true&output=csv";
     $ucl22_23 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSUQRlKDVZfBpigOrtJaCX1K05ySMjJe16LGGlmdyG5BhBa2d5mY1J9KByl10utiJFszJILYyBEDgLt/pub?gid=232218589&single=true&output=csv";
@@ -32,7 +33,6 @@ include "layout/header.php";
         // Displaying data for the current season 
         if (strcmp($competition, "epl") === 0 and strcmp($season, "s23") === 0) {
 
-            
             echo "<img src=\"assets\images\\epl_logo.png\" alt=\"epl logo\" align=\"right\" width=\"100\" height=\"70\">";
             echo "<h1>English Premier League Season 2022/23</h1>";
             printLiveTable($epl22_23, 'epl22_23');
@@ -232,6 +232,7 @@ include "layout/header.php";
     }
 
     ?>
+    </div>
 </div>
 
 <?php

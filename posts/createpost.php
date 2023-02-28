@@ -1,41 +1,33 @@
 <?php 
-session_start(); 
 $title="Create post";
-include "layout/header.php";
-
+include "../layout/header.php";
+include "../scripts/messages.php";
 ?>
 
-
-    
-
-    <div class="container mt-4 mb-4">
+    <div class="container mt-4 mb-4" >
         <div class="row justify-content-md-center">
             <div class="col-md-12 col-lg-8">
                 <h1 class="h2 mb-4">Create a new Article</h1>
 
 
-                <form action="scripts/createpost.serv.php" method="POST">
-                    <div class="form-group">
-                        <input type="text" id="title" name="title" placeholder="Post title" required>
+                <form action="scripts/createpost.serv.php" method="POST" class="mt-3 create-post-form">
+                    <div class="form-group col-lg-12">
+                        <input type="text" id="title" name="title" class="mt-1 col-lg-12" placeholder="Title.." required>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="slug" name="slug" placeholder="Post slug" required>
-                    </div>
-
-                    <div class="form-group">
-                        <textarea id="content" name="content" placeholder="Post Content" ></textarea>
+                        <input type="text" id="slug" name="slug" class="my-1 mb-3 pl-5 col-lg-12" placeholder="Slug.." required>
                     </div>
 
-                    <button type="submit" class="btn btn-success" name="publish">Publish</button>
+                    <div class="form-group">
+                        <textarea id="content" name="content" class="my-5" placeholder="Post Content" ></textarea>
+                    </div>
+                    <div class="form-group mt-3">
+                    <button type="submit" class="btn btn-success"  class="my-3"  name="publish">Publish</button>
+                    </div>
             </div>
         </div>
     </div>
   </form>
-
-
- 
-
-
 
 
 
@@ -44,7 +36,7 @@ include "layout/header.php";
     <script>
     tinymce.init({
         selector: 'textarea#content',
-        menubar: false
+        menubar: true,
     });
     </script>
-<?php include "layout/footer.php";?>
+<?php include "../layout/footer.php";?>

@@ -1,8 +1,8 @@
 <?php
 include "../assets/plugins/connect.php";
 include "../layout/header.php";
+include "../scripts/messages.php";
 ?>
-
 
 <table class="justify-content-center my-3 post-view-table table-bordered table-striped">
     <thead>
@@ -26,8 +26,7 @@ include "../layout/header.php";
         if (mysqli_num_rows($queryResult) > 0) {
 
             //if data rows found then loop it and do something with the data
-            while ($article = mysqli_fetch_assoc($queryResult)) {
-                
+            while ($article = mysqli_fetch_assoc($queryResult)) {     
         ?>
                 <tr>
                     <td><?= $article['id']; ?></td>
@@ -43,8 +42,6 @@ include "../layout/header.php";
                     </td>
                 </tr>
         <?php
-                //do something e.g. display all data or some
-                echo $article['id'];
             }
         } else {
             echo '<strong>Sadly, No Articles Found</strong>.' . ' <a href="createpost.php" target=_Blank>Create A New Article?</a>';

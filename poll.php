@@ -15,6 +15,7 @@
     <input  type="submit" value="Give Your ID" name="submitTempID">
 </form>
 
+
 <?php
     // Create something to temporarily select user ID
     if(isset($_POST["submitTempID"])){
@@ -162,5 +163,5 @@
 <br>
 <hr>
 
-
+<?php include $_SERVER["DOCUMENT_ROOT"]."/team10/layout/trophies.php" ?>
 <?php include $_SERVER["DOCUMENT_ROOT"]."/team10/layout/footer.php" ?>

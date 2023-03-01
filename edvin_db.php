@@ -15,4 +15,10 @@ if ($conn->connect_error) {
 
 }
 
+// $sql = "INSERT INTO `quiz` (question, option_1, option_2, option_3, option_4, correct_answer) VALUES (
+//     'When was Liverpool FC founded?', '1914', '1892', 'Last year', '2000', '1892'
+// )";
+
+// $conn -> query($sql);
+
 ?>

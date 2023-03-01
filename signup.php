@@ -2,6 +2,7 @@
 
 <div class="signup-form">
 <?php include "scripts/messages.php";?>
+
 <form action="scripts/signup.serv.php" method="POST">
 <div class="mb-3">
     <label for="firstname" class="form-label" >First name</label>

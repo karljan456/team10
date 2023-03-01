@@ -94,6 +94,9 @@ session_start();
                     <li class="nav-item">
                         <a class="nav-link" href="#">Schedule</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../tables.php">Tables</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             MORE

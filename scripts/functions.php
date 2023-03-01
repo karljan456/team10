@@ -32,6 +32,7 @@ function login()
 }
 ///////////////////////////////////////////////////////////////////////
 
+
 /////////////// empty signup form input validator/////////////////
 //if any field is empty then it is true.
 function emptySignupInput($firstname, $lastname, $email, $password, $passwordrepeat, $tos)
@@ -132,7 +133,7 @@ function createUser($con, $firstname, $lastname, $username, $email, $password){
     //let's encrypt the password before inserting the data
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    //does not fail then we continue to bind the parameters
+    //if it does not fail then we continue to bind the parameters
     //add data after validation success and add the hashed version of the pwd
     mysqli_stmt_bind_param($stmt, "sssss", $firstname, $lastname, $username, $email, $hashedPassword);
     mysqli_stmt_execute($stmt);

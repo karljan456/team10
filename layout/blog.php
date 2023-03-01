@@ -20,7 +20,8 @@ if (!empty($_SESSION['loggedin'])) {
         neque, a sagittis libero gravida quis. Fusce sodales lacus ut mauris bibendum, nec blandit diam pulvinar.
         Aenean interdum nisl urna, eu viverra eros congue vulputate.</p>
     </p>
-</div>';
+</div>
+';
 
 } else {
     $_SESSION['message']="You need to be logged in to see this content";

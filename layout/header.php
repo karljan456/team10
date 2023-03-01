@@ -17,6 +17,9 @@ session_start();
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">
     </script> <!--darkmode toggle switch needed jquery-->
+    <script src="/team10/assets/js/poll.js"></script>
+
+
     <link rel="stylesheet" href="/team10/assets/css/darkmode.css"><!--darkmode toggle switch styles-->
     <link rel="stylesheet" href="/team10/assets/css/styles.css">
     <link rel="stylesheet" href="/team10/assets/css/stylulate.css">
@@ -102,7 +105,7 @@ session_start();
                             MORE
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Poll Site</a>
+                            <a class="dropdown-item" href="poll.php">Poll Site</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">League Table</a>
                             <div class="dropdown-divider"></div>

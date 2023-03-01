@@ -103,7 +103,7 @@
                             MORE
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Poll Site</a>
+                            <a class="dropdown-item" href="poll.php">Poll Site</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">League Table</a>
                             <div class="dropdown-divider"></div>

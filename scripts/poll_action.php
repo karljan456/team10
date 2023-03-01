@@ -38,7 +38,7 @@
             echo "<h1>Thank you for voting. <br>
             Your vote has been added successfully</h1> ";
         }else{
-            echo "Error: " . $con->error;
+            echo "Error: " . $con->error ;
         }
         echo"<script> voteSuccess() </script>";
         

@@ -1,7 +1,4 @@
-<?php 
-//Start the session 
-include "layout/header.php";
-?>
+<?php include "layout/header.php";?>
 
 <div>
 <?php include "scripts/messages.php";?>
@@ -21,29 +18,9 @@ include "layout/header.php";
 <button type="submit" class="btn btn-primary" name="submit">Login</button>
 </form>
 
-
 </div>
 
 
 
 
-<?php
-
-
-
-
-    //work in progress
-    //Call the functions file 
-    //include_once "scripts/functions.php"; 
-    //Display either the user's name, or the login form 
-    //This can be placed on many pages without having 
-    //to re-write the form everytime, just use this function 
-    //loggedIn();
-
-
-
-
-
-
-include "layout/footer.php";
-?>
+<?php include "layout/footer.php";?>

@@ -17,7 +17,7 @@ include 'layout/header.php';
         while ($row = $result->fetch_assoc()) {
 
             echo "<h2>$row[question]</h2>
-        <img src='assets\images\quiz\\$row[id].jpg' alt='$row[correct_answer]' width='550' height='350'>
+        <img src='assets\images\quiz\\$row[id].jpg' alt='$row[correct_answer]' width='70%' height='50%'>
         <div class=\"col-auto\">
     <input type=\"radio\" class=\"form-check-input\" name=\"answer\" value=\"$row[option_1]\">$row[option_1]<br>
     <input type=\"radio\" class=\"form-check-input\" name=\"answer\" value=\"$row[option_2]\">$row[option_2]<br>
@@ -27,7 +27,7 @@ include 'layout/header.php';
 ";
 
         }
-        // $conn->close();
+        $conn->close();
         echo '<input type="submit" class="btn btn-outline-danger" value="CHECK" name="submit">';
         echo '</form>';
 
@@ -68,9 +68,6 @@ include 'layout/header.php';
 
     ?>
 </div>
-
-
-
 
 
 <?php

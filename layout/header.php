@@ -98,7 +98,7 @@ session_start();
                         <a class="nav-link" href="#">Schedule</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../tables.php">Tables</a>
+                        <a class="nav-link" href="tables.php">Tables</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -107,7 +107,7 @@ session_start();
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="poll.php">Poll Site</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">League Table</a>
+                            <a class="dropdown-item" href="tables.php">League Table</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Comment Forum</a>
                             <div class="dropdown-divider"></div>

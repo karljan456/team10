@@ -39,7 +39,7 @@ function emptySignupInput($firstname, $lastname, $username, $email, $password, $
 {
     $result = "";
 
-    if (empty($firstname) || empty($lastname) || empty($username) || empty($email) || empty($password) || empty($passwordrepeat) || empty($tos)) {
+    if (empty($firstname) || empty($lastname)|| empty($email)|| empty($password) || empty($passwordrepeat)|| empty($tos)) {
         $result = true;
     } else {
         $result = false;
@@ -72,9 +72,8 @@ function invalidEmail($email)
 }
 
 // check if passwords are matching password and passwordrepeat 
-function passwordMatch($password, $passwordrepeat)
-{
-    $result = "";
+function passwordMatch($password, $passwordrepeat){
+    $result="";
     if ($password !==  $passwordrepeat) {
         $result = true;
     } else {
@@ -89,30 +88,33 @@ function usernameExists($con, $username, $email)
 {
     $query = " SELECT * FROM users WHERE username = ? OR email = ?;"; //query db and wait for values after validation to avoid injections per my understanding.
 
-    //initialize or prepare a statement 
-    //to check without executing the input before validation
-    $stmt = mysqli_stmt_init($con);
+//initialize or prepare a statement 
+//to check without executing the input before validation
+$stmt = mysqli_stmt_init($con); 
 
 
-    if (!mysqli_stmt_prepare($stmt, $query)) {
-        header('Location: ../signup.php?error=queryfail');
-        exit();
-    }
-    //add data after validation success
-    mysqli_stmt_bind_param($stmt, "ss", $username, $email);
-    mysqli_stmt_execute($stmt);
+if (!mysqli_stmt_prepare($stmt, $query)) {
+header("Location: ../signup.php?error=queryfail");
+exit();
+
+}
+//add data after validation success
+mysqli_stmt_bind_param($stmt, "ss", $username, $email);
+mysqli_stmt_execute($stmt);
 
     $stmtResult = mysqli_stmt_get_result($stmt);
 
-    //check if there is result and assign it to a variable as an array
-    if ($row = mysqli_fetch_assoc($stmtResult)) {
-        return $row;
-    } else {
-        $result = false;
-        return $result;
-    }
-    //close the prepared statement
-    mysqli_stmt_close($stmt);
+//check if there is result and assign it to a variable as an array
+if ($row= mysqli_fetch_assoc($stmtResult)){
+    return $row;
+}else {
+    $result = false;
+    return $result;
+
+}
+//close the prepared statement
+mysqli_stmt_close($stmt);
+
 }
 
 
@@ -149,7 +151,8 @@ function createUser($con, $firstname, $lastname, $username, $email, $password)
 
     header('Location: ../login.php?error=none');
     exit();
-}
+    
+    }
 
 
 //////////////////////login functions
@@ -201,8 +204,7 @@ function userLogin($con, $username, $password)
 
         header('Location: ../userprofile.php');
         exit();
-    }
-}
+    }  
 
 
 //////////////////////////////////post creation

@@ -2,128 +2,106 @@
 include "layout/header.php";
 
 ?>
-<div style=" width: 70%; margin: auto;">
-    <h2></h2>
+<div class="tables" style=" width: 70%; margin: auto;">
 
-    <form method="post">
-        <select name="competitions">
-            <option value="all">All Competitions</option>
-            <option value="epl">English Premier League</option>
-            <option value="ucl">UEFA Champions League</option>
-        </select>
-        <select name="season">
-            <option value="s23">2022-23</option>
-            <option value="s22">2021-22</option>
-        </select>
-        <input type="submit" value="Submit" name="submit">
+    <form method="post" class="row g-3">
+        <div class="col-auto">
+            <select name="competitions" class="form-select">
+                <option value="all">All Competitions</option>
+                <option value="epl">English Premier League</option>
+                <option value="ucl">UEFA Champions League</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <select name="season" class="form-select">
+                <option value="s23">2022-23</option>
+                <option value="s22">2021-22</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <input type="submit" class="btn btn-outline-danger" value="SHOW" name="SHOW">
+        </div>
     </form>
+    <div>
+        <?php
 
+        include 'scripts/functions.php';
 
-    <?php
-    $epl22_23 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSUQRlKDVZfBpigOrtJaCX1K05ySMjJe16LGGlmdyG5BhBa2d5mY1J9KByl10utiJFszJILYyBEDgLt/pub?gid=0&single=true&output=csv";
-    $ucl22_23 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSUQRlKDVZfBpigOrtJaCX1K05ySMjJe16LGGlmdyG5BhBa2d5mY1J9KByl10utiJFszJILYyBEDgLt/pub?gid=232218589&single=true&output=csv";
+        $epl22_23 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSUQRlKDVZfBpigOrtJaCX1K05ySMjJe16LGGlmdyG5BhBa2d5mY1J9KByl10utiJFszJILYyBEDgLt/pub?gid=0&single=true&output=csv";
+        $ucl22_23 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSUQRlKDVZfBpigOrtJaCX1K05ySMjJe16LGGlmdyG5BhBa2d5mY1J9KByl10utiJFszJILYyBEDgLt/pub?gid=232218589&single=true&output=csv";
+        if (isset($_POST['SHOW'])) {
+            $competition = $_POST['competitions'];
+            $season = $_POST['season'];
 
-    if (isset($_POST['submit'])) {
-        $competition = $_POST['competitions'];
-        $season = $_POST['season'];
+            // Displaying data for the current season 
+            if (strcmp($competition, "epl") === 0 and strcmp($season, "s23") === 0) {
 
-        if (strcmp($competition, "epl") === 0 and strcmp($season, "s23") === 0) {
+                echo "<img src=\"assets\images\\epl_logo.png\" alt=\"epl logo\" align=\"right\" width=\"100\" height=\"70\">";
+                echo "<h1>English Premier League Season 2022/23</h1>";
+                printLiveTable($epl22_23, 'epl22_23');
 
-            echo "<h1>English Premier League Season 2022/23</h1>";
+            } else if (strcmp($competition, "ucl") === 0 and strcmp($season, "s23") === 0) {
 
-            printTable($epl22_23);
+                echo "<img src=\"assets\images\\ucl_logo.png\" alt=\"epl logo\" align=\"right\" width=\"100\" height=\"70\">";
+                echo "<h1>UEFA Champions League Season 2022/23</h1>";
+                printLiveTable($ucl22_23, 'ucl22_23');
 
-        } else if (strcmp($competition, "ucl") === 0 and strcmp($season, "s23") === 0) {
+            } else if (strcmp($competition, "all") === 0 and strcmp($season, "s23") === 0) {
 
-            echo "<h1>UEFA Champions League Season 2022/23</h1>";
-            printTable($ucl22_23);
+                echo "<img src=\"assets\images\\epl_logo.png\" alt=\"epl logo\" align=\"right\" width=\"100\" height=\"70\">";
+                echo "<h1>English Premier League Season 2022/23</h1>";
 
-        } else if (strcmp($competition, "all") === 0 and strcmp($season, "s23") === 0) {
+                printLiveTable($epl22_23, 'ucl22_23');
 
-            echo "<h1>English Premier League Season 2022/23</h1>";
+                echo "<img src=\"assets\images\\ucl_logo.png\" alt=\"epl logo\" align=\"right\" width=\"100\" height=\"70\">";
+                echo "<h1>UEFA Champions League Season 2022/23</h1>";
 
-            printTable($epl22_23);
+                printLiveTable($ucl22_23, 'ucl22_23');
 
-            echo "<h1>UEFA Champions League Season 2022/23</h1>";
+            }
+            // Displaying data for the previous season 
+            else if (strcmp($competition, "epl") === 0 and strcmp($season, "s22") === 0) {
 
-            printTable($ucl22_23);
+                echo "<img src=\"assets\images\\epl_logo.png\" alt=\"epl logo\" align=\"right\" width=\"100\" height=\"70\">";
+                echo "<h1>English Premier League Season 2021/22</h1>";
+
+                printTable('epl21_22');
+
+            } else if (strcmp($competition, "ucl") === 0 and strcmp($season, "s22") === 0) {
+
+                echo "<img src=\"assets\images\\ucl_logo.png\" alt=\"epl logo\" align=\"right\" width=\"100\" height=\"70\">";
+                echo "<h1>UEFA Champions League Season 2021/22</h1>";
+
+                printTable('ucl21_22');
+
+            } else if (strcmp($competition, "all") === 0 and strcmp($season, "s22") === 0) {
+
+                echo "<img src=\"assets\images\\epl_logo.png\" alt=\"epl logo\" align=\"right\" width=\"100\" height=\"70\">";
+                echo "<h1>English Premier League Season 2021/22</h1>";
+
+                printTable('epl21_22');
+
+                echo "<img src=\"assets\images\\ucl_logo.png\" alt=\"epl logo\" align=\"right\" width=\"100\" height=\"70\">";
+                echo "<h1>UEFA Champions League Season 2021/22</h1>";
+
+                printTable('ucl21_22');
+
+            }
 
         } else {
-            echo 'Will be added soon...';
-        }
+            echo "<img src=\"assets\images\\epl_logo.png\" alt=\"epl logo\" align=\"right\" width=\"100\" height=\"70\">";
+            echo "<h1>English Premier League Season 2022/23</h1>";
 
-    }
+            printLiveTable($epl22_23, 'ucl22_23');
 
+            echo "<img src=\"assets\images\\ucl_logo.png\" alt=\"epl logo\" align=\"right\" width=\"100\" height=\"70\">";
+            echo "<h1>UEFA Champions League Season 2022/23</h1>";
 
-    function printTable($url)
-    {
-        echo "<table class=\"table\">
-        <tr>
-       <th>POSTION</th>
-       <th>TEAM</th>
-       <th>PLAYED</th>
-       <th>WON</th>
-       <th>DRAWN</th>
-       <th>LOST</th>
-       <th>GF</th>
-       <th>GA</th>
-       <th>GD</th>
-       <th>Pts</th>
-      </tr>";
-        $data = getData($url);
-        $i = 0;
-        for ($i = 1; $i < count($data); $i++) {
-
-            list($Pos, $Team, $Pld, $W, $D, $L, $GF, $GA, $GD, $Pts) = $data[$i];
-
-            if (strcmp($Team, "Liverpool") === 0) {
-                echo "<tr>
-            <td><b>$Pos</b></td>
-            <td><b>$Team</b></td>
-            <td><b>$Pld</b></td>
-            <td><b>$W</b></td>
-            <td><b>$D</b></td>
-            <td><b>$L</b></td>
-            <td><b>$GF</b></td>
-            <td><b>$GA</b></td>
-            <td><b>$GD</b></td>
-            <td><b>$Pts</b></td>
-           </tr>";
-            } else {
-                echo "<tr>
-            <td>$Pos</td>
-            <td>$Team</td>
-            <td>$Pld</td>
-            <td>$W</td>
-            <td>$D</td>
-            <td>$L</td>
-            <td>$GF</td>
-            <td>$GA</td>
-            <td>$GD</td>
-            <td>$Pts</td>
-           </tr>";
-            }
+            printLiveTable($ucl22_23, 'ucl22_23');
 
         }
-        echo "</table>";
-    }
-
-    function getData($url)
-    {
-        $array = [];
-        if (($handle = fopen($url, "r")) !== false) {
-            while (($data = fgetcsv($handle, 92, ",")) !== false) {
-
-                $array[] = $data;
-
-            }
-            fclose($handle);
-            return $array;
-        } else
-            die("Problem reading csv");
-    }
-
-    ?>
+        ?>
+    </div>
 </div>
 
 <?php

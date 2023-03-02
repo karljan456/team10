@@ -199,6 +199,34 @@ function userLogin($con, $username, $password)
     } else if ($passwordCheck === true) {
         session_start();
         $_SESSION['username'] = $userExists['username'];
+
+
+// Check if the user is an admin
+$user = $userExists['username']; // Replace with the actual user ID
+$sql = "SELECT role FROM users WHERE username = $user";
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $is_admin = $row['administrator'];
+    if ($is_admin == 1) {
+        echo "User is an admin";
+    } else {
+        echo "User is not an admin";
+    }
+} else {
+    echo "User not found";
+}
+
+// Close the MySQL connection
+mysqli_close($conn);
+
+
+
+
+
+
+
+
         $_SESSION['loggedin'] = true;
         $_SESSION['message'] = "Welcome " . $_SESSION['username'];
 

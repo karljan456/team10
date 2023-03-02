@@ -2,7 +2,7 @@
 include 'layout/header.php';
 ?>
 
-<div style="width:20%; margin: auto;">
+<div style="width:50%; margin: auto;">
 
     <?php
 
@@ -37,7 +37,7 @@ include 'layout/header.php';
             }
         }
 
-        echo "<h2>Your score: $points/" . $total_questions . "</h2>";
+        echo "<h2>Your score is: $points/" . $total_questions . "</h2>";
 
         $conn->close();
 

@@ -111,9 +111,9 @@ session_start();
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Comment Forum</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Extra 1</a>
+                            <a class="dropdown-item" href="quiz.php">Quiz</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Extra 2</a>
+                            <a class="dropdown-item" href="#">Extra 1</a>
                         </div>
                     </li>
                 </ul>

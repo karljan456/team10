@@ -68,7 +68,7 @@
 <div class="signup-form">
   <?php include "scripts/messages.php"; ?>
 
-  <form action="scripts/signup.serv.php" method="POST"  name="signupForm" onsubmit="return validateForm()">
+  <form action="scripts/signup.serv.php" method="POST" id="signupForm" name="signupForm" onsubmit="return validateForm()">
     <div class="mb-3">
       <label for="firstname" class="form-label">First name</label>
       <input type="text" class="form-control" id="firstname" name="firstname" required>

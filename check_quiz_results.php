@@ -10,7 +10,6 @@ include 'layout/header.php';
 
     if (isset($_POST['submit'])) {
 
-
         $points = 0;
         $total_questions = 5;
         $user_answers = array();

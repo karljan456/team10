@@ -73,7 +73,7 @@ session_start();
 
         <nav class="navbar navbar-expand-xl  navbar-dark ms-auto pr-3   ">
 
-            <a class="navbar-brand justify-content-start" href="index.php">
+            <a class="navbar-brand justify-content-start" href="/team10/index.php">
                 <img class="navbar_logo" src="/team10/assets/images/lfc_logo.png" alt="Liverpool FC logo">
             </a>
 
@@ -86,7 +86,7 @@ session_start();
                     <li class="nav-item active">
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home</a>
+                        <a class="nav-link" href="/team10/index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Video</a>
@@ -120,16 +120,15 @@ session_start();
 
                 <!--user login links-->
                 <div class="nav-item user-box ">
-                   
 
                     <?php 
                     if (!empty($_SESSION['loggedin'])) {
-                        echo '<a class="nav-link user-link" href="userprofile.php">
+                        echo '<a class="nav-link user-link" href="/team10/userprofile.php">
                         <img src="/team10/assets/images/user.svg" width="18" alt="logout" class="nav-icon"> Profile</a>';
                         
-                        echo '<a class="nav-link user-link" href="scripts/logout.serv.php">Logout</a>';
+                        echo '<a class="nav-link user-link" href="/team10/scripts/logout.serv.php">Logout</a>';
                     } else {
-                        echo '<a class="nav-link user-link " href="signup.php">
+                        echo '<a class="nav-link user-link " href="/team10/signup.php">
                         <img src="/team10/assets/images/user.svg" width="18" alt="Signup" class="nav-icon"> Join</a>';
                         echo '<a class="nav-link user-link" href="login.php">Login</a>';
 

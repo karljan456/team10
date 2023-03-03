@@ -15,13 +15,13 @@ include_once "scripts/functions.php";
 <?php
     
    //display content if logged in
-if (!empty($_SESSION['loggedin'])):
+if (!empty($_SESSION['user_role']) == "administrator"):
 ?>
 
 <div class="col-md-4">
 
 <ul id="side-nav">
-<li><a href="">something for normal users</a></li>
+<li><a href="">Create Post</a></li>
 <li><a href="#">Main Item 2</a></li>
 <li><a href="#">Main Item 3</a></li>
 <li><a href="#">Main Item 4</a></li>
@@ -36,29 +36,13 @@ if (!empty($_SESSION['loggedin'])):
 </div> 
 
 <?php 
-elseif (!empty($_SESSION['user_role'] == "administrator")):
-        
-?>
-<div class="col-md-4">
-
-<ul id="side-nav">
-<li><a href="">something for admin users</a></li>
-<li><a href="#">Main Item 2</a></li>
-<li><a href="#">Main Item 3</a></li>
-<li><a href="#">Main Item 4</a></li>
-    </ul>
-
-</ul>
-</div> 
-
-
-
-
-<?php 
-else:
+else :
     $_SESSION['message'] = "Please Login to view your profile";
     login();
     endif;
 ?>
 
+
+
 <?php include "layout/footer.php"; ?>
+

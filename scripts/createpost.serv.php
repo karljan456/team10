@@ -9,9 +9,18 @@ if (isset($_POST['submit'])) {
     $excerpt = substr($content, 0, 32);
     
     //get the author if session username found-----not reliable so working on it
-    if (!empty($_SESSION['username'])){
+    if (!empty($_SESSION['username']) ){
     $author = $_SESSION['username'];
-    }   
+        //connect to db and load the functions
+        require_once "../assets/plugins/connect.php";
+        include_once "../scripts/functions.php";
+    
+    
+        createPost($con, $title, $slug, $content, $excerpt, $author);
 
-$query = "INSERT INTO posts (title, slug, content, excerpt, author) VALUES
-($title, $slug, $content, $excerpt, $author,);";
+    }   else {
+        $_SESSION['message'] = "<strong>Access Restricted content.</strong> You must be an admin";
+        header("Location: login.php");
+        exit();
+    }
+}

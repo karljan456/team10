@@ -198,50 +198,19 @@ function userLogin($con, $username, $password)
         //if all is good start a logged in session
     } else if ($passwordCheck === true) {
         session_start();
-        $_SESSION['username'] = $userExists['username'];
-
-
-// Check if the user is an admin
-$user = $userExists['username']; // Replace with the actual user ID
-$sql = "SELECT role FROM users WHERE username = $user";
-$result = mysqli_query($conn, $sql);
-if (mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result);
-    $is_admin = $row['administrator'];
-    if ($is_admin == 1) {
-        echo "User is an admin";
-    } else {
-        echo "User is not an admin";
-    }
-} else {
-    echo "User not found";
-}
-
-// Close the MySQL connection
-mysqli_close($conn);
-
-
-
-
-
-
-
-
-        $_SESSION['loggedin'] = true;
-        $_SESSION['message'] = "Welcome " . $_SESSION['username'];
+        $_SESSION['user_role'] = $userExists['role'];
         
-        if (($userExists['role'] == 'administrator'))
-
-
+        $_SESSION['username'] = $userExists['username'];
+        $_SESSION['loggedin'] = true;
+        
+        $_SESSION['message'] = "Welcome " . $_SESSION['username'];
         header('Location: ../userprofile.php');
         exit();
     }  
 
 
 //////////////////////////////////post creation
-function createPost($con, $title, $slug, $content, $excerpt, $author)--,
-
-{
+function createPost($con, $title, $slug, $content, $excerpt, $author){
 
     //query db and wait for values after validation to avoid injections per my understanding.
     $query = " INSERT INTO posts (title, slug, content, excerpt, author) VALUES (?, ?, ?, ?, ?)";
@@ -273,25 +242,5 @@ function createPost($con, $title, $slug, $content, $excerpt, $author)--,
     header('Location: ../posts/postview.php?error=none');
     exit();
 }
-
-//////////////////////////////////article functions etc
-
-function getAuthor()
-{
-    include_once "";
-    $query = "SELECT user_id, username
-        FROM users
-        INNER JOIN posts
-        ON  user_id = author_id;";
-
-    $result = mysqli_query($con, $query); //run the sql query using the connection to db and the sql command stated above
-
-    if (mysqli_num_rows($result) > 0) {
-
-        $row = mysqli_fetch_assoc($result);
-        $author = $row["username"];
-        $author_id =  $row['user_id'];
-    } else {
-        echo "no such user exists";
-    }
 }
+//////////////////////////////////article functions etc

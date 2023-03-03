@@ -12,7 +12,7 @@ include 'layout/header.php';
     $result = $conn->query($get_data);
     if ($result->num_rows > 0) {
 
-        echo '<form method="post" action="check_quiz_results.php" class="row g-3 align-items-center" onsubmit="return checkForm()">';
+        echo '<form method="post" action="results.php" class="row g-3 align-items-center" onsubmit="return checkForm()">';
 
         while ($row = $result->fetch_assoc()) {
 

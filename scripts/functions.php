@@ -39,7 +39,7 @@ function emptySignupInput($firstname, $lastname, $username, $email, $password, $
 {
     $result = "";
 
-    if (empty($firstname) || empty($lastname)|| empty($email)|| empty($password) || empty($passwordrepeat)|| empty($tos)) {
+    if (empty($firstname) || empty($lastname)|| empty($username)|| empty($email)|| empty($password) || empty($passwordrepeat)|| empty($tos)) {
         $result = true;
     } else {
         $result = false;
@@ -50,7 +50,6 @@ function emptySignupInput($firstname, $lastname, $username, $email, $password, $
 // check if username is valid 
 function invalidUsername($username)
 {
-    $result = "";
     if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
         $result = true;
     } else {

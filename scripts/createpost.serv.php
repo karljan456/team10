@@ -14,4 +14,4 @@ if (isset($_POST['submit'])) {
     }   
 
 $query = "INSERT INTO posts (title, slug, content, excerpt, author) VALUES
-($title, $slug, $content, $author,);";
+($title, $slug, $content, $excerpt, $author,);";

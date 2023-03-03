@@ -201,6 +201,9 @@ function userLogin($con, $username, $password)
         $_SESSION['username'] = $userExists['username'];
         $_SESSION['loggedin'] = true;
         $_SESSION['message'] = "Welcome " . $_SESSION['username'];
+        
+        if (($userExists['role'] == 'administrator'))
+
 
         header('Location: ../userprofile.php');
         exit();

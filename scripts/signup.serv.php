@@ -66,7 +66,6 @@ if (isset($_POST['submit'])) {
 createUser($con, $firstname, $lastname, $username, $email, $password);
 
 
-
 } else {
     header('Location: ../signup.php');
 }

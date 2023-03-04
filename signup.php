@@ -1,4 +1,13 @@
-<?php include "layout/header.php"; ?>
+<?php 
+session_start();
+if (isset($_SESSION['loggedin'])){
+  header('Location: userprofile.php');
+  exit();
+}
+include "layout/header.php"; 
+
+
+?>
 <script>
   function validateForm() {
     // Get form inputs
@@ -7,7 +16,7 @@
     var username = document.forms["signupForm"]["username"].value;
     var email = document.forms["signupForm"]["email"].value;
     var password = document.forms["signupForm"]["password"].value;
-    var passwordrepeat = document.forms["signupForm"]["confirmPassword"].value;
+    var passwordrepeat = document.forms["signupForm"]["passwordrepeat"].value;
 
     // Check if name is empty
     if (fistname == "" || lastname == "") {
@@ -64,7 +73,7 @@
   return true;
   }
 </script>
-
+<noscript>Your browser does not support JavaScript! </noscript>
 <div class="signup-form">
   <?php include "scripts/messages.php"; ?>
 

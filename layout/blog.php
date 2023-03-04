@@ -25,7 +25,9 @@ if (!empty($_SESSION['loggedin'])) {
 
 } else {
     $_SESSION['message']="You need to be logged in to see this content";
+   
     login();
+    
 }
 
 ?>

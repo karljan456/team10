@@ -37,7 +37,6 @@ function login()
 //if any field is empty then it is true.
 function emptySignupInput($firstname, $lastname, $username, $email, $password, $passwordrepeat, $tos)
 {
-    $result = "";
 
     if (empty($firstname) || empty($lastname)|| empty($username)|| empty($email)|| empty($password) || empty($passwordrepeat)|| empty($tos)) {
         $result = true;
@@ -61,7 +60,6 @@ function invalidUsername($username)
 // check if email is valid 
 function invalidEmail($email)
 {
-    $result = "";
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $result = true;
     } else {
@@ -72,7 +70,6 @@ function invalidEmail($email)
 
 // check if passwords are matching password and passwordrepeat 
 function passwordMatch($password, $passwordrepeat){
-    $result="";
     if ($password !==  $passwordrepeat) {
         $result = true;
     } else {

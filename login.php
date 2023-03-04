@@ -1,4 +1,10 @@
-<?php include "layout/header.php";?>
+<?php
+session_start();
+if (isset($_SESSION['loggedin'])){
+  header('Location: userprofile.php');
+  exit();
+} 
+include "layout/header.php";?>
 
 <div>
 <?php include "scripts/messages.php";?>

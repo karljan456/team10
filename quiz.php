@@ -2,7 +2,7 @@
 include 'layout/header.php';
 ?>
 
-<div style=" width: 50%; margin: auto;">
+<div class="quiz-container">
 
     <h1>Do you know your club well?</h1>
     <?php
@@ -29,7 +29,7 @@ include 'layout/header.php';
 
         }
         $conn->close();
-        echo '<input type="submit" class="btn btn-outline-danger" value="CHECK" name="submit">';
+        echo '<input type="submit" class="btn btn-outline-danger" value="SEE RESULTS" name="submit">';
         echo '</form>';
 
     }

@@ -1,35 +1,43 @@
-element, input, button, label,nav,footer, .footer-row-2  {
-    border-radius:2px;
+element,
+input,
+button,
+label,
+nav,
+footer,
+.footer-row-2 {
+    border-radius: 2px;
 }
+
 /* Navigation */
-.container nav{
-    margin-left:20px !important;
-    margin-right:20px;
-   }
-   /* Container */
-.almighty-wrapper .slider-carousel .container{
-    margin-top:-20px;
-    border-top-left-radius:0px;
-    border-top-right-radius:0px;
-   }
-   
-   
+.container nav {
+    margin-left: 20px !important;
+    margin-right: 20px;
+}
+
 /* Container */
-.container{
-    padding-left:0px !important;
-    padding-right:0px !important;
-    max-width:100vw;
-    max-width:100vw !important;
-    padding-left:0px !important;
-    padding-right:0px !important;
-   }
-   
-   
-   .container nav{
-    padding-left:30px;
-   }
-   
-   
+.almighty-wrapper .slider-carousel .container {
+    margin-top: -20px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+
+/* Container */
+.container {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    max-width: 100vw;
+    max-width: 100vw !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+
+.container nav {
+    padding-left: 30px;
+}
+
+
 /* Post container */
 .container .post-container {
     width: 1300px !important;
@@ -49,12 +57,13 @@ element, input, button, label,nav,footer, .footer-row-2  {
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
 }
+
 /* Container */
-.almighty-wrapper .slider-carousel .container{
-    padding-top:260px;
-    height:440px;
-   }
-   
+.almighty-wrapper .slider-carousel .container {
+    padding-top: 260px;
+    height: 440px;
+}
+
 
 /* Container */
 .container .page-heading .container {
@@ -139,21 +148,24 @@ td {
     }
 
 }
+
 /* Navbar toggler */
-.container .navbar .navbar-toggler{
-    margin-bottom:25px;
-   }
-   
+.container .navbar .navbar-toggler {
+    margin-bottom: 25px;
+}
+
 #navbarSupportedContent {
     max-width: 90%;
     justify-content: flex-end;
     margin-left: 0px;
     margin-top: 0px;
-    font-size:18px;
+    font-size: 18px;
 }
-#navbarSupportedContent .user-link img{
-    width:18px;
-   }
+
+#navbarSupportedContent .user-link img {
+    width: 18px;
+}
+
 html,
 body {
     overflow-x: hidden;
@@ -460,13 +472,14 @@ h4 {
     margin-left: -12px;
     margin-right: -12px;
 }
+
 /* Container */
-.almighty-wrapper .slider-carousel .container{
-    border-top-left-radius:0px;
-    border-top-right-radius:0px;
-   }
-   
-   
+.almighty-wrapper .slider-carousel .container {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+
 .carousel {
     margin-top: -50px;
     margin-bottom: 20px;
@@ -571,13 +584,14 @@ h4 {
     z-index: 40;
 
 }
+
 /* Row */
-.container .header{
-    border-bottom-left-radius:3px;
-    border-bottom-right-radius:3px;
-   }
-   
-   
+.container .header {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+
 
 .navbar {
     background: #D00A27;
@@ -908,7 +922,7 @@ body.wrapper {
         padding-bottom: 90px;
         border-radius: 3px;
         box-shadow: 5px 3px 10px 0px rgba(255, 255, 255, 0.3);
-        padding-right:20px;
+        padding-right: 20px;
 
     }
 
@@ -960,4 +974,32 @@ a:link {
 .article-grid,
 h4 {
     color: black;
+}
+
+.tables {
+    width: 70%;
+    margin: auto;
+}
+
+.quiz-container {
+
+    width: 50%;
+    margin: auto;
+
+}
+
+.check-quiz-container {
+
+    width: 50%;
+    margin: auto;
+
+}
+
+.competition-logo-container {
+
+    float: right;
+    margin-bottom: 10px;
+    width: 100px;
+    height: 70px;
+
 }

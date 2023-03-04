@@ -5,7 +5,7 @@ include 'edvin_db.php';
 if (isset($_POST['submit'])) {
 
     $points = 0;
-    $total_questions = 5;
+    $total_questions = 10;
     $user_answers = array();
 
     // Looping through every question in the quiz

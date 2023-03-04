@@ -24,7 +24,7 @@ include "layout/header.php";?>
 <button type="submit" class="btn btn-primary" name="submit">Login</button>
 
 <div class="mb-3">
-<a href="signup.php">Register</a>
+<a href="signup.php">Register</a><br>
 <a href="users/passwordreset.php">Reset Password</a>
 </div>
 

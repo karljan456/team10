@@ -306,7 +306,10 @@ function printData($table, $conn)
     $result = $conn->query($read);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            if (strcmp($row['Team'], "Liverpool") === 0) {
+            // Conditions to check if the team is Liverpool then the name will be bold and 
+            // also checking if the table does not contain unwanted characters
+            if (strcmp($row['Team'], "Liverpool") === 0 and str_contains($row['Pts'], '[')) {
+                $points = substr($row['Pts'], 0, -3);
                 echo "<tr>
                         <td><b>$row[Pos]</b></td>
                         <td><b>$row[Team]</b></td>
@@ -317,10 +320,26 @@ function printData($table, $conn)
                         <td><b>$row[GF]</b></td>
                         <td><b>$row[GA]</b></td>
                         <td><b>$row[GD]</b></td>
-                        <td><b>$row[Pts]</b></td>
+                        <td><b>$points</b></td>
                     </tr>
                 </tbody>";
-            } else {
+            } else if (str_contains($row['Team'], '(')) {
+                $team = substr($row['Team'], 0, -3);
+                echo "<tr>
+                    <td>$row[Pos]</td>
+                    <td>$team</td>
+                    <td>$row[Pld]</td>
+                    <td>$row[W]</td>
+                    <td>$row[D]</td>
+                    <td>$row[L]</td>
+                    <td>$row[GF]</td>
+                    <td>$row[GA]</td>
+                    <td>$row[GD]</td>
+                    <td>$row[Pts]</td>
+                   </tr>";
+            } else if (str_contains($row['Pts'], '[')) {
+
+                $points = substr($row['Pts'], 0, -3);
                 echo "<tr>
                     <td>$row[Pos]</td>
                     <td>$row[Team]</td>
@@ -331,8 +350,37 @@ function printData($table, $conn)
                     <td>$row[GF]</td>
                     <td>$row[GA]</td>
                     <td>$row[GD]</td>
-                    <td>$row[Pts]</td>
+                    <td>$points</td>
                    </tr>";
+
+            } else if (strcmp($row['Team'], "Liverpool") === 0) {
+                echo "<tr>
+                <td><b>$row[Pos]</b></td>
+                <td><b>$row[Team]</b></td>
+                <td><b>$row[Pld]</b></td>
+                <td><b>$row[W]</b></td>
+                <td><b>$row[D]</b></td>
+                <td><b>$row[L]</b></td>
+                <td><b>$row[GF]</b></td>
+                <td><b>$row[GA]</b></td>
+                <td><b>$row[GD]</b></td>
+                <td><b>$row[Pts]</b></td>
+            </tr>
+        </tbody>";
+            } else {
+                echo "<tr>
+                <td>$row[Pos]</td>
+                <td>$row[Team]</td>
+                <td>$row[Pld]</td>
+                <td>$row[W]</td>
+                <td>$row[D]</td>
+                <td>$row[L]</td>
+                <td>$row[GF]</td>
+                <td>$row[GA]</td>
+                <td>$row[GD]</td>
+                <td>$row[Pts]</td>
+               </tr>";
+
             }
         }
 

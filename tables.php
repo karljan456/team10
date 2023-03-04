@@ -37,25 +37,26 @@ include "layout/header.php";
             // Displaying data for the current season 
             if (strcmp($competition, "epl") === 0 and strcmp($season, "s23") === 0) {
 
-                echo '<img src="assets\images\epl_logo.png" alt="epl logo" class="competition-logo-container">';
-                echo "<h1>English Premier League Season 2022/23</h1>";
+                printEplLogo();
+
+                printEpl("s23");
+
                 printLiveTable($epl22_23, 'epl22_23');
 
             } else if (strcmp($competition, "ucl") === 0 and strcmp($season, "s23") === 0) {
 
-                echo '<img src="assets\images\ucl_logo.png" alt="epl logo" class="competition-logo-container">';
-                echo "<h1>UEFA Champions League Season 2022/23</h1>";
+                printUclLogo();
+                printUcl("s23");
                 printLiveTable($ucl22_23, 'ucl22_23');
 
             } else if (strcmp($competition, "all") === 0 and strcmp($season, "s23") === 0) {
 
-                echo '<img src="assets\images\epl_logo.png" alt="epl logo" class="competition-logo-container">';
-                echo "<h1>English Premier League Season 2022/23</h1>";
-
+                printEplLogo();
+                printEpl("s23");
                 printLiveTable($epl22_23, 'ucl22_23');
 
-                echo '<img src="assets\images\ucl_logo.png" alt="ucl logo" class="competition-logo-container">';
-                echo "<h1>UEFA Champions League Season 2022/23</h1>";
+                printUclLogo();
+                printUcl("s23");
 
                 printLiveTable($ucl22_23, 'ucl22_23');
 
@@ -63,40 +64,41 @@ include "layout/header.php";
             // Displaying data for the previous season 
             else if (strcmp($competition, "epl") === 0 and strcmp($season, "s22") === 0) {
 
-                echo '<img src="assets\images\epl_logo.png" alt="epl logo" class="competition-logo-container">';
-                echo "<h1>English Premier League Season 2021/22</h1>";
+                printEplLogo();
+                printEpl("s22");
 
                 printTable('epl21_22');
 
             } else if (strcmp($competition, "ucl") === 0 and strcmp($season, "s22") === 0) {
 
-                echo '<img src="assets\images\ucl_logo.png" alt="ucl logo" class="competition-logo-container">';
-                echo "<h1>UEFA Champions League Season 2021/22</h1>";
+                printUclLogo();
+                printUcl("s22");
 
                 printTable('ucl21_22');
 
             } else if (strcmp($competition, "all") === 0 and strcmp($season, "s22") === 0) {
 
-                echo '<img src="assets\images\epl_logo.png" alt="epl logo" class="competition-logo-container">';
-                echo "<h1>English Premier League Season 2021/22</h1>";
+                printEplLogo();
+                printEpl("s22");
 
                 printTable('epl21_22');
 
-                echo '<img src="assets\images\ucl_logo.png" alt="epl logo" class="competition-logo-container">';
-                echo "<h1>UEFA Champions League Season 2021/22</h1>";
+                printUclLogo();
+                printUcl("s22");
 
                 printTable('ucl21_22');
 
             }
 
         } else {
-            echo '<img src="assets\images\epl_logo.png" alt="epl logo" class="competition-logo-container">';
-            echo "<h1>English Premier League Season 2022/23</h1>";
+            printEplLogo();
+            printEpl("s23");
 
             printLiveTable($epl22_23, 'ucl22_23');
 
-            echo '<img src="assets\images\ucl_logo.png" alt="ucl logo" class="competition-logo-container">';
-            echo "<h1>UEFA Champions League Season 2022/23</h1>";
+            printUclLogo();
+
+            printUcl("s23");
 
             printLiveTable($ucl22_23, 'ucl22_23');
 

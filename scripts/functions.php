@@ -392,3 +392,54 @@ function printData($table, $conn)
 
     }
 }
+
+
+function printEplLogo()
+{
+
+    echo '<img src="assets\images\epl_logo.png" alt="epl logo" class="competition-logo-container">';
+
+}
+
+function printUclLogo()
+{
+    echo '<img src="assets\images\ucl_logo.png" alt="epl logo" class="competition-logo-container">';
+}
+
+function printEpl($season)
+{
+
+    switch ($season) {
+
+        case "s23":
+            echo "<h1>English Premier League Season 2022/23</h1>";
+            break;
+        case "s22":
+            echo "<h1>English Premier League Season 2021/22</h1>";
+            break;
+
+        default:
+        echo "Error";
+
+    }
+
+}
+
+function printUcl($season)
+{
+
+    switch ($season) {
+
+        case "s23":
+            echo "<h1>UEFA Champions League Season 2022/23</h1>";
+            break;
+        case "s22":
+            echo "<h1>UEFA Champions League Season 2021/22</h1>";
+            break;
+
+        default:
+        echo "Error";
+
+    }
+
+}

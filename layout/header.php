@@ -18,6 +18,7 @@ session_start();
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">
     </script> <!--darkmode toggle switch needed jquery-->
     <script src="/team10/assets/js/poll.js"></script>
+    <script src="/team10/assets/js/quiz_validation.js"></script>
 
 
     <link rel="stylesheet" href="/team10/assets/css/darkmode.css"><!--darkmode toggle switch styles-->
@@ -107,13 +108,13 @@ session_start();
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="poll.php">Poll Site</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">League Table</a>
+                            <a class="dropdown-item" href="tables.php">League Table</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Comment Forum</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Extra 1</a>
+                            <a class="dropdown-item" href="quiz.php">Quiz</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Extra 2</a>
+                            <a class="dropdown-item" href="#">Extra 1</a>
                         </div>
                     </li>
                 </ul>

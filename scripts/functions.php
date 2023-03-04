@@ -280,7 +280,7 @@ function printTable($table)
 {
 
     include 'edvin_db.php';
-    echo "<table class=\"table\">
+    echo "<table class=\"table table-responsive\">
             <tr>
            <th>POSTION</th>
            <th>TEAM</th>
@@ -394,6 +394,9 @@ function printData($table, $conn)
 }
 
 
+
+
+// Functions to print the logo of the compettions
 function printEplLogo()
 {
 
@@ -406,6 +409,11 @@ function printUclLogo()
     echo '<img src="assets\images\ucl_logo.png" alt="epl logo" class="competition-logo-container">';
 }
 
+
+
+
+
+// Functions to print out the names of the competitons
 function printEpl($season)
 {
 

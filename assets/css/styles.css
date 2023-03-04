@@ -976,11 +976,13 @@ h4 {
     color: black;
 }
 
+/* League table style */
 .tables {
     width: 70%;
     margin: auto;
 }
 
+/* Quiz layout */
 .quiz-container {
 
     width: 50%;

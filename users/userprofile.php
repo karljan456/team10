@@ -7,9 +7,9 @@ if (!empty($_SESSION['username'])) {
     $title = 'Welcome Back';
 }
 
-include "layout/header.php";
-include "scripts/messages.php";
-include_once "scripts/functions.php";
+include "../layout/header.php";
+include "../scripts/messages.php";
+include_once "../scripts/functions.php";
 
 // Display content based on the "admin" session variable
 if (isset($_SESSION['admin'])) {
@@ -51,7 +51,7 @@ if (!empty($_SESSION['loggedin'])):
 
 
 <div class="col-md-8 justify-content-end">
-<?php include "scripts/profile.serv.php"; ?>
+<?php include "../scripts/profile.serv.php"; ?>
 </div> 
 
 <?php 
@@ -69,4 +69,4 @@ else:
     endif;
 ?>
 
-<?php include "layout/footer.php"; ?>
+<?php include "../layout/footer.php"; ?>

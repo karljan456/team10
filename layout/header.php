@@ -17,9 +17,9 @@ session_start();
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">
     </script> <!--darkmode toggle switch needed jquery-->
+     <script src="/team10/assets/js/consent.js"></script><!--consent bar-->
     <script src="/team10/assets/js/poll.js"></script>
     <script src="/team10/assets/js/quiz_validation.js"></script>
-
 
     <link rel="stylesheet" href="/team10/assets/css/darkmode.css"><!--darkmode toggle switch styles-->
     <link rel="stylesheet" href="/team10/assets/css/styles.css">
@@ -124,14 +124,14 @@ session_start();
 
                     <?php 
                     if (!empty($_SESSION['loggedin'])) {
-                        echo '<a class="nav-link user-link" href="/team10/userprofile.php">
+                        echo '<a class="nav-link user-link" href="/team10/users/userprofile.php">
                         <img src="/team10/assets/images/user.svg" width="18" alt="logout" class="nav-icon"> Profile</a>';
                         
                         echo '<a class="nav-link user-link" href="/team10/scripts/logout.serv.php">Logout</a>';
                     } else {
-                        echo '<a class="nav-link user-link " href="/team10/signup.php">
+                        echo '<a class="nav-link user-link " href="/team10/users/signup.php">
                         <img src="/team10/assets/images/user.svg" width="18" alt="Signup" class="nav-icon"> Join</a>';
-                        echo '<a class="nav-link user-link" href="login.php">Login</a>';
+                        echo '<a class="nav-link user-link" href="/team10/users/login.php">Login</a>';
 
                     }
                     ?>

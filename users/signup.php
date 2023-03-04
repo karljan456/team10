@@ -1,10 +1,9 @@
 <?php 
-session_start();
 if (isset($_SESSION['loggedin'])){
   header('Location: userprofile.php');
   exit();
 }
-include "layout/header.php"; 
+include "../layout/header.php"; 
 
 
 ?>
@@ -73,11 +72,13 @@ include "layout/header.php";
   return true;
   }
 </script>
-<noscript>Your browser does not support JavaScript! </noscript>
-<div class="signup-form">
-  <?php include "scripts/messages.php"; ?>
 
-  <form action="scripts/signup.serv.php" method="POST" id="signupForm" name="signupForm" onsubmit="return validateForm()">
+<noscript>Your browser does not support JavaScript! </noscript>
+
+<div class="signup-form">
+  <?php include "../scripts/messages.php"; ?>
+
+  <form action="../scripts/signup.serv.php" method="POST" id="signupForm" name="signupForm" onsubmit="return validateForm()">
     <div class="mb-3">
       <label for="firstname" class="form-label">First name</label>
       <input type="text" class="form-control" id="firstname" name="firstname" required>
@@ -119,4 +120,4 @@ include "layout/header.php";
 
 
 
-<?php include "layout/footer.php"; ?>
+<?php include "../layout/footer.php"; ?>

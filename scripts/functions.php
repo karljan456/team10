@@ -9,7 +9,7 @@ function login()
     if (empty($_SESSION['loggedin'])) {
 
         echo '
-        <form action="scripts/login.serv.php" method="POST">
+        <form action="../scripts/login.serv.php" method="POST">
 
         <div class="mb-3">
           <label for="userid" class="form-label">Username</label>
@@ -23,6 +23,10 @@ function login()
         
         <button type="submit" class="btn btn-primary" name="submit">Login</button>
         </form>
+        <div class="mb-3"><hr>
+<a href="/team10/users/signup.php">Register </a>&nbsp;
+<a href="/team10/users/passwordreset.php">Reset Password</a>
+</div>
         ';
         //if session is equal to 1, display  
         //Welcome, and whaterver their user name is 
@@ -83,7 +87,8 @@ function passwordMatch($password, $passwordrepeat)
 //////////////////////////////////user exists
 function usernameExists($con, $username, $email)
 {
-    $query = " SELECT * FROM users WHERE username = ? OR email = ?;"; //query db and wait for values after validation to avoid injections per my understanding.
+    $query = " SELECT * FROM users WHERE username = ? OR email = ?;"; 
+    //query db and wait for values after validation to avoid injections per my understanding.
 
     //initialize or prepare a statement 
     //to check without executing the input before validation
@@ -91,7 +96,7 @@ function usernameExists($con, $username, $email)
 
 
     if (!mysqli_stmt_prepare($stmt, $query)) {
-        header("Location: ../signup.php?error=queryfail");
+        header("Location: ../users/signup.php?error=queryfail");
         exit();
     }
     //add data after validation success
@@ -125,7 +130,7 @@ function createUser($con, $firstname, $lastname, $username, $email, $password)
 
     // check if the query fails and throw an error in the url
     if (!mysqli_stmt_prepare($stmt, $query)) {
-        header("Location: ../signup.php?error=queryfail");
+        header("Location: ../users/signup.php?error=queryfail");
         exit();
     }
     //let's encrypt the password before inserting the data
@@ -143,7 +148,7 @@ function createUser($con, $firstname, $lastname, $username, $email, $password)
     session_start();
     $_SESSION['message'] = "Thank you and welcome to LFC Fan Club <br> Please login!";
 
-    header('Location: ../login.php?error=none');
+    header('Location: ../users/login.php?error=none');
     exit();
 }
 
@@ -173,7 +178,7 @@ function userLogin($con, $username, $password)
         session_start();
         $_SESSION['message'] = "No such user exists";
 
-        header("Location: ../login.php?error=invalidlogin");
+        header("Location: ../users/login.php?error=invalidlogin");
         exit();
     }
 
@@ -185,14 +190,14 @@ function userLogin($con, $username, $password)
         session_start();
         $_SESSION['message'] = "Invalid username or password";
 
-        header("Location: ../login.php?error=wronglogininfo");
+        header("Location: ../users/login.php?error=wronglogininfo");
         exit();
 
         //if all is good start a logged in session
     } else if ($passwordCheck === true) {
 
         session_start();
-            // get user role
+        // get user role
         $_SESSION['role'] = $userExists['role'];
 
         if ($_SESSION['role'] == 'administrator') {
@@ -204,23 +209,12 @@ function userLogin($con, $username, $password)
         $_SESSION['loggedin'] = true;
 
         $_SESSION['message'] = "Welcome " . $_SESSION['username'];
-        header('Location: ../userprofile.php');
+        header('Location: ../users/userprofile.php');
         exit();
     }
 
-
-    // Function to send an email with the new password
-function send_email($email, $password) {
-    $to = $email;
-    $subject = "Password Reset";
-    $message = "Your new password is: $password";
-    $headers = "From: admin@example.com\r\n";
-    $headers .= "Reply-To: admin@example.com\r\n";
-    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-  
-    mail($to, $subject, $message, $headers);
-  }
-//////////////////////////////////article functions etc
+/////////////////////////////////////////////////////
+    //////////////////////////////////article functions etc
     //////////////////////////////////post creation
     function createPost($con, $title, $slug, $content, $excerpt, $author)
     {

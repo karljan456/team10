@@ -10,25 +10,44 @@ if (!empty($_SESSION['username'])) {
 include "layout/header.php";
 include "scripts/messages.php";
 include_once "scripts/functions.php";
-?>
 
-<?php
-    
-   //display content if logged in
-if (!empty($_SESSION['loggedin'])):
-?>
-
-<div class="col-md-4">
+// Display content based on the "admin" session variable
+if (isset($_SESSION['admin'])) {
+    // Display content for administrators
+    echo ' <div class="col-md-4">
 
 <ul id="side-nav">
-<li><a href="">something for normal users</a></li>
+<li><a href="">something for admin users</a></li>
 <li><a href="#">Main Item 2</a></li>
 <li><a href="#">Main Item 3</a></li>
 <li><a href="#">Main Item 4</a></li>
     </ul>
 
 </ul>
-</div> 
+</div> ';
+
+  } else {
+    // Display content for non-administrators
+    echo '<div class="col-md-4">
+
+    <ul id="side-nav">
+    <li><a href="">something for normal users</a></li>
+    <li><a href="#">Main Item 2</a></li>
+    <li><a href="#">Main Item 3</a></li>
+    <li><a href="#">Main Item 4</a></li>
+        </ul>
+    
+    </ul>
+    </div> ';
+  }
+
+
+    
+   //display content if logged in
+if (!empty($_SESSION['loggedin'])):
+?>
+
+
 
 
 <div class="col-md-8 justify-content-end">
@@ -39,17 +58,6 @@ if (!empty($_SESSION['loggedin'])):
 elseif (!empty($_SESSION['user_role'] == "administrator")):
         
 ?>
-<div class="col-md-4">
-
-<ul id="side-nav">
-<li><a href="">something for admin users</a></li>
-<li><a href="#">Main Item 2</a></li>
-<li><a href="#">Main Item 3</a></li>
-<li><a href="#">Main Item 4</a></li>
-    </ul>
-
-</ul>
-</div> 
 
 
 

@@ -38,7 +38,7 @@ function login()
 function emptySignupInput($firstname, $lastname, $username, $email, $password, $passwordrepeat, $tos)
 {
 
-    if (empty($firstname) || empty($lastname)|| empty($username)|| empty($email)|| empty($password) || empty($passwordrepeat)|| empty($tos)) {
+    if (empty($firstname) || empty($lastname) || empty($username) || empty($email) || empty($password) || empty($passwordrepeat) || empty($tos)) {
         $result = true;
     } else {
         $result = false;
@@ -69,7 +69,8 @@ function invalidEmail($email)
 }
 
 // check if passwords are matching password and passwordrepeat 
-function passwordMatch($password, $passwordrepeat){
+function passwordMatch($password, $passwordrepeat)
+{
     if ($password !==  $passwordrepeat) {
         $result = true;
     } else {
@@ -84,33 +85,30 @@ function usernameExists($con, $username, $email)
 {
     $query = " SELECT * FROM users WHERE username = ? OR email = ?;"; //query db and wait for values after validation to avoid injections per my understanding.
 
-//initialize or prepare a statement 
-//to check without executing the input before validation
-$stmt = mysqli_stmt_init($con); 
+    //initialize or prepare a statement 
+    //to check without executing the input before validation
+    $stmt = mysqli_stmt_init($con);
 
 
-if (!mysqli_stmt_prepare($stmt, $query)) {
-header("Location: ../signup.php?error=queryfail");
-exit();
-
-}
-//add data after validation success
-mysqli_stmt_bind_param($stmt, "ss", $username, $email);
-mysqli_stmt_execute($stmt);
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+        header("Location: ../signup.php?error=queryfail");
+        exit();
+    }
+    //add data after validation success
+    mysqli_stmt_bind_param($stmt, "ss", $username, $email);
+    mysqli_stmt_execute($stmt);
 
     $stmtResult = mysqli_stmt_get_result($stmt);
 
-//check if there is result and assign it to a variable as an array
-if ($row= mysqli_fetch_assoc($stmtResult)){
-    return $row;
-}else {
-    $result = false;
-    return $result;
-
-}
-//close the prepared statement
-mysqli_stmt_close($stmt);
-
+    //check if there is result and assign it to a variable as an array
+    if ($row = mysqli_fetch_assoc($stmtResult)) {
+        return $row;
+    } else {
+        $result = false;
+        return $result;
+    }
+    //close the prepared statement
+    mysqli_stmt_close($stmt);
 }
 
 
@@ -147,8 +145,7 @@ function createUser($con, $firstname, $lastname, $username, $email, $password)
 
     header('Location: ../login.php?error=none');
     exit();
-    
-    }
+}
 
 
 //////////////////////login functions
@@ -193,50 +190,58 @@ function userLogin($con, $username, $password)
 
         //if all is good start a logged in session
     } else if ($passwordCheck === true) {
+
         session_start();
+            // get user role
+        $_SESSION['role'] = $userExists['role'];
+
+        if ($_SESSION['role'] == 'administrator') {
+            // Set the "admin" session variable to true
+            $_SESSION['admin'] = true;
+        }
         $_SESSION['user_role'] = $userExists['role'];
-        
         $_SESSION['username'] = $userExists['username'];
         $_SESSION['loggedin'] = true;
-        
+
         $_SESSION['message'] = "Welcome " . $_SESSION['username'];
         header('Location: ../userprofile.php');
         exit();
-    }  
+    }
 
 
-//////////////////////////////////post creation
-function createPost($con, $title, $slug, $content, $excerpt, $author){
+    //////////////////////////////////post creation
+    function createPost($con, $title, $slug, $content, $excerpt, $author)
+    {
 
-    //query db and wait for values after validation to avoid injections per my understanding.
-    $query = " INSERT INTO posts (title, slug, content, excerpt, author) VALUES (?, ?, ?, ?, ?)";
-    //intialize con 
-    $stmt = mysqli_stmt_init($con);
+        //query db and wait for values after validation to avoid injections per my understanding.
+        $query = " INSERT INTO posts (title, slug, content, excerpt, author) VALUES (?, ?, ?, ?, ?)";
+        //intialize con 
+        $stmt = mysqli_stmt_init($con);
 
-    // check if the query fails and throw an error in the url + a session
-    if (!mysqli_stmt_prepare($stmt, $query)) {
+        // check if the query fails and throw an error in the url + a session
+        if (!mysqli_stmt_prepare($stmt, $query)) {
+            // start a session to carry the error/success message to the header location
+            session_start();
+            $_SESSION['message'] = "DB Query Error";
+            header("Location: ../posts/createpost.php?error=queryfail");
+            exit();
+        }
+        //let's encrypt the password before inserting the data
+        $author = $_SESSION(['role']);
+
+        //if it does not fail then we continue to bind the parameters
+        //add data after validation success and add the hashed version of the pwd
+        mysqli_stmt_bind_param($stmt, "sssss", $title, $slug, $content, $excerpt, $author);
+        mysqli_stmt_execute($stmt);
+
+        //close the prepared statement and direct to the 'All post view'  page
+        mysqli_stmt_close($stmt);
+
         // start a session to carry the error/success message to the header location
         session_start();
-        $_SESSION['message'] = "DB Query Error";
-        header("Location: ../posts/createpost.php?error=queryfail");
+        $_SESSION['message'] = "Article is Published Successfully";
+        header('Location: ../posts/postview.php?error=none');
         exit();
     }
-    //let's encrypt the password before inserting the data
-    $author = $_SESSION(['role']);
-
-    //if it does not fail then we continue to bind the parameters
-    //add data after validation success and add the hashed version of the pwd
-    mysqli_stmt_bind_param($stmt, "sssss", $title, $slug, $content, $excerpt, $author);
-    mysqli_stmt_execute($stmt);
-
-    //close the prepared statement and direct to the 'All post view'  page
-    mysqli_stmt_close($stmt);
-
-    // start a session to carry the error/success message to the header location
-    session_start();
-    $_SESSION['message'] = "Article is Published Successfully";
-    header('Location: ../posts/postview.php?error=none');
-    exit();
-}
 }
 //////////////////////////////////article functions etc

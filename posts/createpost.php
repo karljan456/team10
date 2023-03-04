@@ -5,6 +5,7 @@ include "../scripts/functions.php";
 include "../scripts/messages.php";
 
 if (!empty($_SESSION['admin'])) {
+    $author = $_SESSION['username'];
     echo '    
     <div class="container mt-4 mb-4" >
     <div class="row justify-content-md-center">
@@ -12,7 +13,7 @@ if (!empty($_SESSION['admin'])) {
             <h1 class="h2 mb-4">Create a new Article</h1>
 
 
-            <form action="scripts/createpost.serv.php" method="POST" class="mt-3 create-post-form">
+            <form action="../scripts/createpost.serv.php" method="POST" class="mt-3 create-post-form">
                 <div class="form-group col-lg-12">
                     <input type="text" id="title" name="title" class="mt-1 col-lg-12" placeholder="Title.." required>
                 </div>

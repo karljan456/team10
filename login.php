@@ -22,6 +22,7 @@ include "layout/header.php";?>
 </div>
 
 <button type="submit" class="btn btn-primary" name="submit">Login</button>
+<a href="#">Reset Password</a>
 </form>
 
 </div>

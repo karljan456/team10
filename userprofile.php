@@ -18,7 +18,7 @@ if (isset($_SESSION['admin'])) {
 
 <ul id="side-nav">
 <li><a href="">something for admin users</a></li>
-<li><a href="#">Main Item 2</a></li>
+<li><a href="/team10/posts/createpost.php">Create An Article</a></li>
 <li><a href="#">Main Item 3</a></li>
 <li><a href="#">Main Item 4</a></li>
     </ul>

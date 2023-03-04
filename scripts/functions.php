@@ -209,12 +209,24 @@ function userLogin($con, $username, $password)
     }
 
 
+    // Function to send an email with the new password
+function send_email($email, $password) {
+    $to = $email;
+    $subject = "Password Reset";
+    $message = "Your new password is: $password";
+    $headers = "From: admin@example.com\r\n";
+    $headers .= "Reply-To: admin@example.com\r\n";
+    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+  
+    mail($to, $subject, $message, $headers);
+  }
+//////////////////////////////////article functions etc
     //////////////////////////////////post creation
     function createPost($con, $title, $slug, $content, $excerpt, $author)
     {
 
         //query db and wait for values after validation to avoid injections per my understanding.
-        $query = " INSERT INTO posts (title, slug, content, excerpt, author) VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO posts (title, slug, content, excerpt, author) VALUES (?, ?, ?, ?, ?)";
         //intialize con 
         $stmt = mysqli_stmt_init($con);
 
@@ -226,11 +238,8 @@ function userLogin($con, $username, $password)
             header("Location: ../posts/createpost.php?error=queryfail");
             exit();
         }
-        //let's encrypt the password before inserting the data
-        $author = $_SESSION(['role']);
 
         //if it does not fail then we continue to bind the parameters
-        //add data after validation success and add the hashed version of the pwd
         mysqli_stmt_bind_param($stmt, "sssss", $title, $slug, $content, $excerpt, $author);
         mysqli_stmt_execute($stmt);
 
@@ -244,4 +253,3 @@ function userLogin($con, $username, $password)
         exit();
     }
 }
-//////////////////////////////////article functions etc

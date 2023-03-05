@@ -281,13 +281,13 @@ function display_posts() {
 // function to display single post using the slug in url
 function display_single_post($slug) {
         // connect to database
-        $slug = get_url_slug();
-  require_once "../assets/plugins/connect.php";
+        
+  include  "../assets/plugins/connect.php";
 
- 
+  $slug = get_url_slug();
     // Retrieve the post from the database
     $sql = "SELECT * FROM posts WHERE slug = '$slug'";
-    $result = mysqli_query($con, $sql);
+    $result = $con->query($sql);
 
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
@@ -305,7 +305,7 @@ function display_single_post($slug) {
         echo "<div class='title'><h2><a href='/post/$slug'>$post_title</a></h2></div>";
         echo "<div class='content'>$post_content</div>";
         echo "<div class='author-box'>Written by $post_author</div>";
-        echo "<div class='category'><a href='/posts/category/$category_slug'>$post_category</a></div>";
+        echo "<div class='category'><a href='/team10/posts?$category_slug'>$post_category</a></div>";
         echo "</div>";
     } else {
         echo "Post not found";
@@ -349,7 +349,7 @@ function display_post_title($slug) {
     $slug= get_url_slug();
     $result = $con->query("SELECT title FROM posts WHERE slug = '$slug'");
     $post = $result->fetch_assoc();
-    $title = '<h1>' . $post['title'] . '</h1>';
+    $title = $post['title'];
 
     // Display post title
     return $title;

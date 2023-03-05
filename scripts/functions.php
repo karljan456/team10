@@ -270,7 +270,7 @@ function display_posts()
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             // display post content within Bootstrap HTML card 
-            echo '<div class="card mb-3 col-md-4 text-center"><a href="/team10/posts/post.php?slug=' . $row["slug"] . '">';
+            echo '<div class="card mb-3 col-md-6 text-center"><a href="/team10/posts/post.php?slug=' . $row["slug"] . '">';
             echo '<a href="/team10/posts/post.php?slug=' . $row["slug"] . '"><img class="card-img-top" src="' . $row["featured_image"] . '")" alt="Card image" width="auto" height="auto"></a>';
             echo '<div class="card-body">';
             echo '<h1 class="card-title">' . $row["title"] . '</h1>';
@@ -326,13 +326,40 @@ function display_single_post($slug)
 }
 
 //////////////////////////////////////
-////image background if featured image exist
+// Function to get categories from the database and display them as a select list
+function get_categories_select() {
+    // Connect to the database
+    require_once  "../assets/plugins/connect.php";
+  
+    // Fetch the categories from the database
+    $sql = "SELECT id, title FROM post_categories";
+    $result = $con->query($sql);
+  
+    // declare variable
+    $categories = '';
+  
+    // Display each category as an option in the select element
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $categories .= '<div class="form-check form-check-inline">';
+        $categories .= '<input class="form-check-input" type="checkbox" name="categories[]" id="category-' . $row['id'] . '" value="' . $row['id'] . '">';
+        $categories .= '<label class="form-check-label" for="category-' . $row['id'] . '">' . $row['title'] . '</label>';
+        $categories .= '</div>';
+      }
+    }
+  
+    // Close the database connection
+    $con->close();
+  
+    // Return the options string
+    return $categories;
+  }
+  
 
 ////////////////////////////////////////
 // get post slug from the current url
 function get_url_slug()
 {
-
     // Get query string from URL
     $queryString = $_SERVER['QUERY_STRING'];
 
@@ -344,6 +371,21 @@ function get_url_slug()
     // Return slug
     return $slug;
 }
+
+function get_url_category_slug()
+{
+    // Get query string from URL
+    $queryString = $_SERVER['QUERY_STRING'];
+
+    // Parse query string and get slug
+    parse_str($queryString, $queryParams);
+    //ternary if else in oneline lol we are going places
+    $slug = isset($queryParams['category']) ? $queryParams['category'] : '';
+
+    // Return slug
+    return $slug;
+}
+
 
 
 // get post title 
@@ -365,11 +407,12 @@ function display_post_title($slug)
 // Function to retrieve and display posts by category
 function display_posts_by_category()
 {
+    $category =  get_url_category_slug();
     // connect to database
     require "../assets/plugins/connect.php";
 
     // select posts from database
-    $sql = "SELECT * FROM posts";
+    $sql = "SELECT * FROM posts where category = '$category'";
     $result = $con->query($sql);
 
     // loop through each post
@@ -386,7 +429,7 @@ function display_posts_by_category()
             echo '</div></a>';
         }
     } else {
-        echo "0 results";
+        echo "There is no posts in this category yet. $category";
     }
 
     // close connection
@@ -397,44 +440,5 @@ function display_posts_by_category()
 
 
 
-
-
-function display_posts_by_category_old($slug)
-{
-    require_once "../assets/plugins/connect.php";
-
-    $slug = get_url_slug();
-    $sql = "SELECT * FROM posts WHERE category = '$slug'";
-   // Retrieve all news posts
-  $result = mysqli_query($con, $sql);
-
-
-  // Display posts in card format
-  echo '<div class="container">';
-  echo '<div class="row">';
-  while ($row = mysqli_fetch_assoc($result)) {
-    $post_title = $row['title'];
-    $post_excerpt = $row['content'];
-    $post_author = $row['author'];
-    $featured_image = $row['featured_image'];
-    $category_slug = strtolower($post_category);
-
-    echo '<div class="col-md-4">';
-    echo '<div class="card text-dark">';
-    echo "<div class='featured-image mb-1'><img src='$featured_image' alt='$post_title' width='auto' height='auto'></div>";
-
-    echo '<div class="card-body text-dark">';
-    echo '<h5 class="card-title">' . $post_title . '</h5>';
-    echo '<p class="card-text">' . $post_excerpt . '</p>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
-  }
-  echo '</div>';
-  echo '</div>';
-
-  // Close the database connection
-  mysqli_close($con);
-}
 /////////////////////////////////////////////////////
 //display comments by post

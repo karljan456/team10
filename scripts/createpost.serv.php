@@ -1,5 +1,5 @@
-<?php 
- session_start();
+<?php
+session_start();
 if (isset($_POST['publish'])) {
 
     //get variables from the createPost.php form
@@ -9,52 +9,72 @@ if (isset($_POST['publish'])) {
     $excerpt = substr($content, 0, 32);
     $category = $_POST['category'];
     $author = $_SESSION['username'];
-    $featured_image = $_POST['featured_image'];
+    //uploaded file variables
+    $featured_image = $_FILES['featured_image'];
+    $target_dir = '../assets/images/';
+    $target_file = $target_dir . uniqid() . '-' . basename($featured_image['name']);
 
-        require_once "./functions.php";
-    
-        createPost($title, $slug, $content, $excerpt, $category, $featured_image, $author);
+ // Validate the form data
+    if (move_uploaded_file($featured_image['tmp_name'], $target_file)) {
+        echo 'The file ' . basename($featured_image['name']) . ' has been uploaded.';
+    } else {
+        echo 'Sorry, there was an error uploading your file.';
+    }
 
+    // Validate the form data
+    $errors = array();
 
-    } 
+    if (empty($title)) {
+        $errors[] = 'Title is required';
+    }
 
+    if (empty($slug)) {
+        $errors[] = 'Slug is required';
+    } elseif (!preg_match('/^[a-z0-9-]+$/', $slug)) {
+        $errors[] = 'Slug can only contain lowercase letters, numbers, and hyphens';
+    }
 
+    if (empty($content)) {
+        $errors[] = 'Content is required';
+    }
 
-    function createPost() {
-//connect to db
-        require_once "../assets/plugins/connect.php";
+    if ($featured_image['error'] !== UPLOAD_ERR_NO_FILE && !in_array($featured_image['type'], array('image/jpeg', 'image/png'))) {
+        $errors[] = 'Featured image must be a JPEG or PNG file';
+    }
 
-        // Upload the featured image file to the server
-        $target_dir = "../assets/images/";
-        $target_file = $target_dir . basename($_FILES[$featured_image]["name"]);
-        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-        
-        // Check if image file is a actual image or fake image
-        $check = getimagesize($_FILES[$featured_image]["tmp_name"]);
-
-        if($check !== false) {
-            // Check if file already exists
-            if (file_exists($target_file)) {
-                return "Sorry, file already exists.";
-            }
-            // Check file size
-            if ($_FILES[$featured_image]["size"] > 500000) {
-                return "Sorry, your file is too large.";
-            }
-            // Allow certain file formats
-            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-                return "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-            }
-            // Upload file to the server
-            if (move_uploaded_file($_FILES[$featured_image]["tmp_name"], $target_file)) {
-                $imagePath = $target_file;
-            } else {
-                return "Sorry, there was an error uploading your file.";
-            }
-        } else {
-            return "File is not an image.";
+    // If there are any errors, display them and stop processing the form
+    if (!empty($errors)) {
+        echo '<ul>';
+        foreach ($errors as $error) {
+            echo '<li>' . $error . '</li>';
         }
-      
-        // Save the post data to the database
-      }
-      
+        echo '</ul>';
+        exit;
+        session_start();
+        $_SESSION['message'] = $error;
+        exit();
+    }
+
+
+    /////////////////all is good? let's insert stuff
+    require_once "../assets/plugins/connect.php";
+
+    // Insert the post into the database
+    $sql = "INSERT INTO posts (title, slug, content, excerpt, category, author, featured_image) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('sssssss', $title, $slug, $content, $category, $author, $featured_image_data);
+    $featured_image_data = file_get_contents($featured_image['tmp_name']);
+    $stmt->execute();
+
+    // Check for errors executing the query
+    if ($stmt->errno) {
+        die('Error executing the query: ' . $stmt->error);
+    }
+
+    // Close the database connection
+    $con->close();
+
+    // Redirect to the post page
+    header('Location: post.php?slug=' . $slug);
+    exit;
+}

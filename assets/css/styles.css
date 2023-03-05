@@ -1006,25 +1006,28 @@ h4 {
     text-align: center;
     font-size: 3rem;
 }
-/* making quiz title responsive */
-@media only screen and (max-width: 600px) {
-    #quiz-title {
-        font-size: 2rem;
-    }
-}
-#quiz-score{
+
+
+#quiz-score {
     text-align: center;
     font-size: 3rem;
 }
 
-/* making quiz score title responsive */
+
 @media only screen and (max-width: 600px) {
+
+    /* making quiz score title responsive */
     #quiz-score {
+        font-size: 2rem;
+    }
+
+    /* making quiz title responsive */
+    #quiz-title {
         font-size: 2rem;
     }
 }
 
-.quiz-result{
+.quiz-result {
 
     display: block;
     margin: 0 auto;
@@ -1052,10 +1055,12 @@ th {
     font-weight: bold;
     padding: 10px;
 }
-head{
+
+head {
     background-color: #d00a27;
     color: white;
 }
+
 td {
     padding: 10px;
     border: 1px solid #ccc;

@@ -9,13 +9,16 @@ if (isset($_POST['publish'])) {
     $excerpt = substr($content, 0, 32);
     $category = $_POST['category'];
     $author = $_SESSION['username'];
+
+
     //uploaded file variables
+    $filename = uniqid() . '_' . $_FILES['featured_image']['name'];
+    $featured_image_url = '../assets/images/' . $filename;
     $featured_image = $_FILES['featured_image'];
     $target_dir = '../assets/images/';
-    $target_file = $target_dir . uniqid() . '-' . basename($featured_image['name']);
 
  // Validate the form data
-    if (move_uploaded_file($featured_image['tmp_name'], $target_file)) {
+    if (move_uploaded_file($featured_image['tmp_name'], $filename)) {
         echo 'The file ' . basename($featured_image['name']) . ' has been uploaded.';
     } else {
         echo 'Sorry, there was an error uploading your file.';
@@ -62,7 +65,7 @@ if (isset($_POST['publish'])) {
     // Insert the post into the database
     $sql = "INSERT INTO posts (title, slug, content, excerpt, category, author, featured_image) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('sssssss', $title, $slug, $content, $category, $author, $featured_image_data);
+    $stmt->bind_param('sssssss', $title, $slug, $content, $category, $author, $featured_image_url);
     $featured_image_data = file_get_contents($featured_image['tmp_name']);
     $stmt->execute();
 

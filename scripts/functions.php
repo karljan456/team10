@@ -341,10 +341,10 @@ function get_categories_select() {
     // Display each category as an option in the select element
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
-        $categories .= '<div class="form-check form-check-inline">';
-        $categories .= '<input class="form-check-input" type="checkbox" name="categories[]" id="category-' . $row['id'] . '" value="' . $row['id'] . '">';
-        $categories .= '<label class="form-check-label" for="category-' . $row['id'] . '">' . $row['title'] . '</label>';
-        $categories .= '</div>';
+        $checkboxes .= '<div class="form-check form-check-inline">';
+        $checkboxes .= '<input class="form-check-input" type="checkbox" name="categories[]" id="category-' . $row['id'] . '" value="' . $row['id'] . '">';
+        $checkboxes .= '<label class="form-check-label" for="category-' . $row['id'] . '">' . $row['title'] . '</label>';
+        $checkboxes .= '</div>';
       }
     }
   

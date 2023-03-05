@@ -93,7 +93,7 @@ session_start();
                         <a class="nav-link" href="#">Video</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/team10/layout/blog.php">News</a>
+                        <a class="nav-link" href="/team10/layout/blog.php">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Schedule</a>

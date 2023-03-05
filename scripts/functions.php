@@ -263,7 +263,7 @@ function display_posts() {
         while($row = $result->fetch_assoc()) {
             // display post content within Bootstrap HTML card 
             echo '<div class="card mb-3 col-md-4">';
-            echo '<a href="'. $row["slug"] .'"><img class="card-img-top" src="../assets/images/article-banner.jpg")" alt="Card image" width="auto" height="auto"></a>';
+            echo '<a href="'. $row["slug"] .'"><img class="card-img-top" src="'. $row["featured_image"] .'")" alt="Card image" width="auto" height="auto"></a>';
             echo '<div class="card-body">';
             echo '<h1 class="card-title">' . $row["title"] . '</h1>';
             echo '<p class="card-text">' . $row["excerpt"] . '</p>';
@@ -277,3 +277,117 @@ function display_posts() {
     // close connection
     $con->close();
 }
+/////////////////////////////////////////////////////
+// function to display single post using the slug in url
+
+function display_post($slug) {
+        // connect to database
+  require_once "../assets/plugins/connect.php";
+
+    // Retrieve the post from the database
+    $sql = "SELECT * FROM posts WHERE slug = '$slug'";
+    $result = mysqli_query($con, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $post_slug = $row['slug'];
+        $post_title = $row['title'];
+        $post_content = $row['content'];
+        $post_author = $row['author'];
+        $post_featured_image = $row['featured_image'];
+        $post_category = $row['category'];
+
+        // Display the post
+        echo "<div class='post'>";
+        echo "<div class='featured-image'><img src='$post_featured_image' alt='$post_title'></div>";
+        echo "<div class='title'><h2><a href='/post/$slug'>$post_title</a></h2></div>";
+        echo "<div class='content'>$post_content</div>";
+        echo "<div class='author-box'>Written by $post_author</div>";
+        echo "<div class='category'><a href='/category/$post_category'>$post_category</a></div>";
+        echo "</div>";
+    } else {
+        echo "Post not found";
+    }
+
+    // Close the database connection
+    mysqli_close($con);
+}
+////////////////////////////////////////
+// get post slug from the current url
+
+function get_url_slug() {
+    // Get the current URL path
+    $url = $_SERVER['REQUEST_URI'];
+    
+    // Remove any leading or trailing slashes
+    $url = trim($url, '/');
+    
+    // Get the last segment of the URL, which is the slug
+    $segments = explode('/', $url);
+    $slug = end($segments);
+    
+    return $slug;
+}
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////
+function display_comments($post_id) {
+
+
+    // Connect to the database
+    require_once "../assets/plugins/connect.php";
+    
+    // Check if comments exist for the post
+    $result = $con->query("SELECT * FROM comments WHERE post_id = $post_id");
+    
+    if ($result->num_rows > 0) {
+        // Display the comments
+        echo "<h2>Comments</h2>";
+        
+        while ($row = $result->fetch_assoc()) {
+            echo "<p>" . $row["comment"] . "</p>";
+        }
+    } else {
+        echo "<p>No comments yet.</p>";
+    }
+    
+    // Close the database connection
+    $con->close();
+}
+
+function get_post_id($slug) {
+    // Connect to the database
+    require_once "../assets/plugins/connect.php";
+
+    // Escape the slug to prevent SQL injection
+    $escaped_slug = $con->real_escape_string($slug);
+
+    // Query the database to get the post ID
+    $result = $con->query("SELECT id FROM posts WHERE slug = '$escaped_slug'");
+
+    if ($result->num_rows > 0) {
+        // Post found, return the ID
+        $row = $result->fetch_assoc();
+        return $row["id"];
+    } else {
+        // Post not found, return false or throw an exception
+        return false;
+    }
+
+    // Close the database connection
+    $con->close();
+}
+
+
+
+
+
+
+

@@ -280,7 +280,7 @@ function printTable($table)
 {
 
     include 'edvin_db.php';
-    echo "<table class=\"table table-responsive\">
+    echo "<table class=\"tables\">
             <tr>
            <th>POSTION</th>
            <th>TEAM</th>
@@ -291,7 +291,7 @@ function printTable($table)
            <th>GF</th>
            <th>GA</th>
            <th>GD</th>
-           <th>Pts</th>
+           <th>PTS</th>
           </tr>";
     printData($table, $conn);
 
@@ -427,7 +427,7 @@ function printEpl($season)
             break;
 
         default:
-        echo "Error";
+            echo "Error";
 
     }
 
@@ -446,7 +446,7 @@ function printUcl($season)
             break;
 
         default:
-        echo "Error";
+            echo "Error";
 
     }
 

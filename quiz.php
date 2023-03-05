@@ -4,7 +4,7 @@ include 'layout/header.php';
 
 <div class="quiz-container">
 
-    <h1>Do you know your club well?</h1>
+    <h1 id="quiz-title">Do you know your club well?</h1>
     <?php
     include 'edvin_db.php';
 

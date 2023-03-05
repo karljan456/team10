@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    echo "<h2>Your score is: $points/" . $total_questions . "</h2>";
+    echo "<h2 id=\"quiz-score\">Your score is: $points/" . $total_questions . "</h2>";
 
     $conn->close();
 

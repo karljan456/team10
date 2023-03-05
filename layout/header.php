@@ -160,7 +160,10 @@ session_start();
     <body style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
 
         <!--################SLIDER ###############-->
-        <div class="page-heading slider-carousel">
+        <div class="page-heading slider-carousel" 
+        style="background-image:url(<?php $default_image = "../images/article-banner.jpg";
+        echo isset($featured_image) ? $featured_image : $default_image; ?>);">
+        
             <div class=" container heading-h1  background-dark dark-change">
                 <?php
         if (isset($title)) {

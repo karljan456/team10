@@ -263,7 +263,7 @@ function display_posts() {
         while($row = $result->fetch_assoc()) {
             // display post content within Bootstrap HTML card 
             echo '<div class="card mb-3 col-md-4">';
-            echo '<a href="'. $row["slug"] .'"><img class="card-img-top" src="'. $row["featured_image"] .'")" alt="Card image" width="auto" height="auto"></a>';
+            echo '<a href="/team10/posts/post.php?slug='. $row["slug"] .'"><img class="card-img-top" src="'. $row["featured_image"] .'")" alt="Card image" width="auto" height="auto"></a>';
             echo '<div class="card-body">';
             echo '<h1 class="card-title">' . $row["title"] . '</h1>';
             echo '<p class="card-text">' . $row["excerpt"] . '</p>';
@@ -279,115 +279,104 @@ function display_posts() {
 }
 /////////////////////////////////////////////////////
 // function to display single post using the slug in url
-
-function display_post($slug) {
+function display_single_post($slug) {
         // connect to database
+        $slug = get_url_slug();
   require_once "../assets/plugins/connect.php";
 
+ 
     // Retrieve the post from the database
     $sql = "SELECT * FROM posts WHERE slug = '$slug'";
     $result = mysqli_query($con, $sql);
 
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
-        $post_slug = $row['slug'];
         $post_title = $row['title'];
         $post_content = $row['content'];
         $post_author = $row['author'];
-        $post_featured_image = $row['featured_image'];
+        $featured_image = $row['featured_image'];
         $post_category = $row['category'];
+        $category_slug = strtolower($post_category);
+
 
         // Display the post
-        echo "<div class='post'>";
-        echo "<div class='featured-image'><img src='$post_featured_image' alt='$post_title'></div>";
+        echo "<div class='post article-container'>";
+        echo "<div class='featured-image'><img src='$featured_image' alt='$post_title' width='auto' height='400px'></div>";
         echo "<div class='title'><h2><a href='/post/$slug'>$post_title</a></h2></div>";
         echo "<div class='content'>$post_content</div>";
         echo "<div class='author-box'>Written by $post_author</div>";
-        echo "<div class='category'><a href='/category/$post_category'>$post_category</a></div>";
+        echo "<div class='category'><a href='/posts/category/$category_slug'>$post_category</a></div>";
         echo "</div>";
     } else {
         echo "Post not found";
     }
 
     // Close the database connection
-    mysqli_close($con);
+    $con->close();
 }
+
+
 ////////////////////////////////////////
 // get post slug from the current url
-
 function get_url_slug() {
-    // Get the current URL path
+
+       // Get query string from URL
+       $queryString = $_SERVER['QUERY_STRING'];
+
+       // Parse query string and get slug
+       parse_str($queryString, $queryParams);
+       //ternary if else in oneline lol we are going places
+       $slug = isset($queryParams['slug']) ? $queryParams['slug'] : '';
+   
+       // Return slug
+       return $slug;
+   }
+
+//get the last part of a url aka category name for example
+   function get_category_name() {
     $url = $_SERVER['REQUEST_URI'];
-    
-    // Remove any leading or trailing slashes
-    $url = trim($url, '/');
-    
-    // Get the last segment of the URL, which is the slug
-    $segments = explode('/', $url);
-    $slug = end($segments);
-    
-    return $slug;
+    $path = parse_url($url, PHP_URL_PATH);
+    $segments = explode('/', trim($path, '/'));
+    return end($segments);
 }
 
 
+// get post title
+function display_post_title($slug) {
+    require_once "../assets/plugins/connect.php";
 
+    // Retrieve post title by ID
+    $slug= get_url_slug();
+    $result = $con->query("SELECT title FROM posts WHERE slug = '$slug'");
+    $post = $result->fetch_assoc();
+    $title = '<h1>' . $post['title'] . '</h1>';
 
+    // Display post title
+    return $title;
+}
+ ////////////////////////////////////////////////
+   // Function to retrieve and display posts by category
 
+   function display_posts_by_category($category) {
+    require_once "../assets/plugins/connect.php";
 
+    $category = get_category_name();
 
+    // Get category slug from URL
+    $category_slug = basename($_SERVER['REQUEST_URI']);
+
+    // Display category name
+    echo '<h1>' . $category['name'] . '</h1>';
+
+    $posts_result = $con->query("SELECT * FROM posts WHERE category_id = '$category_id'");
+
+    // Display posts
+    while ($post = $posts_result->fetch_assoc()) {
+        echo '<h2>' . $post['title'] . '</h2>';
+        echo '<p>' . $post['content'] . '</p>';
+    }
+}
 
 
 /////////////////////////////////////////////////////
-function display_comments($post_id) {
-
-
-    // Connect to the database
-    require_once "../assets/plugins/connect.php";
-    
-    // Check if comments exist for the post
-    $result = $con->query("SELECT * FROM comments WHERE post_id = $post_id");
-    
-    if ($result->num_rows > 0) {
-        // Display the comments
-        echo "<h2>Comments</h2>";
-        
-        while ($row = $result->fetch_assoc()) {
-            echo "<p>" . $row["comment"] . "</p>";
-        }
-    } else {
-        echo "<p>No comments yet.</p>";
-    }
-    
-    // Close the database connection
-    $con->close();
-}
-
-function get_post_id($slug) {
-    // Connect to the database
-    require_once "../assets/plugins/connect.php";
-
-    // Escape the slug to prevent SQL injection
-    $escaped_slug = $con->real_escape_string($slug);
-
-    // Query the database to get the post ID
-    $result = $con->query("SELECT id FROM posts WHERE slug = '$escaped_slug'");
-
-    if ($result->num_rows > 0) {
-        // Post found, return the ID
-        $row = $result->fetch_assoc();
-        return $row["id"];
-    } else {
-        // Post not found, return false or throw an exception
-        return false;
-    }
-
-    // Close the database connection
-    $con->close();
-}
-
-
-
-
-
-
-
+//display comments by post

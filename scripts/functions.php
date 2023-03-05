@@ -336,7 +336,7 @@ function get_categories_select() {
     $result = $con->query($sql);
   
     // declare variable
-    $categories = '';
+    $checkboxes = '';
   
     // Display each category as an option in the select element
     if ($result->num_rows > 0) {
@@ -352,7 +352,7 @@ function get_categories_select() {
     $con->close();
   
     // Return the options string
-    return $categories;
+    return $checkboxes;
   }
   
 

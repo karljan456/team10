@@ -1,5 +1,5 @@
 <?php 
-
+ session_start();
 if (isset($_POST['publish'])) {
 
     //get variables from the createPost.php form
@@ -7,7 +7,7 @@ if (isset($_POST['publish'])) {
     $slug = $_POST['slug'];
     $content = $_POST['content'];
     $excerpt = substr($content, 0, 32);
-    session_start();
+   
     $author = $_SESSION['username'];
         //connect to db and load the functions
         require_once "../assets/plugins/connect.php";

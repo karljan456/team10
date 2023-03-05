@@ -247,3 +247,33 @@ function userLogin($con, $username, $password)
         exit();
     }
 }
+/////////////////////////////
+
+// function to display posts
+function display_posts() {
+    // connect to database
+  require_once "../assets/plugins/connect.php";
+
+    // select posts from database
+    $sql = "SELECT * FROM posts";
+    $result = $con->query($sql);
+
+    // loop through each post
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            // display post content within Bootstrap HTML card 
+            echo '<div class="card mb-3 col-md-4">';
+            echo '<a href="'. $row["slug"] .'"><img class="card-img-top" src="../assets/images/article-banner.jpg")" alt="Card image" width="auto" height="auto"></a>';
+            echo '<div class="card-body">';
+            echo '<h1 class="card-title">' . $row["title"] . '</h1>';
+            echo '<p class="card-text">' . $row["excerpt"] . '</p>';
+            echo '</div>';
+            echo '</div>';
+        }
+    } else {
+        echo "0 results";
+    }
+
+    // close connection
+    $con->close();
+}

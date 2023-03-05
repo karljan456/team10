@@ -87,7 +87,7 @@ function passwordMatch($password, $passwordrepeat)
 //////////////////////////////////user exists
 function usernameExists($con, $username, $email)
 {
-    $query = " SELECT * FROM users WHERE username = ? OR email = ?;"; 
+    $query = " SELECT * FROM users WHERE username = ? OR email = ?;";
     //query db and wait for values after validation to avoid injections per my understanding.
 
     //initialize or prepare a statement 
@@ -213,14 +213,21 @@ function userLogin($con, $username, $password)
         exit();
     }
 
-/////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////
     //////////////////////////////////article functions etc
+//image upload function
+
+
+
     //////////////////////////////////post creation
-    function createPost($con, $title, $slug, $content, $excerpt, $author)
+
+    function createPost( $title, $slug, $content, $excerpt, $category, $featured_image, $author)
     {
+        //connect to db and load the functions
+        require_once "../assets/plugins/connect.php";
 
         //query db and wait for values after validation to avoid injections per my understanding.
-        $query = "INSERT INTO posts (title, slug, content, excerpt, author) VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO posts (title, slug, content, excerpt, category, featured_image, author) VALUES (?, ?, ?, ?, ?, ?, ?)";
         //intialize con 
         $stmt = mysqli_stmt_init($con);
 
@@ -234,7 +241,7 @@ function userLogin($con, $username, $password)
         }
 
         //if it does not fail then we continue to bind the parameters
-        mysqli_stmt_bind_param($stmt, "sssss", $title, $slug, $content, $excerpt, $author);
+        mysqli_stmt_bind_param($stmt, "sssssss", $title, $slug, $content, $excerpt, $category, $featured_image, $author);
         mysqli_stmt_execute($stmt);
 
         //close the prepared statement and direct to the 'All post view'  page
@@ -250,9 +257,10 @@ function userLogin($con, $username, $password)
 /////////////////////////////
 
 // function to display posts
-function display_posts() {
+function display_posts()
+{
     // connect to database
-  require_once "../assets/plugins/connect.php";
+    require "../assets/plugins/connect.php";
 
     // select posts from database
     $sql = "SELECT * FROM posts";
@@ -260,15 +268,16 @@ function display_posts() {
 
     // loop through each post
     if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
+        while ($row = $result->fetch_assoc()) {
             // display post content within Bootstrap HTML card 
-            echo '<div class="card mb-3 col-md-4">';
-            echo '<a href="/team10/posts/post.php?slug='. $row["slug"] .'"><img class="card-img-top" src="'. $row["featured_image"] .'")" alt="Card image" width="auto" height="auto"></a>';
+            echo '<div class="card mb-3 col-md-4 text-center"><a href="/team10/posts/post.php?slug=' . $row["slug"] . '">';
+            echo '<a href="/team10/posts/post.php?slug=' . $row["slug"] . '"><img class="card-img-top" src="' . $row["featured_image"] . '")" alt="Card image" width="auto" height="auto"></a>';
             echo '<div class="card-body">';
             echo '<h1 class="card-title">' . $row["title"] . '</h1>';
-            echo '<p class="card-text">' . $row["excerpt"] . '</p>';
+            echo '<p class="card-text text-dark mb-3">' . $row["excerpt"] . '</p>';
+            echo '<a href="/team10/posts/post.php?slug=' . $row["slug"] . '">Read more..</a>';
             echo '</div>';
-            echo '</div>';
+            echo '</div></a>';
         }
     } else {
         echo "0 results";
@@ -279,12 +288,13 @@ function display_posts() {
 }
 /////////////////////////////////////////////////////
 // function to display single post using the slug in url
-function display_single_post($slug) {
-        // connect to database
-        
-  include  "../assets/plugins/connect.php";
+function display_single_post($slug)
+{
+    // connect to database
 
-  $slug = get_url_slug();
+    include  "../assets/plugins/connect.php";
+
+    $slug = get_url_slug();
     // Retrieve the post from the database
     $sql = "SELECT * FROM posts WHERE slug = '$slug'";
     $result = $con->query($sql);
@@ -301,11 +311,11 @@ function display_single_post($slug) {
 
         // Display the post
         echo "<div class='post article-container'>";
-        echo "<div class='featured-image'><img src='$featured_image' alt='$post_title' width='auto' height='400px'></div>";
-        echo "<div class='title'><h2><a href='/post/$slug'>$post_title</a></h2></div>";
+        echo "<div class='featured-image mb-1'><img src='$featured_image' alt='$post_title' width='auto' height='auto'></div>";
+        echo "<div class='title mt-1'><h2><a href='/post/$slug'>$post_title</a></h2></div>";
         echo "<div class='content'>$post_content</div>";
         echo "<div class='author-box'>Written by $post_author</div>";
-        echo "<div class='category'><a href='/team10/posts?$category_slug'>$post_category</a></div>";
+        echo "<div class='category'><a href='/team10/posts/category.php?category=$category_slug'>$post_category</a></div>";
         echo "</div>";
     } else {
         echo "Post not found";
@@ -315,38 +325,35 @@ function display_single_post($slug) {
     $con->close();
 }
 
+//////////////////////////////////////
+////image background if featured image exist
 
 ////////////////////////////////////////
 // get post slug from the current url
-function get_url_slug() {
+function get_url_slug()
+{
 
-       // Get query string from URL
-       $queryString = $_SERVER['QUERY_STRING'];
+    // Get query string from URL
+    $queryString = $_SERVER['QUERY_STRING'];
 
-       // Parse query string and get slug
-       parse_str($queryString, $queryParams);
-       //ternary if else in oneline lol we are going places
-       $slug = isset($queryParams['slug']) ? $queryParams['slug'] : '';
-   
-       // Return slug
-       return $slug;
-   }
+    // Parse query string and get slug
+    parse_str($queryString, $queryParams);
+    //ternary if else in oneline lol we are going places
+    $slug = isset($queryParams['slug']) ? $queryParams['slug'] : '';
 
-//get the last part of a url aka category name for example
-   function get_category_name() {
-    $url = $_SERVER['REQUEST_URI'];
-    $path = parse_url($url, PHP_URL_PATH);
-    $segments = explode('/', trim($path, '/'));
-    return end($segments);
+    // Return slug
+    return $slug;
 }
 
 
-// get post title
-function display_post_title($slug) {
+// get post title 
+//used this function to display a dynamic page title
+function display_post_title($slug)
+{
     require_once "../assets/plugins/connect.php";
 
     // Retrieve post title by ID
-    $slug= get_url_slug();
+    $slug = get_url_slug();
     $result = $con->query("SELECT title FROM posts WHERE slug = '$slug'");
     $post = $result->fetch_assoc();
     $title = $post['title'];
@@ -354,29 +361,80 @@ function display_post_title($slug) {
     // Display post title
     return $title;
 }
- ////////////////////////////////////////////////
-   // Function to retrieve and display posts by category
+////////////////////////////////////////////////
+// Function to retrieve and display posts by category
+function display_posts_by_category()
+{
+    // connect to database
+    require "../assets/plugins/connect.php";
 
-   function display_posts_by_category($category) {
-    require_once "../assets/plugins/connect.php";
+    // select posts from database
+    $sql = "SELECT * FROM posts";
+    $result = $con->query($sql);
 
-    $category = get_category_name();
-
-    // Get category slug from URL
-    $category_slug = basename($_SERVER['REQUEST_URI']);
-
-    // Display category name
-    echo '<h1>' . $category['name'] . '</h1>';
-
-    $posts_result = $con->query("SELECT * FROM posts WHERE category_id = '$category_id'");
-
-    // Display posts
-    while ($post = $posts_result->fetch_assoc()) {
-        echo '<h2>' . $post['title'] . '</h2>';
-        echo '<p>' . $post['content'] . '</p>';
+    // loop through each post
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            // display post content within Bootstrap HTML card 
+            echo '<div class="card mb-3 col-md-4 text-center"><a href="/team10/posts/post.php?slug=' . $row["slug"] . '">';
+            echo '<a href="/team10/posts/post.php?slug=' . $row["slug"] . '"><img class="card-img-top" src="' . $row["featured_image"] . '")" alt="Card image" width="auto" height="auto"></a>';
+            echo '<div class="card-body">';
+            echo '<h1 class="card-title">' . $row["title"] . '</h1>';
+            echo '<p class="card-text text-dark mb-3">' . $row["excerpt"] . '</p>';
+            echo '<a href="/team10/posts/post.php?slug=' . $row["slug"] . '">Read more..</a>';
+            echo '</div>';
+            echo '</div></a>';
+        }
+    } else {
+        echo "0 results";
     }
+
+    // close connection
+    $con->close();
 }
 
 
+
+
+
+
+
+function display_posts_by_category_old($slug)
+{
+    require_once "../assets/plugins/connect.php";
+
+    $slug = get_url_slug();
+    $sql = "SELECT * FROM posts WHERE category = '$slug'";
+   // Retrieve all news posts
+  $result = mysqli_query($con, $sql);
+
+
+  // Display posts in card format
+  echo '<div class="container">';
+  echo '<div class="row">';
+  while ($row = mysqli_fetch_assoc($result)) {
+    $post_title = $row['title'];
+    $post_excerpt = $row['content'];
+    $post_author = $row['author'];
+    $featured_image = $row['featured_image'];
+    $category_slug = strtolower($post_category);
+
+    echo '<div class="col-md-4">';
+    echo '<div class="card text-dark">';
+    echo "<div class='featured-image mb-1'><img src='$featured_image' alt='$post_title' width='auto' height='auto'></div>";
+
+    echo '<div class="card-body text-dark">';
+    echo '<h5 class="card-title">' . $post_title . '</h5>';
+    echo '<p class="card-text">' . $post_excerpt . '</p>';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+  }
+  echo '</div>';
+  echo '</div>';
+
+  // Close the database connection
+  mysqli_close($con);
+}
 /////////////////////////////////////////////////////
 //display comments by post

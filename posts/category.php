@@ -1,9 +1,10 @@
 <?php 
-$title = ucfirst(get_category_name());
+require_once "../scripts/functions.php";
+$title = ucfirst(get_url_slug());
 include "../layout/header.php";
 require_once "../scripts/functions.php";
 
-display_posts_by_category(get_category_name());
+display_posts_by_category();
 
 //display_comments
 

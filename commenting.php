@@ -1,4 +1,3 @@
-<?php include "layout/header.php" ?>
 <?php
 	//This sets the default timezone for the comment_time datetime
 	date_default_timezone_set('Europe/Helsinki');
@@ -12,6 +11,9 @@
 
 <?php
 //This is the form for leaving a comment
+echo "<div class='content-wrapper wd-75'>
+            <div class='container post-container'>
+                <div class='container article-container'>";
 echo "<form method='POST' action='".setComment($con)."'>
 	<input type='hidden' name='user_id' value='Anonymous'>
 	<input type='hidden' name='comment_time' value='".date('Y-m-d H:i:s')."'>
@@ -19,11 +21,7 @@ echo "<form method='POST' action='".setComment($con)."'>
 	<button type='submit' name='comment'>Comment</button>
 	</form>";
 
+echo "</div></div></div>";
 	getComment($con);
 ?>	
 
-
-
-<?php include "layout/trophies.php" ?>
-
-<?php include "layout/footer.php" ?>

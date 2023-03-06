@@ -37,6 +37,9 @@ function display_comments()
 		getComment($con);
 	echo "</form></div>";
 
+
+	
+
 	//Scripts for the texteditor
 	echo '<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>

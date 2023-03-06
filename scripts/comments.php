@@ -7,11 +7,15 @@ function setComment($con){
         $username = $_SESSION['username'];
         $date = $_POST['comment_time'];
         $comment = $_POST['comment_text'];
+        //Should trim whitespace at the end of the comment NOT WORKING!
+        $trim_comment = rtrim($comment);
 
         $sql = "INSERT INTO comment (comment_author, comment_time, comment_text) 
-                VALUES ('$username', '$date', '$comment')";
+                VALUES ('$username', '$date', '$trim_comment')";
 
         $result = $con->query($sql);
+
+        echo "<script>window.location.href</script>";
     }
 }
 
@@ -54,7 +58,7 @@ function editComment($con){
         $sql = "UPDATE comment SET comment_text='$comment' WHERE id='$id'";
 
         $result = $con->query($sql);
-        exit(header("location: index.php"));
+        echo "<script>window.history.back()</script>";
     }
 }
 
@@ -66,6 +70,6 @@ function deleteComment($con){
         $sql = "DELETE FROM comment WHERE id='$id'";
 
         $result = $con->query($sql);
-        exit(header("location: index.php"));
+        echo "<script>window.location.href</script>";
     }
 }

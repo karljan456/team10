@@ -442,3 +442,240 @@ function display_posts_by_category()
 
 /////////////////////////////////////////////////////
 //display comments by post
+/////////////////////////////// league table 
+
+// Showing data for the current season 
+function printLiveTable($url, $table)
+{
+    echo "<table class=\"table\">
+    <tr>
+   <th>POSTION</th>
+   <th>TEAM</th>
+   <th>PLAYED</th>
+   <th>WON</th>
+   <th>DRAWN</th>
+   <th>LOST</th>
+   <th>GF</th>
+   <th>GA</th>
+   <th>GD</th>
+   <th>Pts</th>
+  </tr>";
+    $data = getData($url);
+    $i = 0;
+    // Going through the array with data 
+    for ($i = 1; $i < count($data); $i++) {
+
+        list($Pos, $Team, $Pld, $W, $D, $L, $GF, $GA, $GD, $Pts) = $data[$i];
+
+        include 'edvin_db.php';
+
+        // Putting the data into the database
+        $insert = "INSERT INTO `" . $table . "` (`Pos`, `Team`, `Pld`, `W`, `D`, `L`, `GF`, `GA`, `GD`, `Pts`) VALUES ('$Pos', '$Team',
+         '$Pld', '$W', '$D', '$L', '$GF', '$GA', '$GD', '$Pts')";
+
+
+        $conn->query($insert);
+    }
+
+    printData($table, $conn);
+
+    // Deleting data so it will be renewed with the newer one when it is available
+    $delete = "DELETE FROM tables." . $table . "";
+
+    mysqli_query($conn, $delete);
+
+    $conn->close();
+}
+
+// reading online CSV file from the server
+function getData($url)
+{
+    $array = [];
+    if (($handle = fopen($url, "r")) !== false) {
+        while (($data = fgetcsv($handle, 1000, ",")) !== false) {
+
+            $array[] = $data;
+
+        }
+        fclose($handle);
+        return $array;
+    } else
+        die("Problem reading csv");
+}
+
+// Printing the data for the previous competitons 
+function printTable($table)
+{
+
+    include 'edvin_db.php';
+    echo "<table class=\"tables\">
+            <tr>
+           <th>POSTION</th>
+           <th>TEAM</th>
+           <th>PLAYED</th>
+           <th>WON</th>
+           <th>DRAWN</th>
+           <th>LOST</th>
+           <th>GF</th>
+           <th>GA</th>
+           <th>GD</th>
+           <th>PTS</th>
+          </tr>";
+    printData($table, $conn);
+
+    $conn->close();
+}
+
+// Printing the data from database 
+function printData($table, $conn)
+{
+    // Getting data from the database and printing it out  
+    $read = "SELECT * FROM `" . $table . "`";
+    $result = $conn->query($read);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            // Conditions to check if the team is Liverpool then the name will be bold and 
+            // also checking if the table does not contain unwanted characters
+            if (strcmp($row['Team'], "Liverpool") === 0 and str_contains($row['Pts'], '[')) {
+                $points = substr($row['Pts'], 0, -3);
+                echo "<tr>
+                        <td><b>$row[Pos]</b></td>
+                        <td><b>$row[Team]</b></td>
+                        <td><b>$row[Pld]</b></td>
+                        <td><b>$row[W]</b></td>
+                        <td><b>$row[D]</b></td>
+                        <td><b>$row[L]</b></td>
+                        <td><b>$row[GF]</b></td>
+                        <td><b>$row[GA]</b></td>
+                        <td><b>$row[GD]</b></td>
+                        <td><b>$points</b></td>
+                    </tr>
+                </tbody>";
+            } else if (str_contains($row['Team'], '(')) {
+                $team = substr($row['Team'], 0, -3);
+                echo "<tr>
+                    <td>$row[Pos]</td>
+                    <td>$team</td>
+                    <td>$row[Pld]</td>
+                    <td>$row[W]</td>
+                    <td>$row[D]</td>
+                    <td>$row[L]</td>
+                    <td>$row[GF]</td>
+                    <td>$row[GA]</td>
+                    <td>$row[GD]</td>
+                    <td>$row[Pts]</td>
+                   </tr>";
+            } else if (str_contains($row['Pts'], '[')) {
+
+                $points = substr($row['Pts'], 0, -3);
+                echo "<tr>
+                    <td>$row[Pos]</td>
+                    <td>$row[Team]</td>
+                    <td>$row[Pld]</td>
+                    <td>$row[W]</td>
+                    <td>$row[D]</td>
+                    <td>$row[L]</td>
+                    <td>$row[GF]</td>
+                    <td>$row[GA]</td>
+                    <td>$row[GD]</td>
+                    <td>$points</td>
+                   </tr>";
+
+            } else if (strcmp($row['Team'], "Liverpool") === 0) {
+                echo "<tr>
+                <td><b>$row[Pos]</b></td>
+                <td><b>$row[Team]</b></td>
+                <td><b>$row[Pld]</b></td>
+                <td><b>$row[W]</b></td>
+                <td><b>$row[D]</b></td>
+                <td><b>$row[L]</b></td>
+                <td><b>$row[GF]</b></td>
+                <td><b>$row[GA]</b></td>
+                <td><b>$row[GD]</b></td>
+                <td><b>$row[Pts]</b></td>
+            </tr>
+        </tbody>";
+            } else {
+                echo "<tr>
+                <td>$row[Pos]</td>
+                <td>$row[Team]</td>
+                <td>$row[Pld]</td>
+                <td>$row[W]</td>
+                <td>$row[D]</td>
+                <td>$row[L]</td>
+                <td>$row[GF]</td>
+                <td>$row[GA]</td>
+                <td>$row[GD]</td>
+                <td>$row[Pts]</td>
+               </tr>";
+
+            }
+        }
+
+        echo "</table>";
+
+    } else {
+
+        echo "No data to display";
+
+    }
+}
+
+
+
+
+// Functions to print the logo of the compettions
+function printEplLogo()
+{
+
+    echo '<img src="assets\images\epl_logo.png" alt="epl logo" class="competition-logo-container">';
+
+}
+
+function printUclLogo()
+{
+    echo '<img src="assets\images\ucl_logo.png" alt="epl logo" class="competition-logo-container">';
+}
+
+
+
+
+
+// Functions to print out the names of the competitons
+function printEpl($season)
+{
+
+    switch ($season) {
+
+        case "s23":
+            echo "<h1>English Premier League Season 2022/23</h1>";
+            break;
+        case "s22":
+            echo "<h1>English Premier League Season 2021/22</h1>";
+            break;
+
+        default:
+            echo "Error";
+
+    }
+
+}
+
+function printUcl($season)
+{
+
+    switch ($season) {
+
+        case "s23":
+            echo "<h1>UEFA Champions League Season 2022/23</h1>";
+            break;
+        case "s22":
+            echo "<h1>UEFA Champions League Season 2021/22</h1>";
+            break;
+
+        default:
+            echo "Error";
+
+    }
+
+}

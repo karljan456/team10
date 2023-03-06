@@ -107,7 +107,7 @@ session_start();
                             MORE
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="poll.php">Poll Site</a>
+                            <a class="dropdown-item" href="/team10/poll.php">Poll Site</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="tables.php">League Table</a>
                             <div class="dropdown-divider"></div>

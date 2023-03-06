@@ -15,6 +15,4 @@ if ($con->connect_error)
 {
      die("error error: ". $con->connect_error) ;
 }
-
-
 ?>

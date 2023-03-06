@@ -6,10 +6,10 @@ include 'layout/header.php';
 
     <h1 id="quiz-title">Do you know your club well?</h1>
     <?php
-    include 'edvin_db.php';
+    include "assets/plugins/connect.php";
 
     $get_data = "SELECT * FROM `quiz`";
-    $result = $conn->query($get_data);
+    $result = $con->query($get_data);
     if ($result->num_rows > 0) {
 
         echo '<form method="post" action="results.php" class="row g-3 align-items-center" onsubmit="return checkForm()">';
@@ -28,7 +28,7 @@ include 'layout/header.php';
 ";
 
         }
-        $conn->close();
+        $con->close();
         echo '<input type="submit" class="btn btn-outline-danger" value="SEE RESULTS" name="submit">';
         echo '</form>';
 

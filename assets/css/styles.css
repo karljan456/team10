@@ -1,11 +1,52 @@
-element,
-input,
-button,
-label,
-nav,
-footer,
-.footer-row-2 {
-    border-radius: 2px;
+/*Post creation page styles*/
+/* Form group */
+.create-post-form{
+    padding-top:10px;
+    padding-bottom:10px;
+    background-color:#ecf0f1;
+    padding-left:15px;
+    padding-right:15px;
+    border-top-left-radius:8px;
+    border-top-right-radius:8px;
+    border-bottom-left-radius:8px;
+    border-bottom-right-radius:8px;
+   }
+   .create-post-form .form-group::placeholder{
+padding-left:50px;
+   }
+   
+   
+.tox-statusbar__branding {
+    display: none;
+}
+
+.tox-notification__body {
+    display: none;
+}
+
+.tox-notifications-container {
+    display: none;
+}
+
+/* Button */
+.btn-primary {
+    background-color: #009688;
+    border-style: none;
+}
+
+.btn-primary {
+    background-color: #009688;
+    border-style: none;
+}
+
+/* header User link */
+#navbarSupportedContent .nav-item .user-link{
+    color:#ffffff !important;
+   }
+   
+   
+element, input, button, label,nav,footer, .footer-row-2  {
+    border-radius:2px;
 }
 
 /* Navigation */

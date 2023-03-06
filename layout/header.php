@@ -17,8 +17,9 @@ session_start();
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">
     </script> <!--darkmode toggle switch needed jquery-->
+     <script src="/team10/assets/js/consent.js"></script><!--consent bar-->
     <script src="/team10/assets/js/poll.js"></script>
-
+    <script src="/team10/assets/js/quiz_validation.js"></script>
 
     <link rel="stylesheet" href="/team10/assets/css/darkmode.css"><!--darkmode toggle switch styles-->
     <link rel="stylesheet" href="/team10/assets/css/styles.css">
@@ -39,6 +40,7 @@ session_start();
         }
         ?>
     </title>
+
     <div class="container wd-100" style="
     background-color: <?php echo $background; ?>; 
     color: <?php echo $color; ?>;">
@@ -73,7 +75,7 @@ session_start();
 
         <nav class="navbar navbar-expand-xl  navbar-dark ms-auto pr-3   ">
 
-            <a class="navbar-brand justify-content-start" href="index.php">
+            <a class="navbar-brand justify-content-start" href="/team10/index.php">
                 <img class="navbar_logo" src="/team10/assets/images/lfc_logo.png" alt="Liverpool FC logo">
             </a>
 
@@ -86,19 +88,19 @@ session_start();
                     <li class="nav-item active">
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home</a>
+                        <a class="nav-link" href="/team10/index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Video</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">News</a>
+                        <a class="nav-link" href="/team10/layout/blog.php">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Schedule</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../tables.php">Tables</a>
+                        <a class="nav-link" href="/team10/tables.php">Tables</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -107,27 +109,31 @@ session_start();
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="poll.php">Poll Site</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">League Table</a>
+                            <a class="dropdown-item" href="tables.php">League Table</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Comment Forum</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Extra 1</a>
+                            <a class="dropdown-item" href="quiz.php">Quiz</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Extra 2</a>
+                            <a class="dropdown-item" href="#">Extra 1</a>
                         </div>
                     </li>
                 </ul>
 
                 <!--user login links-->
                 <div class="nav-item user-box ">
-                    <a class="nav-link user-link " href="signup.php">
-                        <img src="/team10/assets/images/user.svg" width="18" alt="Signup" class="nav-icon"> Join</a>
 
                     <?php 
                     if (!empty($_SESSION['loggedin'])) {
-                        echo '<a class="nav-link user-link" href="scripts/logout.serv.php">Logout</a>';
+                        echo '<a class="nav-link user-link" href="/team10/users/userprofile.php">
+                        <img src="/team10/assets/images/user.svg" width="18" alt="logout" class="nav-icon"> Profile</a>';
+                        
+                        echo '<a class="nav-link user-link" href="/team10/scripts/logout.serv.php">Logout</a>';
                     } else {
-                        echo '<a class="nav-link user-link" href="login.php">Login</a>';
+                        echo '<a class="nav-link user-link " href="/team10/users/signup.php">
+                        <img src="/team10/assets/images/user.svg" width="18" alt="Signup" class="nav-icon"> Join</a>';
+                        echo '<a class="nav-link user-link" href="/team10/users/login.php">Login</a>';
+
                     }
                     ?>
                 </div>
@@ -155,9 +161,18 @@ session_start();
     <body style="background-color: <?php echo $background; ?>; color: <?php echo $color; ?>">
 
         <!--################SLIDER ###############-->
-        <div class="page-heading slider-carousel">
+        <div id="page-heading" name="page-heading" class="page-heading slider-carousel">
+
+        
             <div class=" container heading-h1  background-dark dark-change">
-                <h1> <small>EXCLUSIVE NEWS!</small> SALAH SCORED THE WINNER AGAINST MANU</h1>
+                <?php
+        if (isset($title)) {
+             echo '<h1>'.htmlspecialchars($title).'</h1>';
+           
+        } else {
+            echo '<h1> <small>LFC FAN EXCLUSIVE</small> SALAH SCORED THE WINNER AGAINST MANU </h1>';
+        }
+        ?>
             </div>
         </div>
         <!--################SLIDER ENDS ###############-->

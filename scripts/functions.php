@@ -447,7 +447,7 @@ function display_posts_by_category()
 // Showing data for the current season 
 function printLiveTable($url, $table)
 {
-    echo "<table class=\"table\">
+    echo "<table class=\"tables\">
     <tr>
    <th>POSTION</th>
    <th>TEAM</th>
@@ -467,24 +467,24 @@ function printLiveTable($url, $table)
 
         list($Pos, $Team, $Pld, $W, $D, $L, $GF, $GA, $GD, $Pts) = $data[$i];
 
-        include 'edvin_db.php';
+        include 'assets/plugins/connect.php';
 
         // Putting the data into the database
         $insert = "INSERT INTO `" . $table . "` (`Pos`, `Team`, `Pld`, `W`, `D`, `L`, `GF`, `GA`, `GD`, `Pts`) VALUES ('$Pos', '$Team',
          '$Pld', '$W', '$D', '$L', '$GF', '$GA', '$GD', '$Pts')";
 
 
-        $conn->query($insert);
+        $con->query($insert);
     }
 
-    printData($table, $conn);
+    printData($table, $con);
 
     // Deleting data so it will be renewed with the newer one when it is available
-    $delete = "DELETE FROM tables." . $table . "";
+    $delete = "DELETE FROM team10_lfc." . $table . "";
 
-    mysqli_query($conn, $delete);
+    $con->query($delete);
 
-    $conn->close();
+    $con->close();
 }
 
 // reading online CSV file from the server
@@ -507,7 +507,8 @@ function getData($url)
 function printTable($table)
 {
 
-    include 'edvin_db.php';
+    include 'assets/plugins/connect.php';
+
     echo "<table class=\"tables\">
             <tr>
            <th>POSTION</th>
@@ -521,17 +522,17 @@ function printTable($table)
            <th>GD</th>
            <th>PTS</th>
           </tr>";
-    printData($table, $conn);
+    printData($table, $con);
 
-    $conn->close();
+    $con->close();
 }
 
 // Printing the data from database 
-function printData($table, $conn)
+function printData($table, $con)
 {
     // Getting data from the database and printing it out  
     $read = "SELECT * FROM `" . $table . "`";
-    $result = $conn->query($read);
+    $result = $con->query($read);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             // Conditions to check if the team is Liverpool then the name will be bold and 
@@ -549,8 +550,7 @@ function printData($table, $conn)
                         <td><b>$row[GA]</b></td>
                         <td><b>$row[GD]</b></td>
                         <td><b>$points</b></td>
-                    </tr>
-                </tbody>";
+                    </tr>";
             } else if (str_contains($row['Team'], '(')) {
                 $team = substr($row['Team'], 0, -3);
                 echo "<tr>
@@ -593,8 +593,7 @@ function printData($table, $conn)
                 <td><b>$row[GA]</b></td>
                 <td><b>$row[GD]</b></td>
                 <td><b>$row[Pts]</b></td>
-            </tr>
-        </tbody>";
+            </tr>";
             } else {
                 echo "<tr>
                 <td>$row[Pos]</td>

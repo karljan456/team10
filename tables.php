@@ -53,7 +53,7 @@ include "layout/header.php";
 
                 printEplLogo();
                 printEpl("s23");
-                printLiveTable($epl22_23, 'ucl22_23');
+                printLiveTable($epl22_23, 'epl22_23');
 
                 printUclLogo();
                 printUcl("s23");
@@ -94,7 +94,7 @@ include "layout/header.php";
             printEplLogo();
             printEpl("s23");
 
-            printLiveTable($epl22_23, 'ucl22_23');
+            printLiveTable($epl22_23, 'epl22_23');
 
             printUclLogo();
 

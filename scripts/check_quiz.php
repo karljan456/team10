@@ -1,6 +1,6 @@
 <?php
 
-include 'edvin_db.php';
+include "assets/plugins/connect.php";
 
 if (isset($_POST['submit'])) {
 
@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
         $check = "SELECT correct_answer FROM `quiz` WHERE id = $i";
 
         // Executing the query and retrieving the result set
-        $result = $conn->query($check);
+        $result = $con->query($check);
 
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
 
     echo "<h2 id=\"quiz-score\">Your score is: $points/" . $total_questions . "</h2>";
 
-    $conn->close();
+    $con->close();
 
 }
 

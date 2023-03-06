@@ -5,7 +5,7 @@ include 'edvin_db.php';
 if (isset($_POST['submit'])) {
 
     $points = 0;
-    $total_questions = 5;
+    $total_questions = 10;
     $user_answers = array();
 
     // Looping through every question in the quiz
@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    echo "<h2>Your score is: $points/" . $total_questions . "</h2>";
+    echo "<h2 id=\"quiz-score\">Your score is: $points/" . $total_questions . "</h2>";
 
     $conn->close();
 

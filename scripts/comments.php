@@ -16,32 +16,28 @@ function setComment($con){
 
 //This function gets the comments from the database
 function getComment($con){
-    $sql = "SELECT * FROM comment";
+    $sql = "SELECT * FROM comment ORDER BY comment_time DESC";
     $result = $con->query($sql);
     
     while($row = $result->fetch_assoc()){
-        echo "<div class='text-center'>";
-        echo $row['comment_author']."<br>";
+        echo "<strong>".$row['comment_author']."</strong><br>";
         echo $row['comment_time']."<br>";
-        echo nl2br($row['comment_text'])."<br><br>";
-        echo "</div>";
+        echo nl2br($row['comment_text'])."<br>";
 
         //Edit and delete buttons
         echo 
-            "
-            <div class='d-grid gap-2 d-md-block'>
-            <form class='text-center' method='POST' action='".deleteComment($con)."'>
-            <input type='hidden' name='id' value='".$row['id']."'>
-            <button class='btn btn-primary' type='button' name='commentDelete'>Delete</button>
+            "<form style='display: inline;'  method='POST' action='".deleteComment($con)."'>
+                <input type='hidden' name='id' value='".$row['id']."'>
+                <button style='display: inline;' name='commentDelete'>Delete</button>
             </form>
-            <form class='text-center' method='POST' action='editcomment.php'>
+
+            <form style='display: inline;'  method='POST' action='../editcomment.php'>
                 <input type='hidden' name='id' value='".$row['id']."'>
                 <input type='hidden' name='user_id' value='".$row['comment_author']."'>
                 <input type='hidden' name='comment_time' value='".$row['comment_time']."'>
                 <input type='hidden' name='comment_text' value='".$row['comment_text']."'>
-                <button class='btn btn-primary' type='button'>Edit</button>
-            </form>
-            </div>";
+                <button style='display: inline;'>Edit</button><br><br>
+            </form>";
     }
 }
 

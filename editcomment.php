@@ -12,14 +12,14 @@
 
 <?php
 $id = $_POST['id'];
-$user = $_POST['user_id'];
+$username = $_SESSION['username'];
 $date = $_POST['comment_time'];
 $comment = $_POST['comment_text'];
 
-//This is the form for leaving a comment
+//This is the form for editing a comment
 echo "<form method='POST' action='".editComment($con)."'>
 <input type='hidden' name='id' value='$id'>
-    <input type='hidden' name='user_id' value='$user'>
+    <input type='hidden' name='username' value='$username'>
 	<input type='hidden' name='comment_time' value='$date'>
 	<textarea name='comment_text'>$comment</textarea><br>
 	<button type='submit' name='editSubmit'>Edit</button>

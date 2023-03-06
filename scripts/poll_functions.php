@@ -62,11 +62,6 @@
                     <input type='button' value='Click here to return to the Voting Page'>
                 </a>";
             exit();
-        }
-
-        
-        
+        }        
     }
-
-
 ?>

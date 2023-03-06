@@ -5,8 +5,6 @@
     include $_SERVER["DOCUMENT_ROOT"].'/team10/assets/plugins/connect.php';
 ?>
 
- 
-
 <!-- Setting up all the necessary variables -->
 <?php
     // Variables gotten from the poll.php

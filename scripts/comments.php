@@ -2,6 +2,7 @@
 
 //This function sets the comment to the database
 function setComment($con){
+    $result = "";
     if (isset($_POST['comment'])){
         $username = $_SESSION['username'];
         $date = $_POST['comment_time'];
@@ -20,15 +21,16 @@ function getComment($con){
     $result = $con->query($sql);
     
     while($row = $result->fetch_assoc()){
-        echo "<strong>".$row['comment_author']."</strong><br>";
+        echo "<hr><br><strong>".$row['comment_author']."</strong><br>";
         echo $row['comment_time']."<br>";
         echo nl2br($row['comment_text'])."<br>";
 
         //Edit and delete buttons
         echo 
-            "<form style='display: inline;'  method='POST' action='".deleteComment($con)."'>
+            "<div style='display: inline;'>
+            <form style='display: inline;'  method='POST' action='".deleteComment($con)."'>
                 <input type='hidden' name='id' value='".$row['id']."'>
-                <button style='display: inline;' name='commentDelete'>Delete</button>
+                <button name='commentDelete'>Delete</button>
             </form>
 
             <form style='display: inline;'  method='POST' action='../editcomment.php'>
@@ -36,8 +38,8 @@ function getComment($con){
                 <input type='hidden' name='user_id' value='".$row['comment_author']."'>
                 <input type='hidden' name='comment_time' value='".$row['comment_time']."'>
                 <input type='hidden' name='comment_text' value='".$row['comment_text']."'>
-                <button style='display: inline;'>Edit</button><br><br>
-            </form>";
+                <button>Edit</button><br><br>
+            </form></div>";
     }
 }
 
@@ -45,7 +47,7 @@ function getComment($con){
 function editComment($con){
     if (isset($_POST['editSubmit'])){
         $id = $_POST['id'];
-        $user = $_POST['comment_author'];
+        $username = $_POST['comment_author'];
         $date = $_POST['comment_time'];
         $comment = $_POST['comment_text'];
 

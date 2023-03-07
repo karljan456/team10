@@ -1,10 +1,9 @@
 <?php 
+include "../layout/header.php"; 
 if (isset($_SESSION['loggedin'])){
   header('Location: userprofile.php');
   exit();
-}
-include "../layout/header.php"; 
-
+} 
 
 ?>
 <script>

@@ -7,7 +7,7 @@ function setComment($con){
         $username = $_SESSION['username'];
         $date = $_POST['comment_time'];
         $comment = $_POST['comment_text'];
-        //Trim whitespace at the end of the comment
+        //Should trim whitespace at the end of the comment NOT WORKING!
         $trim_comment = rtrim($comment);
 
         $sql = "INSERT INTO comment (comment_author, comment_time, comment_text) 
@@ -54,10 +54,8 @@ function editComment($con){
         $username = $_POST['comment_author'];
         $date = $_POST['comment_time'];
         $comment = $_POST['comment_text'];
-        //Trim whitespace at the end of the comment
-        $trim_comment = rtrim($comment);
 
-        $sql = "UPDATE comment SET comment_text='$trim_comment' WHERE id='$id'";
+        $sql = "UPDATE comment SET comment_text='$comment' WHERE id='$id'";
 
         $result = $con->query($sql);
         echo "<script>window.history.back()</script>";

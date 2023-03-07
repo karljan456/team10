@@ -79,7 +79,7 @@
 ?>
 
 <a href="../poll.php">
-    <input type="button" value="Click here to return to the Voting Page">
+    <input type="button" class="btn btn-secondary" value="Click here to return to the Voting Page">
 </a>
 
 

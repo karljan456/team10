@@ -1,6 +1,6 @@
 <!--################CONTENT STARTS###############-->
 
-<div class="content-wrapper">
+
                 <article>
                     <div class="container text-center text-dark article-container px-4  justify-content-center">
                         <div class="row">

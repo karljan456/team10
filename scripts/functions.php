@@ -49,7 +49,6 @@ function mini_login() {
             echo '</div>';
             echo '</form>';
             echo '<hr class="w-75 my-4"></div>';
-            header_remove();
         }
     }
     

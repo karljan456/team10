@@ -39,7 +39,7 @@ function login()
 function mini_login() {
         if (empty($_SESSION['loggedin'])) {
             echo '<div class="my-5 article-container container-fluid"><hr class="w-75 my-4">';
-            echo '<form class="form-inline" action="../scripts/login.serv.php" method="POST">';
+            echo '<form class="form-inline" action="/team10/scripts/login.serv.php" method="POST">';
             echo '<div class="form-row align-items-center">';
             echo '<div class="col-md-4">';
             echo '<input type="text" class="form-control mb-2" name="username" placeholder="Username" required>';
@@ -49,6 +49,7 @@ function mini_login() {
             echo '</div>';
             echo '</form>';
             echo '<hr class="w-75 my-4"></div>';
+            header_remove();
         }
     }
     

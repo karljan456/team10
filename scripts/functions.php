@@ -68,6 +68,13 @@ function emptySignupInput($firstname, $lastname, $username, $email, $password, $
     }
     return $result;
 }
+//check if name is longer than varchar 50
+function checkNameLength($firstname, $lastname) {
+    if (strlen($firstname) > 50 || strlen($firstname) > 50) {
+        return true;
+    }
+    return false;
+    }
 
 // check if username is valid 
 function invalidUsername($username)
@@ -126,13 +133,16 @@ function usernameExists($con, $username, $email)
 
     //check if there is result and assign it to a variable as an array
     if ($row = mysqli_fetch_assoc($stmtResult)) {
+        mysqli_stmt_close($stmt);
         return $row;
+        
     } else {
         $result = false;
+        mysqli_stmt_close($stmt);
         return $result;
     }
     //close the prepared statement
-    mysqli_stmt_close($stmt);
+    
 }
 
 
@@ -225,6 +235,7 @@ function userLogin($con, $username, $password)
         }
         $_SESSION['user_role'] = $userExists['role'];
         $_SESSION['username'] = $userExists['username'];
+        $_SESSION['user_id'] = $userExists['user_id'];
         $_SESSION['loggedin'] = true;
 
         $_SESSION['message'] = "Welcome " . $_SESSION['username'];

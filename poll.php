@@ -5,10 +5,10 @@
     include 'scripts/poll_functions.php';
     include 'assets/plugins/connect.php';
     //CONNECT THIS ID TO THE MAIN SESSION FROM THE LOGIN PAGE!!
-    $userID = $_SESSION['user_id_number'];
-    $id = $_SESSION['user_id_number'];
+    $userID = $_SESSION['user_id'];
+    $id = $_SESSION['user_id'];
     //$id = 6;
-    //$_SESSION['user_id_number'] = $id;
+    //$_SESSION['user_id'] = $id;
     ?>
 
 <form method="post" name="idCollection">
@@ -21,7 +21,7 @@
     // Create something to temporarily select user ID
     if(isset($_POST["submitTempID"])){
         $id = $_POST['id'];
-        $_SESSION['user_id_number'] = $id;
+        $_SESSION['user_id'] = $id;
     }else{
         echo "Input your ID Number";
     }

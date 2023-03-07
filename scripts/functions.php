@@ -583,66 +583,8 @@ function display_posts_by_category()
 //display comments by post
 /////////////////////////////// league table 
 
-// Showing data for the current season 
-function printLiveTable($url, $table)
-{
-    echo "<table class=\"tables\">
-    <tr>
-   <th>POSTION</th>
-   <th>TEAM</th>
-   <th>PLAYED</th>
-   <th>WON</th>
-   <th>DRAWN</th>
-   <th>LOST</th>
-   <th>GF</th>
-   <th>GA</th>
-   <th>GD</th>
-   <th>Pts</th>
-  </tr>";
-    $data = getData($url);
-    $i = 0;
-    // Going through the array with data 
-    for ($i = 1; $i < count($data); $i++) {
 
-        list($Pos, $Team, $Pld, $W, $D, $L, $GF, $GA, $GD, $Pts) = $data[$i];
-
-        include 'assets/plugins/connect.php';
-
-        // Putting the data into the database
-        $insert = "INSERT INTO `" . $table . "` (`Pos`, `Team`, `Pld`, `W`, `D`, `L`, `GF`, `GA`, `GD`, `Pts`) VALUES ('$Pos', '$Team',
-         '$Pld', '$W', '$D', '$L', '$GF', '$GA', '$GD', '$Pts')";
-
-
-        $con->query($insert);
-    }
-
-    printData($table, $con);
-
-    // Deleting data so it will be renewed with the newer one when it is available
-    $delete = "DELETE FROM team10_lfc." . $table . "";
-
-    $con->query($delete);
-
-    $con->close();
-}
-
-// reading online CSV file from the server
-function getData($url)
-{
-    $array = [];
-    if (($handle = fopen($url, "r")) !== false) {
-        while (($data = fgetcsv($handle, 1000, ",")) !== false) {
-
-            $array[] = $data;
-
-        }
-        fclose($handle);
-        return $array;
-    } else
-        die("Problem reading csv");
-}
-
-// Printing the data for the previous competitons 
+// Printing the data for the competitons 
 function printTable($table)
 {
 
@@ -676,8 +618,7 @@ function printData($table, $con)
         while ($row = $result->fetch_assoc()) {
             // Conditions to check if the team is Liverpool then the name will be bold and 
             // also checking if the table does not contain unwanted characters
-            if (strcmp($row['Team'], "Liverpool") === 0 and str_contains($row['Pts'], '[')) {
-                $points = substr($row['Pts'], 0, -3);
+            if (strcmp($row['Team'], "Liverpool") === 0) {
                 echo "<tr>
                         <td><b>$row[Pos]</b></td>
                         <td><b>$row[Team]</b></td>
@@ -688,51 +629,8 @@ function printData($table, $con)
                         <td><b>$row[GF]</b></td>
                         <td><b>$row[GA]</b></td>
                         <td><b>$row[GD]</b></td>
-                        <td><b>$points</b></td>
+                        <td><b>$row[Pts]</b></td>
                     </tr>";
-            } else if (str_contains($row['Team'], '(')) {
-                $team = substr($row['Team'], 0, -3);
-                echo "<tr>
-                    <td>$row[Pos]</td>
-                    <td>$team</td>
-                    <td>$row[Pld]</td>
-                    <td>$row[W]</td>
-                    <td>$row[D]</td>
-                    <td>$row[L]</td>
-                    <td>$row[GF]</td>
-                    <td>$row[GA]</td>
-                    <td>$row[GD]</td>
-                    <td>$row[Pts]</td>
-                   </tr>";
-            } else if (str_contains($row['Pts'], '[')) {
-
-                $points = substr($row['Pts'], 0, -3);
-                echo "<tr>
-                    <td>$row[Pos]</td>
-                    <td>$row[Team]</td>
-                    <td>$row[Pld]</td>
-                    <td>$row[W]</td>
-                    <td>$row[D]</td>
-                    <td>$row[L]</td>
-                    <td>$row[GF]</td>
-                    <td>$row[GA]</td>
-                    <td>$row[GD]</td>
-                    <td>$points</td>
-                   </tr>";
-
-            } else if (strcmp($row['Team'], "Liverpool") === 0) {
-                echo "<tr>
-                <td><b>$row[Pos]</b></td>
-                <td><b>$row[Team]</b></td>
-                <td><b>$row[Pld]</b></td>
-                <td><b>$row[W]</b></td>
-                <td><b>$row[D]</b></td>
-                <td><b>$row[L]</b></td>
-                <td><b>$row[GF]</b></td>
-                <td><b>$row[GA]</b></td>
-                <td><b>$row[GD]</b></td>
-                <td><b>$row[Pts]</b></td>
-            </tr>";
             } else {
                 echo "<tr>
                 <td>$row[Pos]</td>

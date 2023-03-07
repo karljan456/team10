@@ -49,7 +49,6 @@ function mini_login() {
             echo '</div>';
             echo '</form>';
             echo '<hr class="w-75 my-4"></div>';
-            
         }
     }
     
@@ -102,7 +101,7 @@ function invalidEmail($email)
 // check if passwords are matching password and passwordrepeat 
 function passwordMatch($password, $passwordrepeat)
 {
-    if ($password !==  $passwordrepeat) {
+    if ($password !== $passwordrepeat) {
         $result = true;
     } else {
         $result = false;
@@ -248,7 +247,7 @@ function userLogin($con, $username, $password)
     //////////////////////////////////article functions etc
     //////////////////////////////////post creation
 
-    function createPost( $title, $slug, $content, $excerpt, $category, $featured_image, $author)
+    function createPost($title, $slug, $content, $excerpt, $category, $featured_image, $author)
     {
         //connect to db and load the functions
         require_once "../assets/plugins/connect.php";
@@ -355,7 +354,7 @@ function display_single_post($slug)
 {
     // connect to database
 
-    include  "../assets/plugins/connect.php";
+    include "../assets/plugins/connect.php";
 
     $slug = get_url_slug();
     // Retrieve the post from the database
@@ -389,35 +388,35 @@ function display_single_post($slug)
 }
 
 //////////////////////////////////////
-// Function to get categories from the database and display them as a select list .. mainly for admin insert post form
+// Function to get categories from the database and display them as a select list
 function get_categories_select() {
     // Connect to the database
-    require_once  "../assets/plugins/connect.php";
-  
+    require_once "../assets/plugins/connect.php";
+
     // Fetch the categories from the database
     $sql = "SELECT id, title FROM post_categories";
     $result = $con->query($sql);
-  
+
     // declare variable
     $checkboxes = '';
-  
+
     // Display each category as an option in the select element
     if ($result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) {
-        $checkboxes .= '<div class="form-check form-check-inline">';
-        $checkboxes .= '<input class="form-check-input" type="checkbox" name="categories[]" id="category-' . $row['id'] . '" value="' . $row['id'] . '">';
-        $checkboxes .= '<label class="form-check-label" for="category-' . $row['id'] . '">' . $row['title'] . '</label>';
-        $checkboxes .= '</div>';
-      }
+        while ($row = $result->fetch_assoc()) {
+            $checkboxes .= '<div class="form-check form-check-inline">';
+            $checkboxes .= '<input class="form-check-input" type="checkbox" name="categories[]" id="category-' . $row['id'] . '" value="' . $row['id'] . '">';
+            $checkboxes .= '<label class="form-check-label" for="category-' . $row['id'] . '">' . $row['title'] . '</label>';
+            $checkboxes .= '</div>';
+        }
     }
-  
+
     // Close the database connection
     $con->close();
-  
+
     // Return the options string
     return $checkboxes;
-  }
-  
+}
+
 
 ////////////////////////////////////////
 // get post slug from the current url
@@ -547,7 +546,7 @@ function displayCategories() {
 // Function to retrieve and display posts by category
 function display_posts_by_category()
 {
-    $category =  get_url_category_slug();
+    $category = get_url_category_slug();
     // connect to database
     require "../assets/plugins/connect.php";
 
@@ -584,66 +583,8 @@ function display_posts_by_category()
 //display comments by post
 /////////////////////////////// league table 
 
-// Showing data for the current season 
-function printLiveTable($url, $table)
-{
-    echo "<table class=\"tables\">
-    <tr>
-   <th>POSTION</th>
-   <th>TEAM</th>
-   <th>PLAYED</th>
-   <th>WON</th>
-   <th>DRAWN</th>
-   <th>LOST</th>
-   <th>GF</th>
-   <th>GA</th>
-   <th>GD</th>
-   <th>Pts</th>
-  </tr>";
-    $data = getData($url);
-    $i = 0;
-    // Going through the array with data 
-    for ($i = 1; $i < count($data); $i++) {
 
-        list($Pos, $Team, $Pld, $W, $D, $L, $GF, $GA, $GD, $Pts) = $data[$i];
-
-        include 'assets/plugins/connect.php';
-
-        // Putting the data into the database
-        $insert = "INSERT INTO `" . $table . "` (`Pos`, `Team`, `Pld`, `W`, `D`, `L`, `GF`, `GA`, `GD`, `Pts`) VALUES ('$Pos', '$Team',
-         '$Pld', '$W', '$D', '$L', '$GF', '$GA', '$GD', '$Pts')";
-
-
-        $con->query($insert);
-    }
-
-    printData($table, $con);
-
-    // Deleting data so it will be renewed with the newer one when it is available
-    $delete = "DELETE FROM team10_lfc." . $table . "";
-
-    $con->query($delete);
-
-    $con->close();
-}
-
-// reading online CSV file from the server
-function getData($url)
-{
-    $array = [];
-    if (($handle = fopen($url, "r")) !== false) {
-        while (($data = fgetcsv($handle, 1000, ",")) !== false) {
-
-            $array[] = $data;
-
-        }
-        fclose($handle);
-        return $array;
-    } else
-        die("Problem reading csv");
-}
-
-// Printing the data for the previous competitons 
+// Printing the data for the competitons 
 function printTable($table)
 {
 
@@ -677,8 +618,7 @@ function printData($table, $con)
         while ($row = $result->fetch_assoc()) {
             // Conditions to check if the team is Liverpool then the name will be bold and 
             // also checking if the table does not contain unwanted characters
-            if (strcmp($row['Team'], "Liverpool") === 0 and str_contains($row['Pts'], '[')) {
-                $points = substr($row['Pts'], 0, -3);
+            if (strcmp($row['Team'], "Liverpool") === 0) {
                 echo "<tr>
                         <td><b>$row[Pos]</b></td>
                         <td><b>$row[Team]</b></td>
@@ -689,51 +629,8 @@ function printData($table, $con)
                         <td><b>$row[GF]</b></td>
                         <td><b>$row[GA]</b></td>
                         <td><b>$row[GD]</b></td>
-                        <td><b>$points</b></td>
+                        <td><b>$row[Pts]</b></td>
                     </tr>";
-            } else if (str_contains($row['Team'], '(')) {
-                $team = substr($row['Team'], 0, -3);
-                echo "<tr>
-                    <td>$row[Pos]</td>
-                    <td>$team</td>
-                    <td>$row[Pld]</td>
-                    <td>$row[W]</td>
-                    <td>$row[D]</td>
-                    <td>$row[L]</td>
-                    <td>$row[GF]</td>
-                    <td>$row[GA]</td>
-                    <td>$row[GD]</td>
-                    <td>$row[Pts]</td>
-                   </tr>";
-            } else if (str_contains($row['Pts'], '[')) {
-
-                $points = substr($row['Pts'], 0, -3);
-                echo "<tr>
-                    <td>$row[Pos]</td>
-                    <td>$row[Team]</td>
-                    <td>$row[Pld]</td>
-                    <td>$row[W]</td>
-                    <td>$row[D]</td>
-                    <td>$row[L]</td>
-                    <td>$row[GF]</td>
-                    <td>$row[GA]</td>
-                    <td>$row[GD]</td>
-                    <td>$points</td>
-                   </tr>";
-
-            } else if (strcmp($row['Team'], "Liverpool") === 0) {
-                echo "<tr>
-                <td><b>$row[Pos]</b></td>
-                <td><b>$row[Team]</b></td>
-                <td><b>$row[Pld]</b></td>
-                <td><b>$row[W]</b></td>
-                <td><b>$row[D]</b></td>
-                <td><b>$row[L]</b></td>
-                <td><b>$row[GF]</b></td>
-                <td><b>$row[GA]</b></td>
-                <td><b>$row[GD]</b></td>
-                <td><b>$row[Pts]</b></td>
-            </tr>";
             } else {
                 echo "<tr>
                 <td>$row[Pos]</td>
@@ -788,10 +685,10 @@ function printEpl($season)
     switch ($season) {
 
         case "s23":
-            echo "<h1>English Premier League Season 2022/23</h1>";
+            echo '<h1 id="league-title">English Premier League Season 2022/23</h1>';
             break;
         case "s22":
-            echo "<h1>English Premier League Season 2021/22</h1>";
+            echo '<h1 id="league-title">English Premier League Season 2021/22</h1>';
             break;
 
         default:
@@ -807,10 +704,10 @@ function printUcl($season)
     switch ($season) {
 
         case "s23":
-            echo "<h1>UEFA Champions League Season 2022/23</h1>";
+            echo '<h1 id="league-title">UEFA Champions League Season 2022/23</h1>';
             break;
         case "s22":
-            echo "<h1>UEFA Champions League Season 2021/22</h1>";
+            echo '<h1 id="league-title">UEFA Champions League Season 2021/22</h1>';
             break;
 
         default:

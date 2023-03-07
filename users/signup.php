@@ -1,10 +1,11 @@
 <?php 
-include "../layout/header.php"; 
+  session_start();
 if (isset($_SESSION['loggedin'])){
   header('Location: userprofile.php');
   exit();
+  session_destroy();
 } 
-
+include "../layout/header.php"; 
 ?>
 <script>
   function validateForm() {

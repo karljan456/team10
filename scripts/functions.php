@@ -9,7 +9,7 @@ function login()
     if (empty($_SESSION['loggedin'])) {
 
         echo '
-        <form action="../scripts/login.serv.php" method="POST">
+        <form action="/team10/scripts/login.serv.php" method="POST">
 
         <div class="mb-3">
           <label for="userid" class="form-label">Username</label>

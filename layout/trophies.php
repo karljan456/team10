@@ -1,4 +1,4 @@
-<div id="trophies">
+<div id="trophies" class="wd-100 container">
                             <div class="row footer-row-1">
                                 <div class="col-md-2 col-sm-4 col-xs-4 trophy-box  ">
                                     <img class="img-fluid" src="./assets/images/league_title.svg" alt="league_title">

@@ -51,6 +51,8 @@
         $alterQuery = mysqli_query($con, "UPDATE poll set match1='$match1Vote',
         match2='$match2Vote', match3='$match3Vote', match4='$match4Vote', match5='$match5Vote'
         WHERE user_id = '$userID'");
+        header ("Location: /team10/layout/header.php");
+        exit();
 
         if($alterQuery){
             echo "<h2> Thank you for voting. <br>

@@ -32,7 +32,7 @@
 <?php
     // Setting USER ID
     $userID = $id;
-    $query = mysqli_query($con, "SELECT * FROM User WHERE user_id = $userID ");
+    $query = mysqli_query($con, "SELECT * FROM users WHERE user_id = $userID ");
     $row = mysqli_fetch_assoc($query);
     $username = $row['username'];
     

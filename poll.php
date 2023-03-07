@@ -5,19 +5,11 @@
     include 'scripts/poll_functions.php';
     include 'scripts/functions.php';
     include 'assets/plugins/connect.php';
-    //CONNECT THIS ID TO THE MAIN SESSION FROM THE LOGIN PAGE!!
-    
-    //$id = $_SESSION['username'];
-    //$id = 6;
-    //$_SESSION['username'] = $id;
     ?>
-
-
-
 
 <!-- Setting up all the necessary variables -->
 <?php
-    // Setting USER ID
+    // Setting USERNAME
     if(isset($_SESSION['username'])){
         $username = $_SESSION['username'];
     }else{
@@ -25,11 +17,9 @@
     }
 
     $query = "SELECT * FROM users WHERE username = '$username' ";
-    //$row = mysqli_fetch_assoc($query);
     $result = mysqli_query($con, $query);
-    if(mysqli_num_rows($result) > 0) {
+    if(mysqli_num_rows($result) > 0){
         while($row = mysqli_fetch_assoc($result)){
-        
             $username = $row['username'];
             $fname = $row['fname'];
             $lname = $row['lname'];
@@ -41,33 +31,31 @@
             $match4 = "Liverpool vs Everton";
             $match5 = "Liverpool vs Ghana";
         }
-    } else{
+    }else{
+        // Display LogIn prompt
         $_SESSION['message'] = "You need to be logged in to vote" ;
-        
+        include 'scripts/messages.php';
     }
-
 ?>
 
 <?php
-    include 'scripts/messages.php';
-?>
-
-<?php
+    // START OF IF STATEMENT 
     if(isset($_SESSION['username'])){
         $username = $_SESSION['username'];
+
+        // IF statement break--- continues on after table ends
 ?>
+
 <!-- Heading of the Table-->
-<h5><?php echo "<strong>User :</strong> ". $fname . " " . $lname . " (" . "$username" .")<br> <strong>ID No. :</strong> ". "$username" ?></h5>
-<hr>
-<h2>Hello and welcome <u><em><?php echo $username; ?> (ID: <?php echo $username; ?>)</em></u> <br>
-    Let us know what you think about these upcoming matches</h2>
+<h2>Hello and welcome <?php echo $fname . " " . $lname ?> <u><em>(<?php echo $username; ?>)</em></u></h2>
+<h3>Let us know what you think about these upcoming matches</h3>
 <hr>
 <!-- Table of Upcoming Matches Showing -->
 <div class='table-responsive'>
     <form name='vote' method='post' action="scripts/poll_action.php">
-        <table class='table caption-top table-info'>
+        <table class='table caption-top table-info text-dark'>
             <caption>List of Upcoming Matches</caption>
-            <tr><th>No.</th><th>Match</th><th>Stadium</th><th>Your Votes</th><th>Vote</th></tr>
+            <tr><th class="text-dark">No.</th><th class="text-dark">Match</th><th class="text-dark">Stadium</th><th class="text-dark">Your Votes</th><th class="text-dark">Vote</th></tr>
             <!-- Match 1 -->
             <tr><td>1</td><td><?php echo $match1 ?></td><td>Anfield</td><td><?php echo showVotes("match1") ?></td><td>
             <select name='match1'>
@@ -114,29 +102,28 @@
             </select>
             </td></tr>
         </table>
-        <input type='submit' value='Submit Your Votes' name="submitVote">
-        <input type='submit' value='Edit Your Votes' name='edit'>
-        <input type='submit' value='Delete Your Votes' name='delete'>
+        <input class="btn btn-success" type='submit' value='Submit Your Votes' name="submitVote">
+        <input class="btn btn-warning" type='submit' value='Edit Your Votes' name='edit'>
+        <input class="btn btn-danger" type='submit' value='Delete Your Votes' name='delete'>
     </form>
 </div>
 
 <?php
+    // IF statement continues from here 
     }else{
         login();
     }
 ?>
-
-
 
 <br>
 <hr>
 
 <!-- Total Vote Results Table with variables inserted -->
 <div id="results-table' class='table-responsive">
-        <h2>VOTING TABLE (Shows The Votes That Have Been Made)</h2>
+        <h2>VOTING RESULTS TABLE (Shows The Votes That Have Been Made By Other Users)</h2>
         <table class="table caption-top table-danger">
         <caption>Total Vote Results</caption>
-            <tr><th>No.</th><th>Match</th><th>Stadium</th><th>Win %</th><th>Draw %</th><th>Lose %</th><th>Total</th></tr>
+            <tr><th class="text-dark">No.</th><th class="text-dark">Match</th><th class="text-dark">Stadium</th><th class="text-dark">Win %</th><th class="text-dark">Draw %</th><th class="text-dark">Lose %</th><th class="text-dark">Total</th></tr>
             <!-- Match 1 Row-->
             <tr>
                 <td>1</td><td>Liverpool vs Real Madrid</td><td>Anfield</td>
@@ -179,7 +166,6 @@
             </tr>
         </table>
     </div>
-
 
 <br>
 <hr>

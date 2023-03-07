@@ -1,5 +1,5 @@
 <?php 
-  session_start();
+include "../layout/header.php"; 
 if (isset($_SESSION['loggedin'])){
   header('Location: userprofile.php');
   exit();

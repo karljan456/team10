@@ -35,8 +35,8 @@
     }
 
     function showVotes($matchNumber){
-        global $userID, $con;
-        $result = mysqli_query($con, "SELECT * FROM poll WHERE user_id = $userID "); 
+        global $username, $con;
+        $result = mysqli_query($con, "SELECT * FROM poll WHERE username = '$username' "); 
         $row = mysqli_fetch_assoc($result);
         //IF statement to return value if the query result is null
         if($row != false){
@@ -49,8 +49,8 @@
 
     //Function to check from the database if the user has already voted
     function confirmVotes(){
-        global  $con, $userID;
-        $result = mysqli_query($con, "SELECT * FROM poll WHERE user_id = $userID "); 
+        global  $con, $username;
+        $result = mysqli_query($con, "SELECT * FROM poll WHERE username = '$username' "); 
         $row = mysqli_fetch_assoc($result);
         
         if($row != false){

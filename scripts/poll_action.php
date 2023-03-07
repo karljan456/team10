@@ -8,7 +8,7 @@
 <!-- Setting up all the necessary variables -->
 <?php
     // Variables gotten from the poll.php
-    $userID = $_SESSION['user_id'];
+    $username = $_SESSION['username'];
     // Match Names Here
     $match1 = "Liverpool vs Real Madrid";
     $match2 = "Liverpool vs Chelsea";
@@ -24,14 +24,14 @@
 
 <!-- Submitting to the database -->
 <?php
-     // if poll where user_ id = userID already exists, do nothing else Insert
+     // if poll where user_ id = username already exists, do nothing else Insert
      if(isset($_POST["submitVote"])){
         
         // Function to confirm if the vote has already been made under the username
         confirmVotes();
         // include 'assets/plugins/connect.php';
-        $insertSQL = "insert into poll(user_id, match1, match2, match3, match4, match5)
-        values('$userID', '$match1Vote', '$match2Vote', '$match3Vote', '$match4Vote', '$match5Vote')" ;
+        $insertSQL = "insert into poll(username, match1, match2, match3, match4, match5)
+        values('$username', '$match1Vote', '$match2Vote', '$match3Vote', '$match4Vote', '$match5Vote')" ;
         if($con->query($insertSQL) === TRUE){
             echo "<h1>Thank you for voting. <br>
             Your vote has been added successfully</h1> ";
@@ -50,7 +50,7 @@
 
         $alterQuery = mysqli_query($con, "UPDATE poll set match1='$match1Vote',
         match2='$match2Vote', match3='$match3Vote', match4='$match4Vote', match5='$match5Vote'
-        WHERE user_id = '$userID'");
+        WHERE username = '$username'");
 
         if($alterQuery){
             echo "<h2> Thank you for voting. <br>
@@ -64,7 +64,7 @@
     //Deleting the votes
 
     if(isset($_POST['delete'])){
-        $alterQuery = mysqli_query($con, "DELETE FROM poll WHERE user_id = '$userID'"); 
+        $alterQuery = mysqli_query($con, "DELETE FROM poll WHERE username = '$username'"); 
 
         if($alterQuery){
             echo "<h2>Thank you for your time. <br>

@@ -3,51 +3,63 @@
     include $_SERVER["DOCUMENT_ROOT"]."/team10/layout/header.php" ;
     //require_once 'assets/plugins/connect.php';
     include 'scripts/poll_functions.php';
+    include 'scripts/functions.php';
     include 'assets/plugins/connect.php';
     //CONNECT THIS ID TO THE MAIN SESSION FROM THE LOGIN PAGE!!
-    $userID = $_SESSION['user_id'];
-    $id = $_SESSION['user_id'];
+    
+    //$id = $_SESSION['username'];
     //$id = 6;
-    //$_SESSION['user_id'] = $id;
+    //$_SESSION['username'] = $id;
     ?>
 
-<form method="post" name="idCollection">
-    <input type="number" name="id"><br>
-    <input  type="submit" value="Give Your ID" name="submitTempID">
-</form>
 
-
-<?php
-    // Create something to temporarily select user ID
-    if(isset($_POST["submitTempID"])){
-        $id = $_POST['id'];
-        $_SESSION['user_id'] = $id;
-    }else{
-        echo "Input your ID Number";
-    }
-?>
 
 
 <!-- Setting up all the necessary variables -->
 <?php
     // Setting USER ID
-    $userID = $id;
-    $query = mysqli_query($con, "SELECT * FROM users WHERE user_id = $userID ");
-    $row = mysqli_fetch_assoc($query);
-    $username = $row['username'];
+    if(isset($_SESSION['username'])){
+        $username = $_SESSION['username'];
+    }else{
+        $username = "guest";
+    }
+
+    $query = "SELECT * FROM users WHERE username = '$username' ";
+    //$row = mysqli_fetch_assoc($query);
+    $result = mysqli_query($con, $query);
+    if(mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)){
+        
+            $username = $row['username'];
+            $fname = $row['fname'];
+            $lname = $row['lname'];
     
-    // Match Names Here
-    $match1 = "Liverpool vs Real Madrid";
-    $match2 = "Liverpool vs Chelsea";
-    $match3 = "Liverpool vs Manchester Utd";
-    $match4 = "Liverpool vs Everton";
-    $match5 = "Liverpool vs Ghana";
+            // Match Names Here
+            $match1 = "Liverpool vs Real Madrid";
+            $match2 = "Liverpool vs Chelsea";
+            $match3 = "Liverpool vs Manchester Utd";
+            $match4 = "Liverpool vs Everton";
+            $match5 = "Liverpool vs Ghana";
+        }
+    } else{
+        $_SESSION['message'] = "You need to be logged in to vote" ;
+        
+    }
+
 ?>
 
+<?php
+    include 'scripts/messages.php';
+?>
+
+<?php
+    if(isset($_SESSION['username'])){
+        $username = $_SESSION['username'];
+?>
 <!-- Heading of the Table-->
-<h5><?php echo "<strong>User :</strong> ". $row['fname'] . " " . $row['lname']. " (" . $username .")<br> <strong>ID No. :</strong> ". $userID ?></h5>
+<h5><?php echo "<strong>User :</strong> ". $fname . " " . $lname . " (" . "$username" .")<br> <strong>ID No. :</strong> ". "$username" ?></h5>
 <hr>
-<h2>Hello and welcome <u><em><?php echo $username; ?> (ID: <?php echo $userID; ?>)</em></u> <br>
+<h2>Hello and welcome <u><em><?php echo $username; ?> (ID: <?php echo $username; ?>)</em></u> <br>
     Let us know what you think about these upcoming matches</h2>
 <hr>
 <!-- Table of Upcoming Matches Showing -->
@@ -107,6 +119,14 @@
         <input type='submit' value='Delete Your Votes' name='delete'>
     </form>
 </div>
+
+<?php
+    }else{
+        login();
+    }
+?>
+
+
 
 <br>
 <hr>

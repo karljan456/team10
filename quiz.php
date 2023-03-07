@@ -38,6 +38,25 @@ include 'layout/header.php';
     ?>
 </div>
 
+<?php
+
+if (isset($_COOKIE['theme']) && ($_COOKIE['theme'] == 'dark')) {
+
+    $quiz_title_color = "#BEBEBE";
+
+} else {
+
+    $quiz_title_color = "#444444";
+
+}
+?>
+<style>
+    #quiz-title {
+        color:
+            <?php echo $quiz_title_color; ?>
+        ;
+    }
+</style>
 
 <?php
 include 'layout/footer.php';

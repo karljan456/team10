@@ -17,7 +17,7 @@ $date = $_POST['comment_time'];
 $comment = $_POST['comment_text'];
 
 //This is the form for editing a comment
-echo "<form method='POST' action='".editComment($con)."'>
+echo "<form method='POST' action='".editComment($con)."' name='comform' onsubmit='return commentlen()'>
 <input type='hidden' name='id' value='$id'>
     <input type='hidden' name='username' value='$username'>
 	<input type='hidden' name='comment_time' value='$date'>

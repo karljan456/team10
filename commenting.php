@@ -25,9 +25,9 @@ function display_comments()
 
 	//This is the form for leaving a comment
 	echo "<div class='post article-container'>";
-	echo "<form method='POST' action='" . setComment($con) . "'>
+	echo "<form method='POST' action='".setComment($con)."' name='comform' onsubmit='return commentlen()'>
 						<input type='hidden' name='$username' value='$username'>
-						<input type='hidden' name='comment_time' value='" . date('Y-m-d H:i:s') . "'>
+						<input type='hidden' name='comment_time' value='".date('Y-m-d H:i:s')."'>
 						<textarea id='comment_text' name='comment_text'></textarea><br>";
 
 	if (isset($_SESSION['username'])) {
@@ -41,12 +41,12 @@ function display_comments()
 	
 
 	//Scripts for the texteditor
-	echo '<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+	/*echo '<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
     tinymce.init({
         selector: "textarea#comment_text",
         menubar: true,
     });
-    </script>';
+    </script>';*/
 }

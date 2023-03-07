@@ -20,6 +20,7 @@ session_start();
      <script src="/team10/assets/js/consent.js"></script><!--consent bar-->
     <script src="/team10/assets/js/poll.js"></script>
     <script src="/team10/assets/js/quiz_validation.js"></script>
+    <script src="/team10/assets/js/comment.js"></script>
 
     <link rel="stylesheet" href="/team10/assets/css/darkmode.css"><!--darkmode toggle switch styles-->
     <link rel="stylesheet" href="/team10/assets/css/styles.css">

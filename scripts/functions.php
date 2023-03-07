@@ -102,7 +102,7 @@ function invalidEmail($email)
 // check if passwords are matching password and passwordrepeat 
 function passwordMatch($password, $passwordrepeat)
 {
-    if ($password !==  $passwordrepeat) {
+    if ($password !== $passwordrepeat) {
         $result = true;
     } else {
         $result = false;
@@ -248,7 +248,7 @@ function userLogin($con, $username, $password)
     //////////////////////////////////article functions etc
     //////////////////////////////////post creation
 
-    function createPost( $title, $slug, $content, $excerpt, $category, $featured_image, $author)
+    function createPost($title, $slug, $content, $excerpt, $category, $featured_image, $author)
     {
         //connect to db and load the functions
         require_once "../assets/plugins/connect.php";
@@ -355,7 +355,7 @@ function display_single_post($slug)
 {
     // connect to database
 
-    include  "../assets/plugins/connect.php";
+    include "../assets/plugins/connect.php";
 
     $slug = get_url_slug();
     // Retrieve the post from the database
@@ -389,35 +389,35 @@ function display_single_post($slug)
 }
 
 //////////////////////////////////////
-// Function to get categories from the database and display them as a select list .. mainly for admin insert post form
+// Function to get categories from the database and display them as a select list
 function get_categories_select() {
     // Connect to the database
-    require_once  "../assets/plugins/connect.php";
-  
+    require_once "../assets/plugins/connect.php";
+
     // Fetch the categories from the database
     $sql = "SELECT id, title FROM post_categories";
     $result = $con->query($sql);
-  
+
     // declare variable
     $checkboxes = '';
-  
+
     // Display each category as an option in the select element
     if ($result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) {
-        $checkboxes .= '<div class="form-check form-check-inline">';
-        $checkboxes .= '<input class="form-check-input" type="checkbox" name="categories[]" id="category-' . $row['id'] . '" value="' . $row['id'] . '">';
-        $checkboxes .= '<label class="form-check-label" for="category-' . $row['id'] . '">' . $row['title'] . '</label>';
-        $checkboxes .= '</div>';
-      }
+        while ($row = $result->fetch_assoc()) {
+            $checkboxes .= '<div class="form-check form-check-inline">';
+            $checkboxes .= '<input class="form-check-input" type="checkbox" name="categories[]" id="category-' . $row['id'] . '" value="' . $row['id'] . '">';
+            $checkboxes .= '<label class="form-check-label" for="category-' . $row['id'] . '">' . $row['title'] . '</label>';
+            $checkboxes .= '</div>';
+        }
     }
-  
+
     // Close the database connection
     $con->close();
-  
+
     // Return the options string
     return $checkboxes;
-  }
-  
+}
+
 
 ////////////////////////////////////////
 // get post slug from the current url
@@ -547,7 +547,7 @@ function displayCategories() {
 // Function to retrieve and display posts by category
 function display_posts_by_category()
 {
-    $category =  get_url_category_slug();
+    $category = get_url_category_slug();
     // connect to database
     require "../assets/plugins/connect.php";
 
@@ -788,10 +788,10 @@ function printEpl($season)
     switch ($season) {
 
         case "s23":
-            echo "<h1>English Premier League Season 2022/23</h1>";
+            echo '<h1 id="league-title">English Premier League Season 2022/23</h1>';
             break;
         case "s22":
-            echo "<h1>English Premier League Season 2021/22</h1>";
+            echo '<h1 id="league-title">English Premier League Season 2021/22</h1>';
             break;
 
         default:
@@ -807,10 +807,10 @@ function printUcl($season)
     switch ($season) {
 
         case "s23":
-            echo "<h1>UEFA Champions League Season 2022/23</h1>";
+            echo '<h1 id="league-title">UEFA Champions League Season 2022/23</h1>';
             break;
         case "s22":
-            echo "<h1>UEFA Champions League Season 2021/22</h1>";
+            echo '<h1 id="league-title">UEFA Champions League Season 2021/22</h1>';
             break;
 
         default:

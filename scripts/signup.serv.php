@@ -44,7 +44,7 @@ if (isset($_POST['submit'])) {
     }
 
     //password legnth more than 7
-    if (strlen($password) < 7) {
+    if (strlen($password) < 5) {
         header('Location ../signup.php?error=passwordstooshort');
         exit();
     }

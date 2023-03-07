@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Mar 06, 2023 at 08:41 AM
+-- Generation Time: Mar 07, 2023 at 09:17 AM
 -- Server version: 8.0.32
 -- PHP Version: 8.0.19
 
@@ -90,6 +90,22 @@ CREATE TABLE `epl22_23` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `poll`
+--
+
+CREATE TABLE `poll` (
+  `poll_id` int NOT NULL,
+  `match1` varchar(50) DEFAULT NULL,
+  `match2` varchar(50) DEFAULT NULL,
+  `match3` varchar(50) DEFAULT NULL,
+  `match4` varchar(50) DEFAULT NULL,
+  `match5` varchar(50) DEFAULT NULL,
+  `user_id` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `posts`
 --
 
@@ -111,7 +127,7 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `author_id`, `author`, `title`, `slug`, `content`, `excerpt`, `featured_image`, `category`, `publish_date`) VALUES
-(10, 1, 'Elsama', 'blabla', 'bla', 'blablablablablablablabla', 'excerptexcerptexcerpt', '../assets/images/ali.jpg', 'News', '2023-02-28 15:31:44'),
+(10, 1, 'Elsama', 'blabla', 'bla', '1914 translation by H. Rackham\n\"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?\"', 'excerptexcerptexcerpt', '../assets/images/ali.jpg', 'News,Transfers', '2023-02-28 15:31:44'),
 (12, 1, 'Elsama', 'Lorem Ipsum', 'Lorem-Ipsum', 'Why do we use it?\r\nIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\r\n\r\nWhere can I get some?\r\nThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.\r\n', 'Why do we use it?\r\nIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using ..\r\n\r\n', '../assets/images/lfc_logo.png', 'Transfers', '2023-02-28 15:31:44');
 
 -- --------------------------------------------------------
@@ -133,7 +149,7 @@ CREATE TABLE `post_categories` (
 --
 
 INSERT INTO `post_categories` (`id`, `title`, `slug`, `description`, `featured_image`) VALUES
-(1, 'News', 'news', '\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"\r\n\"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"', '../assets/images/vandijk.jpg'),
+(1, 'News', 'news', '\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"\r\n\"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"', '../assets/images/inmemoria.png'),
 (2, 'Transfers', 'transfers', '\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"\r\n\"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"', '../assets/images/loader.gif');
 
 -- --------------------------------------------------------
@@ -221,6 +237,38 @@ CREATE TABLE `ucl22_23` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `User`
+--
+
+CREATE TABLE `User` (
+  `user_id` int NOT NULL,
+  `fname` varchar(50) NOT NULL,
+  `lname` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `role` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `User`
+--
+
+INSERT INTO `User` (`user_id`, `fname`, `lname`, `username`, `email`, `password`, `role`) VALUES
+(1, 'Edem', 'Quashigah', 'Edem', 'edem@email.com', 'password', 'user'),
+(2, 'Miika', 'Lahdenpera', 'Miika', 'miika@email.com', 'password', 'user'),
+(3, 'Elsayed', 'Mahmoud', 'Elsayed', 'elsayed@email.com', 'password', 'user'),
+(4, 'Edvin', 'Jansson', 'Edvin', 'edvin@email.com', 'password', 'user'),
+(5, 'Alpha', 'User', 'Alpha', 'alpha@email.com', 'password', 'user'),
+(6, 'Beta', 'Tester', 'Beta', 'beta@email.com', 'password', 'user'),
+(7, 'Salmon', 'Soupson', 'Salmon', 'salmon@email.com', 'password', 'user'),
+(8, 'Beef', 'Stroganof', 'Beef', 'beef@email.com', 'password', 'user'),
+(9, 'Curry', 'Powder', 'Curry', 'curry@email.com', 'password', 'user'),
+(10, 'Pizza', 'Slicinton', 'Pizza', 'pizza@email.com', 'password', 'user');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -262,6 +310,12 @@ ALTER TABLE `epl22_23`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `poll`
+--
+ALTER TABLE `poll`
+  ADD PRIMARY KEY (`poll_id`);
+
+--
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
@@ -296,6 +350,12 @@ ALTER TABLE `ucl22_23`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `User`
+--
+ALTER TABLE `User`
+  ADD PRIMARY KEY (`user_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -317,7 +377,13 @@ ALTER TABLE `epl21_22`
 -- AUTO_INCREMENT for table `epl22_23`
 --
 ALTER TABLE `epl22_23`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=701;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=721;
+
+--
+-- AUTO_INCREMENT for table `poll`
+--
+ALTER TABLE `poll`
+  MODIFY `poll_id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -347,7 +413,13 @@ ALTER TABLE `ucl21_22`
 -- AUTO_INCREMENT for table `ucl22_23`
 --
 ALTER TABLE `ucl22_23`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=601;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=605;
+
+--
+-- AUTO_INCREMENT for table `User`
+--
+ALTER TABLE `User`
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -53,12 +53,12 @@
 <!-- Table of Upcoming Matches Showing -->
 <div class='table-responsive'>
     <form name='vote' method='post' action="scripts/poll_action.php">
-        <table class='table caption-top table-info text-dark'>
+        <table class='table caption-top table-info text-dark table-hover'>
             <caption>List of Upcoming Matches</caption>
             <tr><th class="text-dark">No.</th><th class="text-dark">Match</th><th class="text-dark">Stadium</th><th class="text-dark">Your Votes</th><th class="text-dark">Vote</th></tr>
             <!-- Match 1 -->
             <tr><td>1</td><td><?php echo $match1 ?></td><td>Anfield</td><td><?php echo showVotes("match1") ?></td><td>
-            <select name='match1'>
+            <select name='match1' class="form-select form-select-sm" aria-label=".form-select-sm example">
                 <option value='null'selected>Choose</option>
                 <option value='win'>Win</option>
                 <option value='draw'>Draw</option>
@@ -67,7 +67,7 @@
             </td></td></tr>
             <!-- Match 2 -->
             <tr><td>2</td><td><?php echo $match2 ?></td><td>Hämeenlinna</td><td><?php echo showVotes("match2") ?></td><td>
-                <select name='match2'>
+                <select name='match2' class="form-select form-select-sm" aria-label=".form-select-sm example">
                     <option value='null'selected>Choose</option>
                     <option value='win'>Win</option>
                     <option value='draw'>Draw</option>
@@ -76,7 +76,7 @@
             </td></tr>
             <!-- Match 3 -->
             <tr><td>3</td><td><?php echo $match3 ?></td><td>Tampere</td><td><?php echo showVotes("match3") ?></td><td>
-            <select name='match3'>
+            <select name='match3' class="form-select form-select-sm" aria-label=".form-select-sm example">
                 <option value='null'selected>Choose</option>
                 <option value='win'>Win</option>
                 <option value='draw'>Draw</option>
@@ -85,7 +85,7 @@
             </td></tr>
             <!-- Match 4 -->
             <tr><td>4</td><td><?php echo $match4 ?></td><td>Oulu</td><td><?php echo showVotes("match4") ?></td><td>
-            <select name='match4'>
+            <select name='match4' class="form-select form-select-sm" aria-label=".form-select-sm example">
                 <option value='null'selected>Choose</option>
                 <option value='win'>Win</option>
                 <option value='draw'>Draw</option>
@@ -94,7 +94,7 @@
             </td></tr>
             <!-- Match 5 -->
             <tr><td>5</td><td><?php echo $match5 ?></td><td>Helsinki</td><td><?php echo showVotes("match5") ?></td><td>
-            <select name='match5'>
+            <select name='match5' class="form-select form-select-sm" aria-label=".form-select-sm example">
                 <option value='null'selected>Choose</option>
                 <option value='win'>Win</option>
                 <option value='draw'>Draw</option>
@@ -121,7 +121,7 @@
 <!-- Total Vote Results Table with variables inserted -->
 <div id="results-table' class='table-responsive">
         <h2>VOTING RESULTS TABLE (Shows The Votes That Have Been Made By Other Users)</h2>
-        <table class="table caption-top table-danger">
+        <table class="table caption-top table-danger table-hover">
         <caption>Total Vote Results</caption>
             <tr><th class="text-dark">No.</th><th class="text-dark">Match</th><th class="text-dark">Stadium</th><th class="text-dark">Win %</th><th class="text-dark">Draw %</th><th class="text-dark">Lose %</th><th class="text-dark">Total</th></tr>
             <!-- Match 1 Row-->

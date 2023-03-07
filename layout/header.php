@@ -93,17 +93,31 @@ session_start();
                     <li class="nav-item">
                         <a class="nav-link" href="#">Video</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/team10/layout/blog.php">Blog</a>
-                    </li>
-                    <li class="nav-item">
+
+                    <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="/team10/layout/blog.php" id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
+    aria-haspopup="true" aria-expanded="false">Blog</a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="/team10/layout/blog.php">All Posts</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/team10/posts/category.php">All Categories</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/team10/posts/post.php?slug=bla">Single Post Example</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/team10/posts/category.php?category=news">Single Category Example</a>
+    </div>
+</li>
+
+
+                    <li class="nav-item ">
                         <a class="nav-link" href="#">Schedule</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/team10/tables.php">Tables</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
+                        aria-haspopup="true" aria-expanded="false">
                             MORE
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">

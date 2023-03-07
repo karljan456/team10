@@ -57,7 +57,7 @@ include "layout/header.php" ?>
                         <footer class="article-footer">
                             <p>&copy; By Edem, the best football reporter in Hämeenlinna</p>
                         </footer>
-
+                        
                     </div>
 
                 </div>
@@ -66,5 +66,5 @@ include "layout/header.php" ?>
 
             </div>
         </div>
-
+        <?php include 'commenting.php'?>
 <?php include "layout/footer.php" ?>

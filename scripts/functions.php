@@ -649,7 +649,7 @@ function printTable($table)
            <th>GA</th>
            <th>GD</th>
            <th>PTS</th>
-          </tr>";
+          </tr> <tbody class=\"\">";
     printData($table, $con);
 
     $con->close();
@@ -739,7 +739,8 @@ function printData($table, $con)
             }
         }
 
-        echo "</table>";
+        echo " </tbody>
+        </table>";
 
     } else {
 

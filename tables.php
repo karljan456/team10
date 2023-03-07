@@ -25,7 +25,7 @@ include "layout/header.php";
     </form>
     <div>
         <?php
-
+        include 'scripts/table_style.php';
         include 'scripts/functions.php';
 
         $epl22_23 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSUQRlKDVZfBpigOrtJaCX1K05ySMjJe16LGGlmdyG5BhBa2d5mY1J9KByl10utiJFszJILYyBEDgLt/pub?gid=0&single=true&output=csv";

@@ -34,6 +34,25 @@ function login()
         echo '<font style=" color:green;">Welcome, ' . $_SESSION['username'] . '</font>';
     }
 }
+
+//simple login form e.g for comment section
+function mini_login() {
+        if (empty($_SESSION['loggedin'])) {
+            echo '<div class="my-5 article-container container-fluid"><hr class="w-75 my-4">';
+            echo '<form class="form-inline" action="../scripts/login.serv.php" method="POST">';
+            echo '<div class="form-row align-items-center">';
+            echo '<div class="col-md-4">';
+            echo '<input type="text" class="form-control mb-2" name="username" placeholder="Username" required>';
+            echo '<input type="password" class="form-control mb-2" name="password" placeholder="Password" required>';
+            echo '<button type="submit" class="btn btn-primary mb-2">Login</button>';
+            echo '</div>';
+            echo '</div>';
+            echo '</form>';
+            echo '<hr class="w-75 my-4"></div>';
+        }
+    }
+    
+    
 ///////////////////////////////////////////////////////////////////////
 
 
@@ -49,6 +68,13 @@ function emptySignupInput($firstname, $lastname, $username, $email, $password, $
     }
     return $result;
 }
+//check if name is longer than varchar 50
+function checkNameLength($firstname, $lastname) {
+    if (strlen($firstname) > 50 || strlen($firstname) > 50) {
+        return true;
+    }
+    return false;
+    }
 
 // check if username is valid 
 function invalidUsername($username)
@@ -107,13 +133,16 @@ function usernameExists($con, $username, $email)
 
     //check if there is result and assign it to a variable as an array
     if ($row = mysqli_fetch_assoc($stmtResult)) {
+        mysqli_stmt_close($stmt);
         return $row;
+        
     } else {
         $result = false;
+        mysqli_stmt_close($stmt);
         return $result;
     }
     //close the prepared statement
-    mysqli_stmt_close($stmt);
+    
 }
 
 
@@ -206,6 +235,7 @@ function userLogin($con, $username, $password)
         }
         $_SESSION['user_role'] = $userExists['role'];
         $_SESSION['username'] = $userExists['username'];
+        $_SESSION['user_id'] = $userExists['user_id'];
         $_SESSION['loggedin'] = true;
 
         $_SESSION['message'] = "Welcome " . $_SESSION['username'];
@@ -215,10 +245,6 @@ function userLogin($con, $username, $password)
 
     /////////////////////////////////////////////////////
     //////////////////////////////////article functions etc
-//image upload function
-
-
-
     //////////////////////////////////post creation
 
     function createPost( $title, $slug, $content, $excerpt, $category, $featured_image, $author)
@@ -254,6 +280,42 @@ function userLogin($con, $username, $password)
         exit();
     }
 }
+
+//////////////////////////////////////////////
+////////image upload function
+function saveImage($fileInput) {
+    // Check if file input is set
+    if (!isset($fileInput)) {
+        return 'No file input received.';
+    }
+
+    // Check for errors in file input
+    if ($fileInput['error'] !== UPLOAD_ERR_OK) {
+        return 'File input error: ' . $fileInput['error'];
+    }
+
+    // Check if uploaded file is an image
+    $fileType = exif_imagetype($fileInput['tmp_name']);
+    $allowedTypes = array(IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_GIF);
+    if (!in_array($fileType, $allowedTypes)) {
+        return 'Uploaded file is not an image.';
+    }
+
+    // Generate unique filename for the image
+    $fileName = uniqid() . '.' . pathinfo($fileInput['name'], PATHINFO_EXTENSION);
+
+    // Set path for image
+    $imagePath = '../assets/images/' . $fileName;
+
+    // Move uploaded file to image path
+    if (!move_uploaded_file($fileInput['tmp_name'], $imagePath)) {
+        return 'Error moving uploaded file.';
+    }
+
+    // Return image path
+    return $imagePath;
+}
+
 /////////////////////////////
 
 // function to display posts
@@ -326,7 +388,7 @@ function display_single_post($slug)
 }
 
 //////////////////////////////////////
-// Function to get categories from the database and display them as a select list
+// Function to get categories from the database and display them as a select list .. mainly for admin insert post form
 function get_categories_select() {
     // Connect to the database
     require_once  "../assets/plugins/connect.php";
@@ -395,6 +457,8 @@ function display_post_title($slug)
     require_once "../assets/plugins/connect.php";
 
     // Retrieve post title by ID
+    $slug = isset($queryParams['category']) ? $queryParams['category'] : '';
+
     $slug = get_url_slug();
     $result = $con->query("SELECT title FROM posts WHERE slug = '$slug'");
     $post = $result->fetch_assoc();
@@ -404,6 +468,81 @@ function display_post_title($slug)
     return $title;
 }
 ////////////////////////////////////////////////
+//////display post categories
+function displayCategories() {
+    // Include the database connection file
+    include "../assets/plugins/connect.php";
+
+    // Build the SQL query to retrieve the categories
+    $sql = "SELECT * FROM post_categories";
+
+    // Execute the query
+    $result = mysqli_query($con, $sql);
+
+    // Check if there are any categories
+    if (mysqli_num_rows($result) > 0) {
+        // Initialize a counter for the cards
+        $card_counter = 0;
+
+        // Start a row
+        echo '<div class="row">';
+
+        // Loop through the categories and display each one as a card
+        while ($row = mysqli_fetch_assoc($result)) {
+            // Increment the card counter
+            $card_counter++;
+
+            // Extract the slug, featured image, title, and description
+            $slug = $row['slug'];
+            $featured_image = $row['featured_image'];
+            $title = $row['title'];
+            $description = $row['description'];
+
+            // Limit the description to 32 words
+            $description_excerpt = substr($description, 0, strpos($description, ' ', 52));
+
+            // Build the card HTML with a link to the category's post page
+            $card_html = '<div class="col-md-4">';
+            $card_html .= '<div class="card">';
+            $card_html .= '<a href="/team10/posts/category.php?category=' . $slug . '">';
+            $card_html .= '<img class="card-img-top" src="' . $featured_image . '" alt="' . $title . '">';
+            $card_html .= '</a>';
+            $card_html .= '<div class="card-body">';
+            $card_html .= '<h5 class="card-title">';
+            $card_html .= '<a href="/team10/posts/post.php?slug=' . $slug . '">' . $title . '</a>';
+            $card_html .= '</h5>';
+            $card_html .= '<p class="card-text">' . $description_excerpt . '</p>';
+            $card_html .= '</div>';
+            $card_html .= '<div class="card-footer">';
+            $card_html .= '<a href="/team10/posts/category.php?category=' . $slug . '">Read More</a>';
+            $card_html .= '</div>';
+            $card_html .= '</div>';
+            $card_html .= '</div>';
+
+            // Display the card HTML
+            echo $card_html;
+
+            // Check if the card counter is a multiple of 3
+            if ($card_counter % 3 == 0) {
+                // End the row and start a new one
+                echo '</div>';
+                echo '<div class="row">';
+            }
+        }
+
+        // End the last row
+        echo '</div>';
+    } else {
+        // Display a message if there are no categories
+        echo "No categories found.";
+    }
+
+    // Close the MySQLi connection
+    mysqli_close($con);
+}
+
+
+
 // Function to retrieve and display posts by category
 function display_posts_by_category()
 {
@@ -521,7 +660,7 @@ function printTable($table)
            <th>GA</th>
            <th>GD</th>
            <th>PTS</th>
-          </tr>";
+          </tr> <tbody class=\"\">";
     printData($table, $con);
 
     $con->close();
@@ -611,7 +750,8 @@ function printData($table, $con)
             }
         }
 
-        echo "</table>";
+        echo " </tbody>
+        </table>";
 
     } else {
 

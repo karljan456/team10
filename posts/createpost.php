@@ -27,8 +27,8 @@ if (!empty($_SESSION['admin'])) {
                 </div>
 
                 <div class="form-group mt-5 text-dark">
-                <label for="image" class="py-1"><strong>Featured Image:</strong></label><br>
-                <input class="form-control-md form-control" type="file" id="image" name="image" accept="image/*" required>               
+                <label for="featured_image" class="py-1"><strong>Featured Image:</strong></label><br>
+                <input class="form-control-md form-control" type="file" id="featured_image" name="featured_image" accept="image/*" required>               
                 </div>
 
                 <div class="form-group mt-5 text-dark">

@@ -72,6 +72,7 @@ function deleteComment($con){
         $sql = "DELETE FROM comment WHERE id='$id'";
 
         $result = $con->query($sql);
-        echo "<script>window.location.href</script>";
+        echo "<script>window.location.reload()</script>";
+        exit();
     }
 }

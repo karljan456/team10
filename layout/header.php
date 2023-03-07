@@ -25,12 +25,7 @@
     <link rel="stylesheet" href="/team10/assets/css/darkmode.css"><!--darkmode toggle switch styles-->
     <link rel="stylesheet" href="/team10/assets/css/styles.css">
     <link rel="stylesheet" href="/team10/assets/css/stylulate.css">
-    <link rel="stylesheet" href="/team10/assets/css/signup.css" type="text/css" />
-    <?php
-    if (basename(__FILE__) == 'signup.php') {
-        echo '<link rel="stylesheet" href="/team10/assets/css/signup.css" type="text/css"/>';
-    }
-    ?>
+    
 
     <title>
         <?php

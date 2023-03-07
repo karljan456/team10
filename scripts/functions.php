@@ -295,16 +295,20 @@ function saveImage($fileInput) {
     }
 
     // Check if uploaded file is an image
-    $fileType = exif_imagetype($fileInput['tmp_name']);
+    $fileInfo = getimagesize($fileInput['tmp_name']);
+    if ($fileInfo === false) {
+        return 'Uploaded file is not an image.';
+    }
+    $fileType = $fileInfo[2];
     $allowedTypes = array(IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_GIF);
     if (!in_array($fileType, $allowedTypes)) {
-        return 'Uploaded file is not an image.';
+        return 'Uploaded file is not a valid image type.';
     }
 
     // Generate unique filename for the image
     $fileName = uniqid() . '.' . pathinfo($fileInput['name'], PATHINFO_EXTENSION);
 
-    // Set path for image
+    // Set path for the image
     $imagePath = '../assets/images/' . $fileName;
 
     // Move uploaded file to image path
@@ -398,15 +402,15 @@ function get_categories_select() {
     $result = $con->query($sql);
 
     // declare variable
-    $checkboxes = '';
+    $radios = '';
 
-    // Display each category as an option in the select element
+    // Display each category as a radio button
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $checkboxes .= '<div class="form-check form-check-inline">';
-            $checkboxes .= '<input class="form-check-input" type="checkbox" name="categories[]" id="category-' . $row['id'] . '" value="' . $row['id'] . '">';
-            $checkboxes .= '<label class="form-check-label" for="category-' . $row['id'] . '">' . $row['title'] . '</label>';
-            $checkboxes .= '</div>';
+            $radios .= '<div class="form-check form-check-inline">';
+            $radios .= '<input class="form-check-input" type="radio" name="category" id="category-' . $row['id'] . '" value="' . $row['id'] . '">';
+            $radios .= '<label class="form-check-label" for="category-' . $row['id'] . '">' . $row['title'] . '</label>';
+            $radios .= '</div>';
         }
     }
 
@@ -414,8 +418,9 @@ function get_categories_select() {
     $con->close();
 
     // Return the options string
-    return $checkboxes;
+    return $radios;
 }
+
 
 
 ////////////////////////////////////////

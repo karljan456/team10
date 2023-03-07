@@ -9,6 +9,9 @@ if (isset($_POST['publish'])) {
     $excerpt = substr($content, 0, 32);
     $category = $_POST['category'];
     $author = $_SESSION['username'];
+
+    require_once "functions.php";
+
     $imagePath = saveImage($_FILES['image']);
 
     /////////////////all is good? let's insert stuff
@@ -17,7 +20,7 @@ if (isset($_POST['publish'])) {
     // Insert the post into the database
     $sql = "INSERT INTO posts (title, slug, content, excerpt, category, author, featured_image) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $con->prepare($sql);
-    $stmt->bind_param('sssssss', $title, $slug, $content, $category, $author, $imagePath);
+    $stmt->bind_param('sssssss', $title, $slug, $content, $excerpt, $category, $author, $imagePath);
     $stmt->execute();
 
     // Check for errors executing the query
@@ -29,6 +32,6 @@ if (isset($_POST['publish'])) {
     $con->close();
 
     // Redirect to the post page
-    header('Location: post.php?slug=' . $slug);
+    header('Location: ../post/post.php?slug=' . $slug);
     exit;
 }

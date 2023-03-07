@@ -28,8 +28,6 @@ include "layout/header.php";
         include 'scripts/table_style.php';
         include 'scripts/functions.php';
 
-        $epl22_23 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSUQRlKDVZfBpigOrtJaCX1K05ySMjJe16LGGlmdyG5BhBa2d5mY1J9KByl10utiJFszJILYyBEDgLt/pub?gid=0&single=true&output=csv";
-        $ucl22_23 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSUQRlKDVZfBpigOrtJaCX1K05ySMjJe16LGGlmdyG5BhBa2d5mY1J9KByl10utiJFszJILYyBEDgLt/pub?gid=232218589&single=true&output=csv";
         if (isset($_POST['SHOW'])) {
             $competition = $_POST['competitions'];
             $season = $_POST['season'];
@@ -41,24 +39,24 @@ include "layout/header.php";
 
                 printEpl("s23");
 
-                printLiveTable($epl22_23, 'epl22_23');
+                printTable('epl22_23');
 
             } else if (strcmp($competition, "ucl") === 0 and strcmp($season, "s23") === 0) {
 
                 printUclLogo();
                 printUcl("s23");
-                printLiveTable($ucl22_23, 'ucl22_23');
+                printTable('ucl22_23');
 
             } else if (strcmp($competition, "all") === 0 and strcmp($season, "s23") === 0) {
 
                 printEplLogo();
                 printEpl("s23");
-                printLiveTable($epl22_23, 'epl22_23');
+                printTable('epl22_23');
 
                 printUclLogo();
                 printUcl("s23");
 
-                printLiveTable($ucl22_23, 'ucl22_23');
+                printTable('ucl22_23');
 
             }
             // Displaying data for the previous season 
@@ -94,13 +92,13 @@ include "layout/header.php";
             printEplLogo();
             printEpl("s23");
 
-            printLiveTable($epl22_23, 'epl22_23');
+            printTable('epl22_23');
 
             printUclLogo();
 
             printUcl("s23");
 
-            printLiveTable($ucl22_23, 'ucl22_23');
+            printTable('ucl22_23');
 
         }
         ?>

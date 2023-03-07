@@ -1,21 +1,22 @@
 /*Post creation page styles*/
 /* Form group */
-.create-post-form{
-    padding-top:10px;
-    padding-bottom:10px;
-    background-color:#ecf0f1;
-    padding-left:15px;
-    padding-right:15px;
-    border-top-left-radius:8px;
-    border-top-right-radius:8px;
-    border-bottom-left-radius:8px;
-    border-bottom-right-radius:8px;
-   }
-   .create-post-form .form-group::placeholder{
-padding-left:50px;
-   }
-   
-   
+.create-post-form {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #ecf0f1;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.create-post-form .form-group::placeholder {
+    padding-left: 50px;
+}
+
+
 .tox-statusbar__branding {
     display: none;
 }
@@ -40,13 +41,19 @@ padding-left:50px;
 }
 
 /* header User link */
-#navbarSupportedContent .nav-item .user-link{
-    color:#ffffff !important;
-   }
-   
-   
-element, input, button, label,nav,footer, .footer-row-2  {
-    border-radius:2px;
+#navbarSupportedContent .nav-item .user-link {
+    color: #ffffff !important;
+}
+
+
+element,
+input,
+button,
+label,
+nav,
+footer,
+.footer-row-2 {
+    border-radius: 2px;
 }
 
 /* Navigation */
@@ -1047,13 +1054,15 @@ h4 {
     text-align: center;
     font-size: 3rem;
 }
+
 /* making quiz title responsive */
 @media only screen and (max-width: 600px) {
     #quiz-title {
         font-size: 2rem;
     }
 }
-#quiz-score{
+
+#quiz-score {
     text-align: center;
     font-size: 3rem;
 }
@@ -1065,7 +1074,7 @@ h4 {
     }
 }
 
-.quiz-result{
+.quiz-result {
 
     display: block;
     margin: 0 auto;
@@ -1092,11 +1101,10 @@ th {
     text-align: left;
     font-weight: bold;
     padding: 10px;
+    background-color: #d00a27 !important;
+    color: white !important;
 }
-head{
-    background-color: #d00a27;
-    color: white;
-}
+
 td {
     padding: 10px;
     border: 1px solid #ccc;

@@ -22,13 +22,12 @@ function display_comments()
 
 	}
 
-
 	//This is the form for leaving a comment
 	echo "<div class='post article-container'>";
-	echo "<form method='POST' action='".setComment($con)."' name='comform' onsubmit='return commentlen()'>
-						<input type='hidden' name='$username' value='$username'>
-						<input type='hidden' name='comment_time' value='".date('Y-m-d H:i:s')."'>
-						<textarea id='comment_text' name='comment_text'></textarea><br>";
+	echo '<form method="POST" action="'.setComment($con).'" name="comform" onsubmit="return commentlen()">
+						<input type="hidden" name='.$username.' value='.$username.'>
+						<input type="hidden" name="comment_time" value='.date('Y-m-d H:i:s').'>
+						<textarea id="comment_text" name="comment_text"></textarea><br>';
 
 	if (isset($_SESSION['username'])) {
 		echo "<button type='submit' name='comment'>Comment</button><br><br>";

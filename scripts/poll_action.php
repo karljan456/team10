@@ -33,8 +33,8 @@
         $insertSQL = "insert into poll(username, match1, match2, match3, match4, match5)
         values('$username', '$match1Vote', '$match2Vote', '$match3Vote', '$match4Vote', '$match5Vote')" ;
         if($con->query($insertSQL) === TRUE){
-            echo "<h1>Thank you for voting. <br>
-            Your vote has been added successfully</h1> ";
+            echo "<h1>Thank you for voting $username. <br>
+            Your votes have been added successfully</h1> ";
         }else{
             echo "Error: " . $con->error ;
         }
@@ -44,7 +44,6 @@
 
 
     //Editing the votes
-
     if(isset($_POST['edit'])){
         // include 'assets/plugins/connect.php';
 
@@ -53,8 +52,8 @@
         WHERE username = '$username'");
 
         if($alterQuery){
-            echo "<h2> Thank you for voting. <br>
-            Your information has been updated successfully</h2>";
+            echo "<h2> Thank you for voting $username. <br>
+            Your votes have been updated successfully</h2>";
         } else {
             echo"Record Not Modified";
         }
@@ -62,25 +61,21 @@
     }
 
     //Deleting the votes
-
     if(isset($_POST['delete'])){
         $alterQuery = mysqli_query($con, "DELETE FROM poll WHERE username = '$username'"); 
 
         if($alterQuery){
-            echo "<h2>Thank you for your time. <br>
-            Your information has been deleted successfully</h2>";
+            echo "<h2>Thank you for your time $username. <br>
+            Your votes have been deleted successfully</h2>";
         } else {
             echo"Record Not Modified";
         }
         echo " <script> deleteSuccess() </script>";
-    }
-    
-   
+    } 
 ?>
 
 <a href="../poll.php">
     <input type="button" class="btn btn-secondary" value="Click here to return to the Voting Page">
 </a>
-
 
 <?php include $_SERVER["DOCUMENT_ROOT"]."/team10/layout/footer.php" ?>

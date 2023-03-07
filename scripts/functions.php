@@ -34,7 +34,6 @@ function login()
         echo '<font style=" color:green;">Welcome, ' . $_SESSION['username'] . '</font>';
     }
 }
-<<<<<<< HEAD
 
 //simple login form e.g for comment section
 function mini_login() {
@@ -54,8 +53,6 @@ function mini_login() {
     }
     
     
-=======
->>>>>>> parent of 9de08db (Merge branch 'main' into siigismund)
 ///////////////////////////////////////////////////////////////////////
 
 

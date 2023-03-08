@@ -719,8 +719,7 @@ function printData($table, $con)
     $result = $con->query($read);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            // Conditions to check if the team is Liverpool then the name will be bold and 
-            // also checking if the table does not contain unwanted characters
+            // Conditions to check if the team is Liverpool then the name will be bold
             if (strcmp($row['Team'], "Liverpool") === 0) {
                 echo "<tr>
                         <td><b>$row[Pos]</b></td>

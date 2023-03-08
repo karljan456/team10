@@ -116,11 +116,11 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/team10/poll.php">Poll Site</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="tables.php">League Table</a>
+                            <a class="dropdown-item" href="/team10/tables.php">League Table</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Comment Forum</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="quiz.php">Quiz</a>
+                            <a class="dropdown-item" href="/team10/quiz.php">Quiz</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Extra 1</a>
                         </div>

@@ -38,9 +38,10 @@ function display_comments()
 	
 		echo "<button type='submit' name='comment' class='btn btn-primary my-3' onClick='return commentlen()'>Comment</button><br><br>";
 	
-
+		include "scripts/messages.php";
 		getComment($con);
-		include "../scripts/messages.php";
+		
+		
 
 	echo "</form></div>";
 	}	

@@ -46,12 +46,18 @@ function display_comments()
 	
 
 	//Scripts for the texteditor
-	echo '<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+	/*echo '<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
     tinymce.init({
         selector: "textarea#comment_text",
         menubar: true,
     });
-    </script>';
+	tinymce.init({
+        selector: "textarea#editedcomment_text",
+        menubar: true,
+    });
+    </script>';*/
+
+
 }

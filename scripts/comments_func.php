@@ -67,11 +67,13 @@ function editform_display($row){
             
             <div class='form-group'>
                 <label for='comment_text'>Comment</label>
-                <textarea class='form-control' id='comment_text' name='comment_text' rows='3'>$comment</textarea>
+                <textarea class='form-control' id='editedcomment_text' name='comment_text' rows='3'>$comment</textarea>
             </div>
             <button type='submit' name='editSubmit' class='btn btn-primary my-3' onClick='return commentlen()'>Edit</button>
         </form>";
+
     }
+    
 }
 
 function editComment($con){
@@ -83,10 +85,9 @@ function editComment($con){
         //Trim whitespace at the end of the comment
         $trim_comment = rtrim($comment);
         
-        $sql = "UPDATE comment SET comment_text='$trim_comment' WHERE id='$id'";
+        $sql = "UPDATE comment SET comment_text='$trim_comment' WHERE id=$id";
 
         $result = $con->query($sql);
-        echo "<script>window.history.back();location.reload();</script>";
     }
 }
 

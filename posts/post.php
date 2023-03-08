@@ -1,4 +1,4 @@
-<?php
+<?php 
 //This includes the functions from comments.php
 include "../scripts/comments_func.php";
 require_once "../scripts/functions.php";

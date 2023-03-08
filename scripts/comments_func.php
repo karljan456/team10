@@ -112,6 +112,9 @@ function editComment($con){
             header('Location: '.$_SERVER['HTTP_REFERER'].'#editing-form');
             exit();
         }
+        session_start();
+        header('Location: '.$_SERVER['HTTP_REFERER'].'#editing-form');
+        exit();
 
         }
     }

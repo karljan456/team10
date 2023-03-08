@@ -1,3 +1,26 @@
+/******news banner*******/
+.news-banner {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  .news-item {
+    display: inline-block;
+    padding: 0 1em;
+    animation: scroll 15s linear infinite;
+  }
+  
+  @keyframes scroll {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+
 /*Post creation page styles*/
 /* Form group */
 .create-post-form {

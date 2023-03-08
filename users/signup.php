@@ -1,5 +1,4 @@
 <?php 
-include "../layout/header.php"; 
 if (isset($_SESSION['loggedin'])){
   header('Location: userprofile.php');
   exit();
@@ -18,7 +17,7 @@ include "../layout/header.php";
     var passwordrepeat = document.forms["signupForm"]["passwordrepeat"].value;
 
     // Check if name is empty
-    if (fistname == "" || lastname == "") {
+    if (firstname == "" || lastname == "") {
       alert("Please enter your name.");
       return false;
     }

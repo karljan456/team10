@@ -23,15 +23,19 @@ function display_comments()
 	}
 
 
-	//This is the form for leaving a comment
-	echo "<div class='post article-container'>";
-	echo "<form method='POST' action='".setComment($con)."' name='comform' onsubmit='return commentlen()'>
-						<input type='hidden' name='$username' value='$username'>
-						<input type='hidden' name='comment_time' value='".date('Y-m-d H:i:s')."'>
-						<textarea id='comment_text' name='comment_text'></textarea><br>";
+    //This is the form for leaving a comment
+    echo "<div class='post article-container'>";
+    echo "<form method='POST' action='".setComment($con)."' name='comform' onsubmit='return commentlen()'>
+        <input type='hidden' name='$username' value='$username'>
+        <input type='hidden' name='comment_time' value='".date('Y-m-d H:i:s')."'>
+        <div class='form-group'>
+            <label for='comment_text'>Comment</label>
+            <textarea class='form-control' id='comment_text' name='comment_text' rows='3'></textarea>
+        </div>";
+
 
 	if (isset($_SESSION['username'])) {
-		echo "<button type='submit' name='comment'>Comment</button><br><br>";
+		echo "<button type='submit' name='comment' class='btn btn-primary my-3'>Comment</button><br><br>";
 	}
 
 		getComment($con);
@@ -41,12 +45,12 @@ function display_comments()
 	
 
 	//Scripts for the texteditor
-	/*echo '<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+	echo '<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
     tinymce.init({
         selector: "textarea#comment_text",
         menubar: true,
     });
-    </script>';*/
+    </script>';
 }

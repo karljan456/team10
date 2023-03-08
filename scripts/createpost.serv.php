@@ -32,6 +32,6 @@ if (isset($_POST['publish'])) {
     $con->close();
 
     // Redirect to the post page
-    header('Location: ../post/post.php?slug=' . $slug);
+    header('Location: ../posts/post.php?slug=' . $slug);
     exit;
 }

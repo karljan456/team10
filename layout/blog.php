@@ -2,18 +2,17 @@
 include_once "../scripts/functions.php";
 //header
 include "header.php";
-?>
 
 
 
-<div class="container">
-    <?php display_posts(); ?>
-</div>
+
+display_posts();
 
 
-<?php
+
+
 //footer
 include "footer.php";
-?>
+
 
 

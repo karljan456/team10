@@ -22,48 +22,48 @@ if (isset($_POST['submit'])) {
 
     //if empty 
     if (emptySignupInput($firstname, $lastname, $username, $email, $password, $passwordrepeat, $tos)) {
-        header('Location: ../signup.php?error=emptyinputfield');
+        header('Location: ../users/signup.php?error=emptyinputfield');
         exit();
     }
      // validate if name is longer than varchar 50
      if (checkNameLength($firstname, $lastname)) {
-        header('Location: ../signup.php?error=longname');
+        header('Location: ../users/signup.php?error=longname');
         exit();
     }
 
     // check if invalid username
     if (invalidUsername($username)) {
-        header('Location: ../signup.php?error=invalidusername');
+        header('Location: ../users/signup.php?error=invalidusername');
         exit();
     }
 
     // check if invalid email using the pre made function
     if (invalidEmail($email)) {
-        header('Location: ../signup.php?error=invalidemail');
+        header('Location: ../users/signup.php?error=invalidemail');
         exit();
     }
 
     // check if password and password confirmation match
     if (passwordMatch($password, $passwordrepeat)) {
-        header('Location: ../signup.php?error=passwordconfirmation');
+        header('Location: ../users/signup.php?error=passwordconfirmation');
         exit();
     }
 
     // password length more than 7
     if (strlen($password) < 5) {
-        header('Location: ../signup.php?error=passwordstooshort');
+        header('Location: ../users/signup.php?error=passwordstooshort');
         exit();
     }
 
     // check if username exists in the db already
     if (usernameExists($con, $username, $email)) {
-        header('Location: ../signup.php?error=usernamealreadytaken');
+        header('Location: ../users/signup.php?error=usernamealreadytaken');
         exit();
     }
 
     // check if terms of services "TOS" is selected
     if (empty($tos)) {
-        header('Location: ../signup.php?error=tosagreement');
+        header('Location: ../users/signup.php?error=tosagreement');
         exit();
     }
 
@@ -74,5 +74,5 @@ createUser($con, $firstname, $lastname, $username, $email, $password);
 
 
 } else {
-    header('Location: ../signup.php');
+    header('Location: ../users/signup.php');
 }

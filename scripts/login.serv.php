@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
     // check if any input field is empty
     if (emptyLoginInput($username, $password) !== false){
 
-        header ("Location: ../login.php?error=emptyinputfield");
+        header ("Location: ../users/login.php?error=emptyinputfield");
         exit();
     }
 

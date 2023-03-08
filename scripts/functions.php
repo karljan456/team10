@@ -336,15 +336,17 @@ function display_posts()
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             // display post content within Bootstrap HTML card 
-            echo '<div class="card mb-3 col-md-6 text-center"><a href="/team10/posts/post.php?slug=' . $row["slug"] . '">';
-            echo '<a href="/team10/posts/post.php?slug=' . $row["slug"] . '"><img class="card-img-top" src="' . $row["featured_image"] . '")" alt="Card image" width="auto" height="auto"></a>';
+            echo '<div class="card mb-5 col-md-5 text-center">';
+            echo '<a href="/team10/posts/post.php?slug=' . $row["slug"] . '"><img class="card-img-top" src="' . $row["featured_image"] . '" alt="Card image" style="max-height: 350px; box-shadow: 1px 1px 5px #ccc;"></a>';
             echo '<div class="card-body">';
-            echo '<h1 class="card-title">' . $row["title"] . '</h1>';
+            echo '<h1 class="card-title my-1">' . $row["title"] . '</h1>';
             echo '<p class="card-text text-dark mb-3">' . $row["excerpt"] . '</p>';
             echo '<a href="/team10/posts/post.php?slug=' . $row["slug"] . '">Read more..</a>';
             echo '</div>';
-            echo '</div></a>';
+            echo '</div>';
         }
+        echo '</div>';
+        echo '</div>';
     } else {
         echo "0 results";
     }
@@ -352,15 +354,50 @@ function display_posts()
     // close connection
     $con->close();
 }
+/////////////////////
+////display latest posts with an adjustable parameter to display as many posts as you wish
+function display_latest_posts($num_posts) {
+
+    // connect to database
+    require_once "assets/plugins/connect.php";
+
+    // select last $num_posts posts from database
+    $sql = "SELECT * FROM posts ORDER BY publish_date DESC LIMIT $num_posts";
+    $result = $con->query($sql);
+
+    // display posts in Bootstrap HTML cards
+    if ($result->num_rows > 0) {
+        echo '<div class="row">';
+        while ($row = $result->fetch_assoc()) {
+            echo '<div class="col-md-' . (12 / $num_posts) . '">';
+            echo '<div class="card mb-5">';
+            echo '<a href="/team10/posts/post.php?slug=' . $row["slug"] . '"><img class="card-img-top" src="' . $row["featured_image"] . '" alt="Card image" style="max-height: 350px; box-shadow: 1px 1px 5px #ccc;"></a>';
+            echo '<div class="card-body">';
+            echo '<h1 class="card-title">' . $row["title"] . '</h1>';
+            echo '<p class="card-text text-dark mb-3">' . $row["excerpt"] . '</p>';
+            echo '<a href="/team10/posts/post.php?slug=' . $row["slug"] . '">Read more..</a>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+        }
+        echo '</div>';
+    } else {
+        echo "0 results";
+    }
+
+    // close connection
+    $con->close();
+}
+
+
 /////////////////////////////////////////////////////
 // function to display single post using the slug in url
-function display_single_post($slug)
-{
-    // connect to database
-
+function display_single_post($slug) {
+    // Connect to database
     include "../assets/plugins/connect.php";
 
     $slug = get_url_slug();
+
     // Retrieve the post from the database
     $sql = "SELECT * FROM posts WHERE slug = '$slug'";
     $result = $con->query($sql);
@@ -368,21 +405,25 @@ function display_single_post($slug)
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
         $post_title = $row['title'];
-        $post_content = $row['content'];
+        $post_content = nl2br($row['content']);
         $post_author = $row['author'];
         $featured_image = $row['featured_image'];
         $post_category = $row['category'];
         $category_slug = strtolower($post_category);
-
+        $post_date = $row['publish_date'];
 
         // Display the post
-        echo "<div class='post article-container'>";
-        echo "<div class='featured-image mb-1'><img src='$featured_image' alt='$post_title' width='auto' height='auto'></div>";
+        echo "<div class='post article-container mb-10'>";
+        echo "<div class='featured-image mb-5'><img src='$featured_image' alt='$post_title' width='auto' height='auto'></div>";
         echo "<div class='title mt-1'><h2><a href='/post/$slug'>$post_title</a></h2></div>";
-        echo "<div class='content'>$post_content</div>";
-        echo "<div class='author-box'>Written by $post_author</div>";
-        echo "<div class='category'><a href='/team10/posts/category.php?category=$category_slug'>$post_category</a></div>";
-        echo "</div>";
+        echo "<div class='content'><p>$post_content</p></div>";
+        echo "<div class='author-box my-5 mb-1'>Written by $post_author</div>";
+        echo "<div class='category'>Category: <a href='/team10/posts/category.php?category=$category_slug'>$post_category</a></div>";
+        echo "<div class='author-box my-1 mb-1'><small>Published on: $post_date</small></div>";
+        echo "</div><br>";
+        echo "<div class='text-center'>
+        <hr class='w-75 mb-5'>
+      </div>";
     } else {
         echo "Post not found";
     }
@@ -390,6 +431,62 @@ function display_single_post($slug)
     // Close the database connection
     $con->close();
 }
+
+
+////////////////////////////////
+////news banner latest news, latest titles 
+function display_latest_post_titles() {
+    // connect to the database
+    include "../team10/assets/plugins/connect.php";
+
+    // query the database for the latest posts
+    $sql = "SELECT title FROM posts ORDER BY publish_date DESC LIMIT 5";
+    $result = $con->query($sql);
+
+    // create the carousel container
+    echo "<div id='news-carousel' class='carousel slide' data-ride='carousel'>";
+
+    // create the carousel indicators
+    echo "<ol class='carousel-indicators'>";
+    for ($i = 0; $i < $result->num_rows; $i++) {
+        echo "<li data-target='#news-carousel' data-slide-to='$i'";
+        if ($i == 0) {
+            echo " class='active'";
+        }
+        echo "></li>";
+    }
+    echo "</ol>";
+
+    // create the carousel items
+    echo "<div class='carousel-inner'>";
+    $count = 0;
+    while ($row = $result->fetch_assoc()) {
+        echo "<div class='carousel-item";
+        if ($count == 0) {
+            echo " active";
+        }
+        echo "'><h4>" . $row['title'] . "</h4></div>";
+        $count++;
+    }
+    echo "</div>";
+
+    // add the carousel controls
+    echo "<a class='carousel-control-prev' href='#news-carousel' role='button' data-slide='prev'>";
+    echo "<span class='carousel-control-prev-icon' aria-hidden='true'></span>";
+    echo "<span class='sr-only'>Previous</span>";
+    echo "</a>";
+    echo "<a class='carousel-control-next' href='#news-carousel' role='button' data-slide='next'>";
+    echo "<span class='carousel-control-next-icon' aria-hidden='true'></span>";
+    echo "<span class='sr-only'>Next</span>";
+    echo "</a>";
+
+    // close the carousel container
+    echo "</div>";
+
+    // close the database connection
+    $con->close();
+}
+
 
 //////////////////////////////////////
 // Function to get categories from the database and display them as a select list
@@ -562,6 +659,7 @@ function display_posts_by_category()
     // loop through each post
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+            echo '<h2 class="mb-5">Displaying all posts in the '.$category.' category</h2><br>';
             // display post content within Bootstrap HTML card 
             echo '<div class="card mb-3 col-md-4 text-center"><a href="/team10/posts/post.php?slug=' . $row["slug"] . '">';
             echo '<a href="/team10/posts/post.php?slug=' . $row["slug"] . '"><img class="card-img-top" src="' . $row["featured_image"] . '")" alt="Card image" width="auto" height="auto"></a>';

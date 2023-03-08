@@ -60,14 +60,14 @@ function editform_display($row){
 
         $result = $con->query($sql);
 
-        echo "<form method='POST' action='../editComment.php' name='comform'>
+        echo "<form method='POST' action='".editComment($con)."' name='comform' anchor='edit-form'>
             <input type='hidden' name='id' value='$id'>
             <input type='hidden' name='comment_author' value='$username'>
             <input type='hidden' name='comment_time' value='$date'>
             
             <div class='form-group'>
                 <label for='comment_text'>Comment</label>
-                <textarea class='form-control' id='editedcomment_text' name='comment_text' rows='3'>$comment</textarea>
+                <textarea class='form-control' id='editedcomment_text' name='comment_text' rows='3' >$comment</textarea>
             </div>
             <button type='submit' name='editSubmit' class='btn btn-primary my-3' onClick='return commentlen()'>Edit</button>
         </form>";

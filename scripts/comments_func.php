@@ -28,7 +28,9 @@ function getComment($con){
         echo "<hr><br><strong>".$row['comment_author']."</strong><br>";
         echo $row['comment_time']."<br>";
         echo nl2br($row['comment_text'])."<br>";
-
+        
+        //If the user = comment_author or if user is admin, show edit and delete buttons
+        if($_SESSION['username']==$row['comment_author'] || isset($_SESSION['admin'])){
         //Edit and delete buttons
         echo 
             "<div style='display: inline;'>
@@ -44,6 +46,7 @@ function getComment($con){
                 <input type='hidden' name='comment_text' value='".$row['comment_text']."'>
                 <button name='edit' class='btn btn-primary my-3'>Edit</button><br><br>
             </form></div>";
+        }
     }
 }
 

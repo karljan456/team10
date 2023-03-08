@@ -34,7 +34,7 @@ function getComment($con){
             "<div style='display: inline;'>
             <form style='display: inline;'  method='POST' action='".deleteComment($con)."'>
                 <input type='hidden' name='id' value='".$row['id']."'>
-                <button name='commentDelete'>Delete</button>
+                <button name='commentDelete' class='btn btn-primary my-3'>Delete</button>
             </form>
 
             <form style='display: inline;'  method='POST' action='../editcomment.php'>
@@ -42,7 +42,7 @@ function getComment($con){
                 <input type='hidden' name='user_id' value='".$row['comment_author']."'>
                 <input type='hidden' name='comment_time' value='".$row['comment_time']."'>
                 <input type='hidden' name='comment_text' value='".$row['comment_text']."'>
-                <button>Edit</button><br><br>
+                <button class='btn btn-primary my-3'>Edit</button><br><br>
             </form></div>";
     }
 }
@@ -72,11 +72,12 @@ function deleteComment($con){
         $sql = "DELETE FROM comment WHERE id='$id'";
 
         if($result = $con->query($sql)){
-        session_start();
+        //session_start();
         header("Refresh: 0"); 
         exit();
-        //exit(header('location: '));
-        //echo "<script>window.location.reload()</script>";
+
+        //$result = $con->query($sql);
+        //echo "<script>window.location.href</script>";
         }
         
     }

@@ -5,7 +5,7 @@
 	//This makes the connection to the database
 	include "assets/plugins/connect.php";
 	//This includes the functions from comments.php
-	include "scripts/comments.php";
+	include "scripts/comments_func.php";
 ?>
 
 

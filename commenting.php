@@ -22,13 +22,14 @@ function display_comments()
 
 	}
 
-
+	$post_slug = get_url_slug();
     //This is the form for leaving a comment
 	if (isset($_SESSION['username'])) {
     echo "<div class='post article-container'>";
     echo "<form method='POST' action='".setComment($con)."' name='comform'>
         <input type='hidden' name='$username' value='$username'>
         <input type='hidden' name='comment_time' value='".date('Y-m-d H:i:s')."'>
+		<input type='hidden' name='post_slug' value='$post_slug'>
         <div class='form-group'>
             <label for='comment_text'>Comment</label>
             <textarea class='form-control' id='comment_text' name='comment_text' rows='3'></textarea>

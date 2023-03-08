@@ -6,14 +6,19 @@ function setComment($con){
     if (isset($_POST['comment'])){
         $username = $_SESSION['username'];
         $date = $_POST['comment_time'];
+        $post_slug = $_POST['post_slug'];
         $comment = $_POST['comment_text'];
         //Trim whitespace at the end of the comment
         $trim_comment = rtrim($comment);
 
-        $sql = "INSERT INTO comment (comment_author, comment_time, comment_text) 
-                VALUES ('$username', '$date', '$trim_comment')";
+        $sql = "INSERT INTO comment (comment_author, comment_time, comment_text, post_slug) 
+                VALUES ('$username', '$date', '$trim_comment', '$post_slug')";
 
         $result = $con->query($sql);
+
+        if (!$result) {
+            die("Error updating comment: " . $con->error);
+        }
 
         echo "<script>window.location.href</script>";
     }
@@ -25,28 +30,34 @@ function getComment($con){
     $result = $con->query($sql);
     
     while($row = $result->fetch_assoc()){
+        $post_slug = get_url_slug();
+        if($post_slug == $row['post_slug']){
+        
         echo "<hr><br><strong>".$row['comment_author']."</strong><br>";
         echo $row['comment_time']."<br>";
         echo nl2br($row['comment_text'])."<br>";
-        
+
         //If the user = comment_author or if user is admin, show edit and delete buttons
         if($_SESSION['username']==$row['comment_author'] || isset($_SESSION['admin'])){
-        //Edit and delete buttons
-        echo 
-            "<div style='display: inline;'>
-            <form style='display: inline;'  method='POST' action='".deleteComment($con)."'>
-                <input type='hidden' name='id' value='".$row['id']."'>
-                <button name='commentDelete' class='btn btn-primary my-3'>Delete</button>
-            </form>
-
-            <form style='display: inline;'  method='POST' action='".editform_display($row)."'>
-                <input type='hidden' name='id' value='".$row['id']."'>
-                <input type='hidden' name='user_id' value='".$row['comment_author']."'>
-                <input type='hidden' name='comment_time' value='".$row['comment_time']."'>
-                <input type='hidden' name='comment_text' value='".$row['comment_text']."'>
-                <button name='edit' class='btn btn-primary my-3'>Edit</button><br><br>
-            </form></div>";
+            //Edit and delete buttons
+            echo 
+                "<div style='display: inline;'>
+                <form style='display: inline;'  method='POST' action='".deleteComment($con)."'>
+                    <input type='hidden' name='id' value='".$row['id']."'>
+                    <button name='commentDelete' class='btn btn-primary my-3'>Delete</button>
+                </form>
+    
+                <form style='display: inline;'  method='POST' action='".editform_display($row)."'>
+                    <input type='hidden' name='id' value='".$row['id']."'>
+                    <input type='hidden' name='user_id' value='".$row['comment_author']."'>
+                    <input type='hidden' name='comment_time' value='".$row['comment_time']."'>
+                    <input type='hidden' name='comment_text' value='".$row['comment_text']."'>
+                    <button name='edit' class='btn btn-primary my-3'>Edit</button><br><br>
+                </form></div>";
+            }
         }
+
+        
     }
 }
 

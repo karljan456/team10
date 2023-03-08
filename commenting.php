@@ -35,8 +35,6 @@ function display_comments()
             <textarea class='form-control' id='comment_text' name='comment_text' rows='3'></textarea>
         </div>";
 
-
-	
 		echo "<button type='submit' name='comment' class='btn btn-primary my-3' onClick='return commentlen()'>Comment</button><br><br>";
 	
 		include "scripts/messages.php";

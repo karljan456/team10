@@ -22,5 +22,5 @@ I will try to use PHP crud to create the following features to our website:
 
 4) Blog pages
     a) Blog page with dynamic post display - DONE
-    b) Single post page that displays posts dynamically using url slug
+    b) Single post page that displays posts dynamically using url slug - DONE
     c) category post view and if accessed directly then display all categories   - DONE

@@ -34,18 +34,43 @@ function getComment($con){
             "<div style='display: inline;'>
             <form style='display: inline;'  method='POST' action='".deleteComment($con)."'>
                 <input type='hidden' name='id' value='".$row['id']."'>
-                <button name='commentDelete'>Delete</button>
+                <button name='commentDelete' class='btn btn-primary my-3'>Delete</button>
             </form>
 
-            <form style='display: inline;'  method='POST' action='../editcomment.php'>
+            <form style='display: inline;'  method='POST' action='".editform_display($row['id'])."'>
                 <input type='hidden' name='id' value='".$row['id']."'>
                 <input type='hidden' name='user_id' value='".$row['comment_author']."'>
                 <input type='hidden' name='comment_time' value='".$row['comment_time']."'>
                 <input type='hidden' name='comment_text' value='".$row['comment_text']."'>
-                <button>Edit</button><br><br>
+                <button name='edit' class='btn btn-primary my-3'>Edit</button><br><br>
             </form></div>";
     }
 }
+
+function editform_display($id){
+    if(isset($_POST['edit'])){
+        include "../assets/plugins/connect.php";
+        $id = $_POST['id'];
+        $username = $_SESSION['username'];
+        $date = $_POST['comment_time'];
+        $comment = $_POST['comment_text'];
+
+        $sql = "SELECT * FROM comment WHERE id=$id";
+
+        $result = $con->query($sql);
+
+    echo "<form method='POST' action='".editComment($con)."' name='comform'>
+    <input type='hidden' name='id' value='$id'>
+    <input type='hidden' name='username' value='$username'>
+	<input type='hidden' name='comment_time' value='$date'>
+	
+	<div class='form-group'>
+            <label for='comment_text'>Comment</label>
+            <textarea class='form-control' id='comment_text' name='comment_text' rows='3'>$comment</textarea>
+        </div>
+	<button type='submit' name='editSubmit' class='btn btn-primary my-3' onClick='return commentlen()'>Edit</button>
+	</form>";
+}}
 
 //Edit function
 function editComment($con){
@@ -56,11 +81,11 @@ function editComment($con){
         $comment = $_POST['comment_text'];
         //Trim whitespace at the end of the comment
         $trim_comment = rtrim($comment);
-
+        
         $sql = "UPDATE comment SET comment_text='$trim_comment' WHERE id='$id'";
 
         $result = $con->query($sql);
-        echo "<script>window.history.back()</script>";
+        echo "<script>window.history.back();location.reload();</script>";
     }
 }
 
@@ -72,11 +97,12 @@ function deleteComment($con){
         $sql = "DELETE FROM comment WHERE id='$id'";
 
         if($result = $con->query($sql)){
-        session_start();
+        //session_start();
         header("Refresh: 0"); 
         exit();
-        //exit(header('location: '));
-        //echo "<script>window.location.reload()</script>";
+
+        //$result = $con->query($sql);
+        //echo "<script>window.location.href</script>";
         }
         
     }

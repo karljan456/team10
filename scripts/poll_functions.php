@@ -57,7 +57,9 @@
             echo "<strong>Error</strong>: You cannot vote twice. <br>
                     <strong>Tip</strong>: Try <strong>EDITING</strong> your vote instead. <br>
                     <em>Thank You</em>";
-            echo " <script> votedAlready() </script>";
+            echo " <script> votedAlready();
+                    window.history.back();
+                    </script>";
             echo " <br> <a href='../poll.php'>
                     <input type='button' value='Click here to return to the Voting Page'>
                 </a>";

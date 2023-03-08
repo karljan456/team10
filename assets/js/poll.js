@@ -11,5 +11,5 @@ function deleteSuccess() {
 }
 
 function votedAlready() {
-  alert("You cannot submit more than one vote");
+  alert("You cannot submit more than one vote. Edit your votes");
 }

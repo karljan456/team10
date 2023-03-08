@@ -1,7 +1,6 @@
 <?php
     $title = "Poll Site";
-    include $_SERVER["DOCUMENT_ROOT"]."/team10/layout/header.php" ;
-    //require_once 'assets/plugins/connect.php';
+    include_once $_SERVER["DOCUMENT_ROOT"]."/team10/layout/header.php" ;
     include 'scripts/poll_functions.php';
     include 'scripts/functions.php';
     include 'assets/plugins/connect.php';
@@ -152,8 +151,8 @@
             <tr>
                 <td>4</td><td>Liverpool vs Everton</td><td>Oulu</td>
                 <td><?php echo totalPercentage('win', 'match4') ?></td>
-                <td><?php echo totalPercentage('lose', 'match4') ?></td>
                 <td><?php echo totalPercentage('draw', 'match4') ?></td>
+                <td><?php echo totalPercentage('lose', 'match4') ?></td>
                 <td><?php echo total('match4') ?></td>
             </tr>
             <!-- Match 5 Row-->

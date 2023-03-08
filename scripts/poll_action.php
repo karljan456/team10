@@ -38,7 +38,9 @@
         }else{
             echo "Error: " . $con->error ;
         }
-        echo"<script> voteSuccess() </script>";
+        echo"<script> voteSuccess();
+            window.history.go(-1);
+            </script>";
         
     }
 
@@ -57,7 +59,9 @@
         } else {
             echo"Record Not Modified";
         }
-        echo"<script> editSuccess() </script>";
+        echo"<script> editSuccess();
+            window.history.back();
+            </script>";
     }
 
     //Deleting the votes
@@ -70,7 +74,9 @@
         } else {
             echo"Record Not Modified";
         }
-        echo " <script> deleteSuccess() </script>";
+        echo " <script> deleteSuccess();
+            window.history.go(-1);
+            </script>";
     } 
 ?>
 

@@ -59,8 +59,11 @@ function editform_display($row){
         $sql = "SELECT * FROM comment WHERE id=$id";
 
         $result = $con->query($sql);
+        if (!$result) {
+            die("Error updating comment: " . $con->error);
+        } else {
 
-        echo "<form method='POST' action='".editComment($con)."' name='comform' anchor='editing-form'>
+            echo "<form method='POST' action='".editComment($con)."' name='comform' anchor='editing-form'>
             <input type='hidden' name='id' value='$id'>
             <input type='hidden' name='comment_author' value='$username'>
             <input type='hidden' name='comment_time' value='$date'>
@@ -71,10 +74,12 @@ function editform_display($row){
             </div>
             <button type='submit' name='editSubmit' class='btn btn-primary my-3' onClick='return commentlen()'>Edit</button>
         </form>";
+        }
+    }
+
 
     }
     
-}
 
 function editComment($con){
     if (isset($_POST['editSubmit'])){
@@ -93,11 +98,12 @@ function editComment($con){
         } else {
             session_start();
             $_SESSION['message'] = "Comment updated successfully!";
-            header('Location: '.$_SERVER['HTTP_REFERER'.'#editing-form']);
+            header('Location: '.$_SERVER['HTTP_REFERER'].'#editing-form');
             exit;
         }
     }
 }
+
 
 
 //Delete function

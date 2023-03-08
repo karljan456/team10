@@ -37,7 +37,7 @@ function getComment($con){
                 <button name='commentDelete' class='btn btn-primary my-3'>Delete</button>
             </form>
 
-            <form style='display: inline;'  method='POST' action='".editform_display($row['id'])."'>
+            <form style='display: inline;'  method='POST' action='".editform_display($row)."'>
                 <input type='hidden' name='id' value='".$row['id']."'>
                 <input type='hidden' name='user_id' value='".$row['comment_author']."'>
                 <input type='hidden' name='comment_time' value='".$row['comment_time']."'>
@@ -47,10 +47,11 @@ function getComment($con){
     }
 }
 
-function editform_display($id){
-    if(isset($_POST['edit'])){
+
+function editform_display($row){
+    if (isset($_POST['edit']) && $_POST['id'] == $row['id']) {
         include "../assets/plugins/connect.php";
-        $id = $_POST['id'];
+        $id = $row['id'];
         $username = $_SESSION['username'];
         $date = $_POST['comment_time'];
         $comment = $_POST['comment_text'];
@@ -59,20 +60,20 @@ function editform_display($id){
 
         $result = $con->query($sql);
 
-    echo "<form method='POST' action='".editComment($con)."' name='comform'>
-    <input type='hidden' name='id' value='$id'>
-    <input type='hidden' name='username' value='$username'>
-	<input type='hidden' name='comment_time' value='$date'>
-	
-	<div class='form-group'>
-            <label for='comment_text'>Comment</label>
-            <textarea class='form-control' id='comment_text' name='comment_text' rows='3'>$comment</textarea>
-        </div>
-	<button type='submit' name='editSubmit' class='btn btn-primary my-3' onClick='return commentlen()'>Edit</button>
-	</form>";
-}}
+        echo "<form method='POST' action='".editComment($con)."' name='comform'>
+            <input type='hidden' name='id' value='$id'>
+            <input type='hidden' name='comment_author' value='$username'>
+            <input type='hidden' name='comment_time' value='$date'>
+            
+            <div class='form-group'>
+                <label for='comment_text'>Comment</label>
+                <textarea class='form-control' id='comment_text' name='comment_text' rows='3'>$comment</textarea>
+            </div>
+            <button type='submit' name='editSubmit' class='btn btn-primary my-3' onClick='return commentlen()'>Edit</button>
+        </form>";
+    }
+}
 
-//Edit function
 function editComment($con){
     if (isset($_POST['editSubmit'])){
         $id = $_POST['id'];

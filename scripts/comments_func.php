@@ -60,7 +60,7 @@ function editform_display($row){
 
         $result = $con->query($sql);
 
-        echo "<form method='POST' action='".editComment($con)."' name='comform'>
+        echo "<form method='POST' action='../editComment.php' name='comform'>
             <input type='hidden' name='id' value='$id'>
             <input type='hidden' name='comment_author' value='$username'>
             <input type='hidden' name='comment_time' value='$date'>
@@ -88,8 +88,17 @@ function editComment($con){
         $sql = "UPDATE comment SET comment_text='$trim_comment' WHERE id=$id";
 
         $result = $con->query($sql);
+        if (!$result) {
+            die("Error updating comment: " . $con->error);
+        } else {
+            session_start();
+            $_SESSION['message'] = "Comment updated successfully!";
+            header('Location: '.$_SERVER['HTTP_REFERER']);
+            exit;
+        }
     }
 }
+
 
 //Delete function
 function deleteComment($con){
@@ -99,8 +108,9 @@ function deleteComment($con){
         $sql = "DELETE FROM comment WHERE id='$id'";
 
         if($result = $con->query($sql)){
-        //session_start();
-        header("Refresh: 0"); 
+        session_start();
+        $_SESSION['message'] = "Comment deleted successfully!";
+        header('Location: '.$_SERVER['HTTP_REFERER']);
         exit();
 
         //$result = $con->query($sql);

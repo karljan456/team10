@@ -40,6 +40,8 @@ function display_comments()
 	
 
 		getComment($con);
+		include "../scripts/messages.php";
+
 	echo "</form></div>";
 	}	
 
@@ -53,5 +55,11 @@ function display_comments()
         selector: "textarea#comment_text",
         menubar: true,
     });
+	tinymce.init({
+        selector: "textarea#editedcomment_text",
+        menubar: true,
+    });
     </script>';
+
+
 }

@@ -282,6 +282,50 @@ function userLogin($con, $username, $password)
 }
 
 //////////////////////////////////////////////
+/////post view for admins
+
+function admin_post_view() {
+    require_once "../assets/plugins/connect.php";
+    global $con;
+    // Get all posts from the database
+    $sql = "SELECT * FROM posts";
+    $result = $con->query($sql);
+    
+    if ($result->num_rows > 0) {
+        // Display the posts in a table
+        echo '<table class="table text-dark">';
+        echo '<thead class="text-dark">';
+        echo '<tr>';
+        echo '<th class="text-dark">Title</th>';
+        echo '<th class="text-dark">Author</th>';
+        echo '<th class="text-dark">Category</th>';
+        echo '<th class="text-dark">Action</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
+        
+        while ($row = $result->fetch_assoc()) {
+            echo '<tr>';
+            echo '<td>' . $row['title'] . '</td>';
+            echo '<td>' . $row['author'] . '</td>';
+            echo '<td>' . $row['category'] . '</td>';
+            echo '<td>';
+            echo '<a href="../scripts/postedit.serv.php?id=' . $row['id'] . '" class="btn btn-primary btn-sm">Edit</a> ';
+            echo '<a href="../scripts/postedit.serv.php?id=' . $row['id'] . '" class="btn btn-danger btn-sm">Delete</a>';
+            echo '</td>';
+            echo '</tr>';
+        }
+        
+        echo '</tbody>';
+        echo '</table>';
+    } else {
+        echo 'No posts found.';
+    }
+    
+    // Close the database connection
+    $con->close();
+}
+
 ////////image upload function
 function saveImage($fileInput) {
     // Check if file input is set
@@ -415,12 +459,15 @@ function display_single_post($slug) {
         // Display the post
         echo "<div class='post article-container mb-10'>";
         echo "<div class='featured-image mb-5'><img src='$featured_image' alt='$post_title' width='auto' height='auto'></div>";
-        echo "<div class='title mt-1'><h2><a href='/post/$slug'>$post_title</a></h2></div>";
+        echo "<div class='title mt-1'><h2><a href='/team10/posts/post.php?slug=$slug'>$post_title</a></h2></div>";
         echo "<div class='content'><p>$post_content</p></div>";
         echo "<div class='author-box my-5 mb-1'>Written by $post_author</div>";
         echo "<div class='category'>Category: <a href='/team10/posts/category.php?category=$category_slug'>$post_category</a></div>";
         echo "<div class='author-box my-1 mb-1'><small>Published on: $post_date</small></div>";
         echo "</div><br>";
+        if (isset($_SESSION['admin'])){
+            echo "<a href='/team10/posts/postview.php' attribute='Shows only to admin'>Edit</a>";
+        }
         echo "<div class='text-center'>
         <hr class='w-75 mb-5'>
       </div>";
@@ -505,7 +552,7 @@ function get_categories_select() {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $radios .= '<div class="form-check form-check-inline">';
-            $radios .= '<input class="form-check-input" type="radio" name="category" id="category-' . $row['id'] . '" value="' . $row['id'] . '">';
+            $radios .= '<input class="form-check-input" type="radio" name="category" id="category-' . $row['id'] . '" value="' . $row['title'] . '">';
             $radios .= '<label class="form-check-label" for="category-' . $row['id'] . '">' . $row['title'] . '</label>';
             $radios .= '</div>';
         }

@@ -56,8 +56,6 @@ function getComment($con){
                 </form></div>";
             }
         }
-
-        
     }
 }
 

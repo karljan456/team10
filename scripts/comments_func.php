@@ -60,7 +60,7 @@ function editform_display($row){
 
         $result = $con->query($sql);
 
-        echo "<form method='POST' action='".editComment($con)."' name='comform' anchor='edit-form'>
+        echo "<form method='POST' action='".editComment($con)."' name='comform' anchor='editing-form'>
             <input type='hidden' name='id' value='$id'>
             <input type='hidden' name='comment_author' value='$username'>
             <input type='hidden' name='comment_time' value='$date'>
@@ -93,7 +93,7 @@ function editComment($con){
         } else {
             session_start();
             $_SESSION['message'] = "Comment updated successfully!";
-            header('Location: '.$_SERVER['HTTP_REFERER']);
+            header('Location: '.$_SERVER['HTTP_REFERER'.'#editing-form']);
             exit;
         }
     }

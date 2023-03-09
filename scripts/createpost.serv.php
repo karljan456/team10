@@ -4,7 +4,7 @@ if (isset($_POST['publish'])) {
 
     //get variables from the createPost.php form
     $title = $_POST['title'];
-    $slug = $_POST['slug'];
+    $slug = preg_replace('/[^a-z0-9]+/i', '-', strtolower(trim($_POST['slug'])));
     $content = $_POST['content'];
     $excerpt = substr($content, 0, 32);
     $category = $_POST['category'];
